@@ -1,0 +1,140 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using duanminiveprogresql.Models;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace duanminiveprogresql.Controllers
+{
+    public class AuthController : Controller
+    {
+        private readonly AppDbContext _context;
+
+        public AuthController(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Login
+        public IActionResult Login(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        // POST: Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(string email, string password, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                ModelState.AddModelError("", "Email và mật khẩu không được để trống");
+                return View();
+            }
+
+            var hashedPassword = HashPassword(password);
+            var user = await _context.Nguoidungs
+                .FirstOrDefaultAsync(u => u.Email == email && u.Matkhau == hashedPassword);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Email hoặc mật khẩu không đúng");
+                return View();
+            }
+
+            if (!user.Trangthai)
+            {
+                ModelState.AddModelError("", "Tài khoản đã bị khóa");
+                return View();
+            }
+
+            // Lưu thông tin user vào session
+            HttpContext.Session.SetInt32("UserId", user.Id);
+            HttpContext.Session.SetString("UserName", user.Hoten);
+            HttpContext.Session.SetString("UserEmail", user.Email);
+            HttpContext.Session.SetString("UserRole", user.Vaitro);
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        // GET: Register
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(string hoten, string email, string password, string confirmPassword, string sodienthoai)
+        {
+            if (password != confirmPassword)
+            {
+                ModelState.AddModelError("", "Mật khẩu xác nhận không khớp");
+                return View();
+            }
+
+            // Kiểm tra email đã tồn tại
+            var existingUser = await _context.Nguoidungs.FirstOrDefaultAsync(u => u.Email == email);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("", "Email đã được sử dụng");
+                return View();
+            }
+
+            // Tạo người dùng mới
+            var newUser = new Nguoidung
+            {
+                Hoten = hoten,
+                Email = email,
+                Matkhau = HashPassword(password),
+                Sodienthoai = sodienthoai,
+                Vaitro = "Customer",
+                Trangthai = true,
+                Ngaytao = DateTime.UtcNow
+            };
+
+            _context.Nguoidungs.Add(newUser);
+            await _context.SaveChangesAsync();
+
+            // Tạo khách hàng
+            var newCustomer = new Khachhang
+            {
+                Nguoidungid = newUser.Id,
+                Daxacthuc = false,
+                Ngaydangky = DateTime.UtcNow
+            };
+
+            _context.Khachhangs.Add(newCustomer);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập.";
+            return RedirectToAction("Login");
+        }
+
+        // Logout
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+        // Helper method to hash password
+        private string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
+        }
+    }
+}

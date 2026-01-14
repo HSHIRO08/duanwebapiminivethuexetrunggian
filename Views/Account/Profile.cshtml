@@ -1,0 +1,154 @@
+﻿@model Nguoidung
+
+@{
+    ViewData["Title"] = "Trang cá nhân";
+    var khachhang = Model.Khachhangs.FirstOrDefault();
+}
+
+<div class="container py-4">
+    <h1 class="mb-4"><i class="fas fa-user-circle"></i> Trang Cá Nhân</h1>
+
+    <div class="row">
+        <!-- Profile Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-circle fa-5x text-primary mb-3"></i>
+                    <h5>@Model.Hoten</h5>
+                    <p class="text-muted">@Model.Email</p>
+                    @if (khachhang != null && khachhang.Daxacthuc)
+                    {
+                        <span class="badge bg-success">
+                            <i class="fas fa-check-circle"></i> Đã xác thực
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">
+                            <i class="fas fa-exclamation-circle"></i> Chưa xác thực
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="list-group list-group-flush">
+                    <a href="@Url.Action("Profile", "Account")" class="list-group-item list-group-item-action active">
+                        <i class="fas fa-user"></i> Thông tin cá nhân
+                    </a>
+                    <a href="@Url.Action("BookingHistory", "Account")" class="list-group-item list-group-item-action">
+                        <i class="fas fa-history"></i> Đơn đặt xe
+                    </a>
+                    <a href="@Url.Action("RentalHistory", "Account")" class="list-group-item list-group-item-action">
+                        <i class="fas fa-list"></i> Lịch sử thuê
+                    </a>
+                    <a href="@Url.Action("Support", "Account")" class="list-group-item list-group-item-action">
+                        <i class="fas fa-headset"></i> Hỗ trợ
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Form -->
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-edit"></i> Thông tin cá nhân</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="UpdateProfile" asp-controller="Account">
+                        @Html.AntiForgeryToken()
+
+                        <h6 class="mb-3">Thông tin người dùng</h6>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Họ và tên *</label>
+                                <input type="text" class="form-control" name="hoten" value="@Model.Hoten" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Email (không thể thay đổi)</label>
+                                <input type="email" class="form-control" value="@Model.Email" disabled>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Số điện thoại *</label>
+                                <input type="tel" class="form-control" name="sodienthoai" value="@Model.Sodienthoai" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" name="diachi" value="@Model.Diachi">
+                            </div>
+                        </div>
+
+                        @if (khachhang != null)
+                        {
+                            <hr>
+                            <h6 class="mb-3">Thông tin khách hàng</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">CMND/CCCD</label>
+                                    <input type="text" class="form-control" name="cmnd" value="@khachhang.Cmnd">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Số bằng lái</label>
+                                    <input type="text" class="form-control" name="banglai" value="@khachhang.Banglai">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Ngày sinh</label>
+                                    <input type="date" class="form-control" name="ngaysinh" 
+                                           value="@(khachhang.Ngaysinh?.ToString("yyyy-MM-dd"))">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Giới tính</label>
+                                    <select class="form-select" name="gioitinh">
+                                        <option value="">Chọn giới tính</option>
+                                        <option value="Nam" selected="@(khachhang.Gioitinh == "Nam")">Nam</option>
+                                        <option value="Nữ" selected="@(khachhang.Gioitinh == "Nữ")">Nữ</option>
+                                        <option value="Khác" selected="@(khachhang.Gioitinh == "Khác")">Khác</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Địa chỉ chi tiết</label>
+                                    <textarea class="form-control" name="diachichitiet" rows="2">@khachhang.Diachichitiet</textarea>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> 
+                            Vui lòng cung cấp đầy đủ thông tin CMND và bằng lái để được xác thực tài khoản
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Cập nhật thông tin
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-key"></i> Đổi mật khẩu</h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Mật khẩu hiện tại</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mật khẩu mới</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Xác nhận mật khẩu mới</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-lock"></i> Đổi mật khẩu
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

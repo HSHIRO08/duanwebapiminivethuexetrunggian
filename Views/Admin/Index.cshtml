@@ -1,0 +1,233 @@
+﻿@model IEnumerable<duanminiveprogresql.Models.Datxe>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">
+                <i class="fas fa-tachometer-alt text-primary"></i> Dashboard Admin
+            </h1>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Tổng số xe
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalCars</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-car fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                    <small class="text-success">
+                        <i class="fas fa-check"></i> @ViewBag.AvailableCars xe khả dụng
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Doanh thu
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                @ViewBag.TotalRevenue.ToString("N0") đ
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Đơn thuê
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalBookings</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                    <small class="text-warning">
+                        <i class="fas fa-clock"></i> @ViewBag.PendingBookings đơn chờ xác nhận
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Khách hàng
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalCustomers</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-bolt"></i> Thao tác nhanh</h5>
+                </div>
+                <div class="card-body">
+                    <a href="@Url.Action("CreateXe")" class="btn btn-success me-2 mb-2">
+                        <i class="fas fa-plus"></i> Thêm xe mới
+                    </a>
+                    <a href="@Url.Action("Xe")" class="btn btn-primary me-2 mb-2">
+                        <i class="fas fa-car"></i> Quản lý xe
+                    </a>
+                    <a href="@Url.Action("DonThue", new { status = "Pending" })" class="btn btn-warning me-2 mb-2">
+                        <i class="fas fa-clock"></i> Đơn chờ xác nhận
+                    </a>
+                    <a href="@Url.Action("KhachHang")" class="btn btn-info me-2 mb-2">
+                        <i class="fas fa-users"></i> Khách hàng
+                    </a>
+                    <a href="@Url.Action("BaoCao")" class="btn btn-secondary me-2 mb-2">
+                        <i class="fas fa-chart-bar"></i> Báo cáo
+                    </a>
+                    <a href="@Url.Action("HoTro", new { status = "Open" })" class="btn btn-danger me-2 mb-2">
+                        <i class="fas fa-headset"></i> Hỗ trợ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Bookings -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-list"></i> Đơn thuê gần đây</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Khách hàng</th>
+                                        <th>Xe</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Ngày thuê</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model)
+                                    {
+                                        <tr>
+                                            <td>@booking.Id</td>
+                                            <td>
+                                                <strong>@booking.Khachhang.Nguoidung.Hoten</strong><br>
+                                                <small class="text-muted">@booking.Khachhang.Nguoidung.Email</small>
+                                            </td>
+                                            <td>@booking.Xe.Tenxe</td>
+                                            <td>@booking.Ngaydat.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>
+                                                @booking.Ngaybatdau.ToString("dd/MM") - @booking.Ngayketthuc.ToString("dd/MM/yyyy")<br>
+                                                <small class="text-muted">(@booking.Songaythue ngày)</small>
+                                            </td>
+                                            <td class="fw-bold">@booking.Tongtien.ToString("N0") đ</td>
+                                            <td>
+                                                @switch (booking.Trangthai)
+                                                {
+                                                    case "Pending":
+                                                        <span class="badge bg-warning">Chờ xác nhận</span>
+                                                        break;
+                                                    case "Confirmed":
+                                                        <span class="badge bg-success">Đã xác nhận</span>
+                                                        break;
+                                                    case "Completed":
+                                                        <span class="badge bg-primary">Hoàn thành</span>
+                                                        break;
+                                                    case "Cancelled":
+                                                        <span class="badge bg-danger">Đã hủy</span>
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (booking.Trangthai == "Pending")
+                                                {
+                                                    <a href="@Url.Action("ConfirmBooking", new { id = booking.Id })" 
+                                                       class="btn btn-sm btn-success" 
+                                                       onclick="return confirm('Xác nhận đơn thuê này?')">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                    <a href="@Url.Action("CancelBooking", new { id = booking.Id })" 
+                                                       class="btn btn-sm btn-danger"
+                                                       onclick="return confirm('Hủy đơn thuê này?')">
+                                                        <i class="fas fa-times"></i>
+                                                    </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Chưa có đơn thuê nào
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .border-left-primary {
+        border-left: 0.25rem solid #4e73df !important;
+    }
+    .border-left-success {
+        border-left: 0.25rem solid #1cc88a !important;
+    }
+    .border-left-info {
+        border-left: 0.25rem solid #36b9cc !important;
+    }
+    .border-left-warning {
+        border-left: 0.25rem solid #f6c23e !important;
+    }
+</style>

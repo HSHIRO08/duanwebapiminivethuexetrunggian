@@ -1,0 +1,31 @@
+﻿# 📝 KIỂM TRA CHÍNH TẢ TIẾNG VIỆT
+
+## 🔍 Phương pháp kiểm tra
+
+Tôi sẽ kiểm tra các loại file sau:
+1. Controllers (*.cs)
+2. Views (*.cshtml)
+3. Models (*.cs)
+4. Documentation (*.md)
+
+## ⚠️ CÁC LỖI CHÍNH TẢ PHỔ BIẾN CẦN TÌM
+
+### 1. Thiếu dấu
+- sao cho → sao cho
+- đang ky → đăng ký
+- mat khau → mật khẩu
+
+### 2. Sai chính tả
+- khach hang → khách hàng
+- thue xe → thuê xe
+- dang nhap → đăng nhập
+
+### 3. Viết hoa/thường không đúng
+- Quản Lý → Quản lý
+- Báo Cáo → Báo cáo
+
+---
+
+## 🔍 BẮT ĐẦU KIỂM TRA...
+
+Đang quét các file...

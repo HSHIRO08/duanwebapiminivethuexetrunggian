@@ -1,0 +1,225 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using duanminiveprogresql.Models;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace duanminiveprogresql.Controllers
+{
+    public class AuthController : Controller
+    {
+        private readonly AppDbContext _context;
+        private readonly ILogger<AuthController> _logger;
+
+        public AuthController(AppDbContext context, ILogger<AuthController> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
+
+        // GET: Login
+        public IActionResult Login(string returnUrl = null)
+        {
+            // Nếu đã đăng nhập, redirect về trang chủ
+            if (HttpContext.Session.GetInt32("UserId") != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        // POST: Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(string email, string password, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+
+            _logger.LogInformation($"=== BẮT ĐẦU XỬ LÝ LOGIN: {email} ===");
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                _logger.LogWarning("Email hoặc password bị trống");
+                ModelState.AddModelError("", "Email và mật khẩu không được để trống");
+                return View();
+            }
+
+            try
+            {
+                // Tìm user theo email
+                var user = await _context.Nguoidungs
+                    .FirstOrDefaultAsync(u => u.Email == email);
+
+                if (user == null)
+                {
+                    _logger.LogWarning($"❌ Không tìm thấy user với email: {email}");
+                    ModelState.AddModelError("", "Email hoặc mật khẩu không đúng");
+                    return View();
+                }
+
+                _logger.LogInformation($"✅ Tìm thấy user: ID={user.Id}, Email={user.Email}, Role={user.Vaitro}");
+
+                // Kiểm tra mật khẩu
+                var hashedPassword = HashPassword(password);
+                _logger.LogInformation($"🔐 Password hash check:");
+                _logger.LogInformation($"   - Nhập vào (hash): {hashedPassword.Substring(0, 20)}...");
+                _logger.LogInformation($"   - Trong DB (hash): {user.Matkhau?.Substring(0, 20)}...");
+                
+                if (user.Matkhau != hashedPassword)
+                {
+                    _logger.LogWarning($"❌ Mật khẩu KHÔNG KHỚP cho user: {email}");
+                    _logger.LogWarning($"   Expected: {user.Matkhau}");
+                    _logger.LogWarning($"   Got:      {hashedPassword}");
+                    ModelState.AddModelError("", "Email hoặc mật khẩu không đúng");
+                    return View();
+                }
+
+                _logger.LogInformation($"✅ Mật khẩu KHỚP!");
+
+                if (!user.Trangthai)
+                {
+                    _logger.LogWarning($"❌ Tài khoản bị khóa: {email}");
+                    ModelState.AddModelError("", "Tài khoản đã bị khóa");
+                    return View();
+                }
+
+                _logger.LogInformation($"✅ Tài khoản đang active");
+
+                // Lưu thông tin user vào session
+                _logger.LogInformation($"💾 Đang lưu session...");
+                HttpContext.Session.SetInt32("UserId", user.Id);
+                HttpContext.Session.SetString("UserName", user.Hoten ?? "User");
+                HttpContext.Session.SetString("UserEmail", user.Email);
+                HttpContext.Session.SetString("UserRole", user.Vaitro ?? "Customer");
+
+                // Kiểm tra session đã lưu chưa
+                var sessionUserId = HttpContext.Session.GetInt32("UserId");
+                _logger.LogInformation($"✅ Session đã lưu: UserId={sessionUserId}");
+                
+                if (sessionUserId == null)
+                {
+                    _logger.LogError("❌ Session KHÔNG lưu được UserId!");
+                    ModelState.AddModelError("", "Lỗi hệ thống: Không thể lưu session. Vui lòng thử lại");
+                    return View();
+                }
+
+                _logger.LogInformation($"🎉 User {email} đăng nhập THÀNH CÔNG!");
+
+                TempData["SuccessMessage"] = "Đăng nhập thành công!";
+
+                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    _logger.LogInformation($"↪️ Redirect về returnUrl: {returnUrl}");
+                    return Redirect(returnUrl);
+                }
+
+                _logger.LogInformation($"↪️ Redirect về trang chủ");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "💥 LỖI KHI ĐĂNG NHẬP");
+                ModelState.AddModelError("", "Có lỗi xảy ra, vui lòng thử lại");
+                return View();
+            }
+        }
+
+        // GET: Register
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(string hoten, string email, string password, string confirmPassword, string sodienthoai)
+        {
+            if (password != confirmPassword)
+            {
+                ModelState.AddModelError("", "Mật khẩu xác nhận không khớp");
+                return View();
+            }
+
+            try
+            {
+                // Kiểm tra email đã tồn tại
+                var existingUser = await _context.Nguoidungs.FirstOrDefaultAsync(u => u.Email == email);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError("", "Email đã được sử dụng");
+                    return View();
+                }
+
+                // Tạo người dùng mới
+                var newUser = new Nguoidung
+                {
+                    Hoten = hoten,
+                    Email = email,
+                    Matkhau = HashPassword(password),
+                    Sodienthoai = sodienthoai,
+                    Vaitro = "Customer",
+                    Trangthai = true,
+                    Ngaytao = DateTime.UtcNow
+                };
+
+                _context.Nguoidungs.Add(newUser);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation($"Đã tạo user mới với ID: {newUser.Id}, Email: {email}");
+
+                // Tạo khách hàng
+                var newCustomer = new Khachhang
+                {
+                    Nguoidungid = newUser.Id,
+                    Daxacthuc = false,
+                    Ngaydangky = DateTime.UtcNow
+                };
+
+                _context.Khachhangs.Add(newCustomer);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập.";
+                return RedirectToAction("Login");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Lỗi khi đăng ký");
+                ModelState.AddModelError("", "Có lỗi xảy ra, vui lòng thử lại");
+                return View();
+            }
+        }
+
+        // Logout
+        public IActionResult Logout()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            _logger.LogInformation($"User ID {userId} đăng xuất");
+            
+            HttpContext.Session.Clear();
+            TempData["SuccessMessage"] = "Đã đăng xuất thành công";
+            return RedirectToAction("Index", "Home");
+        }
+
+        // Helper method to hash password
+        private string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
+        }
+
+        // Test action để kiểm tra session
+        public IActionResult TestSession()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var userName = HttpContext.Session.GetString("UserName");
+            
+            return Content($"UserId: {userId}, UserName: {userName}");
+        }
+    }
+}

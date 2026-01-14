@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Xe>
+
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-overlay">
+        <div class="container text-center text-white py-5">
+            <h1 class="display-3 fw-bold mb-3">Cho Thuê Xe Ô Tô Chất Lượng Cao</h1>
+            <p class="lead mb-4">Trải nghiệm dịch vụ thuê xe tốt nhất với giá cả hợp lý</p>
+            <a href="@Url.Action("Index", "Xe")" class="btn btn-primary btn-lg">
+                <i class="fas fa-search"></i> Tìm xe ngay
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="feature-box">
+                    <i class="fas fa-car fa-3x text-primary mb-3"></i>
+                    <h4>Đa dạng xe</h4>
+                    <p>Nhiều loại xe từ 4 đến 7 chỗ</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="feature-box">
+                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                    <h4>Bảo hiểm toàn diện</h4>
+                    <p>An tâm với bảo hiểm đầy đủ</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="feature-box">
+                    <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+                    <h4>Hỗ trợ 24/7</h4>
+                    <p>Hỗ trợ khách hàng mọi lúc</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="feature-box">
+                    <i class="fas fa-tag fa-3x text-primary mb-3"></i>
+                    <h4>Giá tốt nhất</h4>
+                    <p>Giá cả cạnh tranh, ưu đãi nhiều</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Cars Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Xe Nổi Bật</h2>
+        <div class="row">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var xe in Model)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card car-card h-100 shadow-sm">
+                            @if (!string.IsNullOrEmpty(xe.Hinhanh))
+                            {
+                                <img src="@xe.Hinhanh" class="card-img-top" alt="@xe.Tenxe" style="height: 200px; object-fit: cover;">
+                            }
+                            else
+                            {
+                                <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                                    <i class="fas fa-car fa-4x text-white"></i>
+                                </div>
+                            }
+                            <div class="card-body">
+                                <h5 class="card-title">@xe.Tenxe</h5>
+                                <p class="text-muted mb-2">
+                                    <i class="fas fa-tag"></i> @xe.Hangxe - @xe.Loaixe
+                                </p>
+                                <p class="text-muted mb-2">
+                                    <i class="fas fa-users"></i> @xe.Sochongoi chỗ | <i class="fas fa-calendar"></i> @xe.Namsanxuat
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h5 text-primary mb-0">
+                                        @xe.Giathuetheongay.ToString("N0") đ/ngày
+                                    </span>
+                                    <a href="@Url.Action("Details", "Xe", new { id = xe.Id })" class="btn btn-primary">
+                                        Chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <div class="alert alert-info text-center">
+                        <i class="fas fa-info-circle"></i> Hiện chưa có xe nào khả dụng
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="@Url.Action("Index", "Xe")" class="btn btn-outline-primary btn-lg">
+                Xem tất cả xe <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- How it works Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Quy Trình Thuê Xe</h2>
+        <div class="row">
+            <div class="col-md-3 text-center mb-4">
+                <div class="step-circle bg-primary text-white mb-3">1</div>
+                <h5>Chọn xe</h5>
+                <p>Tìm kiếm và chọn xe phù hợp</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="step-circle bg-primary text-white mb-3">2</div>
+                <h5>Đặt xe</h5>
+                <p>Điền thông tin và đặt xe</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="step-circle bg-primary text-white mb-3">3</div>
+                <h5>Xác nhận</h5>
+                <p>Chờ xác nhận từ chúng tôi</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="step-circle bg-primary text-white mb-3">4</div>
+                <h5>Nhận xe</h5>
+                <p>Nhận xe và bắt đầu hành trình</p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,937 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\bao_cao_du_an_cho_sep.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:bao_cao_du_an_cho_sep.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\api-test.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:wwwroot\\api-test.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\api\\datxeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\api\\datxeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\xecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\xecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\api\\xeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\api\\xeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\api\\hotrokhachhangapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\api\\hotrokhachhangapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\api\\khachhangapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\api\\khachhangapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\api\\lichsuthueapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\api\\lichsuthueapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\api\\nguoidungapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\api\\nguoidungapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\api\\thanhtoanapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\api\\thanhtoanapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\datxecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\datxecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\controllers\\debugcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:controllers\\debugcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\database\\quanlyotodb.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:database\\quanlyotodb.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\models\\thanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:models\\thanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\models\\xe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:models\\xe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\datxe\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\datxe\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\datxe\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\datxe\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\admin\\xe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\admin\\xe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\admin\\khachhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\admin\\khachhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\admin\\hotro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\admin\\hotro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\admin\\editxe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\admin\\editxe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\admin\\donthue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\admin\\donthue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\admin\\createxe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\admin\\createxe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\admin\\baocao.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\admin\\baocao.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\account\\support.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\account\\support.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\account\\rentalhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\account\\rentalhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\account\\bookinghistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\account\\bookinghistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:duanminiveprogresql.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\xe\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\xe\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:duanminiveprogresql.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\views\\xe\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:views\\xe\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}|",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|c:\\users\\mainh\\source\\repos\\duanminiveprogresql\\database\\quanlyotodb.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{ACDF3A33-BA26-44C1-989C-39BB5EEF81AC}|duanminiveprogresql.csproj|solutionrelative:database\\quanlyotodb.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 384,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BAO_CAO_DU_AN_CHO_SEP.md",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\BAO_CAO_DU_AN_CHO_SEP.md",
+              "RelativeDocumentMoniker": "BAO_CAO_DU_AN_CHO_SEP.md",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\BAO_CAO_DU_AN_CHO_SEP.md",
+              "RelativeToolTip": "BAO_CAO_DU_AN_CHO_SEP.md",
+              "ViewState": "AgIAAL0DAAAAAAAAAAAAAMMDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-01-14T19:27:29.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "api-test.html",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\api-test.html",
+              "RelativeDocumentMoniker": "wwwroot\\api-test.html",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\api-test.html",
+              "RelativeToolTip": "wwwroot\\api-test.html",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAAABIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-14T17:52:29.791Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAA0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-14T17:23:50.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:06:08.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DatXeApiController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\DatXeApiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\API\\DatXeApiController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\DatXeApiController.cs",
+              "RelativeToolTip": "Controllers\\API\\DatXeApiController.cs",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAswLAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:47:16.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:16:52.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:16:57.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowJEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:14:59.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "XeController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\XeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\XeController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\XeController.cs",
+              "RelativeToolTip": "Controllers\\XeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:15:13.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAMQAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:16:13.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Controllers\\AdminController.cs",
+              "ViewState": "AgIAAGQBAAAAAAAAAAAAwHQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T18:23:08.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwGwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T19:16:10.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "XeApiController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\XeApiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\API\\XeApiController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\XeApiController.cs",
+              "RelativeToolTip": "Controllers\\API\\XeApiController.cs",
+              "ViewState": "AgIAAJQAAAAAAAAAAAAwwKQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:46:54.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HoTroKhachHangApiController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\HoTroKhachHangApiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\API\\HoTroKhachHangApiController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\HoTroKhachHangApiController.cs",
+              "RelativeToolTip": "Controllers\\API\\HoTroKhachHangApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:50:05.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "KhachHangApiController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\KhachHangApiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\API\\KhachHangApiController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\KhachHangApiController.cs",
+              "RelativeToolTip": "Controllers\\API\\KhachHangApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:48:05.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "LichSuThueApiController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\LichSuThueApiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\API\\LichSuThueApiController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\LichSuThueApiController.cs",
+              "RelativeToolTip": "Controllers\\API\\LichSuThueApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:49:34.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "NguoiDungApiController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\NguoiDungApiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\API\\NguoiDungApiController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\NguoiDungApiController.cs",
+              "RelativeToolTip": "Controllers\\API\\NguoiDungApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:47:42.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ThanhToanApiController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\ThanhToanApiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\API\\ThanhToanApiController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\API\\ThanhToanApiController.cs",
+              "RelativeToolTip": "Controllers\\API\\ThanhToanApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:49:10.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "DebugController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\DebugController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DebugController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\DebugController.cs",
+              "RelativeToolTip": "Controllers\\DebugController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:43:59.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "QuanlyotoDB.sql ",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Database\\QuanlyotoDB.sql",
+              "RelativeDocumentMoniker": "Database\\QuanlyotoDB.sql",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Database\\QuanlyotoDB.sql",
+              "RelativeToolTip": "Database\\QuanlyotoDB.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-01-14T19:15:47.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Thanhtoan.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\Thanhtoan.cs",
+              "RelativeDocumentMoniker": "Models\\Thanhtoan.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\Thanhtoan.cs",
+              "RelativeToolTip": "Models\\Thanhtoan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:49:38.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Xe.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\Xe.cs",
+              "RelativeDocumentMoniker": "Models\\Xe.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\Xe.cs",
+              "RelativeToolTip": "Models\\Xe.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:31:25.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DatXeController.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\DatXeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DatXeController.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Controllers\\DatXeController.cs",
+              "RelativeToolTip": "Controllers\\DatXeController.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:15:48.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:17:22.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Contact.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "Views\\Home\\Contact.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:17:51.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\About.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "Views\\Home\\About.cshtml",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAqwJsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:17:37.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\DatXe\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\DatXe\\Create.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\DatXe\\Create.cshtml",
+              "RelativeToolTip": "Views\\DatXe\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:20:57.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\DatXe\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\DatXe\\Details.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\DatXe\\Details.cshtml",
+              "RelativeToolTip": "Views\\DatXe\\Details.cshtml",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAAANgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:21:37.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Auth\\Register.cshtml",
+              "RelativeDocumentMoniker": "Views\\Auth\\Register.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Auth\\Register.cshtml",
+              "RelativeToolTip": "Views\\Auth\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:20:20.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Auth\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Auth\\Login.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Auth\\Login.cshtml",
+              "RelativeToolTip": "Views\\Auth\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:20:01.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Xe.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\Xe.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\Xe.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\Xe.cshtml",
+              "RelativeToolTip": "Views\\Admin\\Xe.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T18:54:54.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "KhachHang.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\KhachHang.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\KhachHang.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\KhachHang.cshtml",
+              "RelativeToolTip": "Views\\Admin\\KhachHang.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T18:56:54.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\Index.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\Index.cshtml",
+              "RelativeToolTip": "Views\\Admin\\Index.cshtml",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAAAOkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T18:23:47.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "HoTro.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\HoTro.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\HoTro.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\HoTro.cshtml",
+              "RelativeToolTip": "Views\\Admin\\HoTro.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T18:58:01.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "EditXe.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\EditXe.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\EditXe.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\EditXe.cshtml",
+              "RelativeToolTip": "Views\\Admin\\EditXe.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T18:56:00.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "DonThue.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\DonThue.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\DonThue.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\DonThue.cshtml",
+              "RelativeToolTip": "Views\\Admin\\DonThue.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T18:56:30.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "CreateXe.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\CreateXe.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\CreateXe.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\CreateXe.cshtml",
+              "RelativeToolTip": "Views\\Admin\\CreateXe.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T18:55:27.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "BaoCao.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\BaoCao.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\BaoCao.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Admin\\BaoCao.cshtml",
+              "RelativeToolTip": "Views\\Admin\\BaoCao.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAO8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T18:57:28.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Support.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Account\\Support.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Support.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Account\\Support.cshtml",
+              "RelativeToolTip": "Views\\Account\\Support.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:23:26.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "RentalHistory.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Account\\RentalHistory.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\RentalHistory.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Account\\RentalHistory.cshtml",
+              "RelativeToolTip": "Views\\Account\\RentalHistory.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:22:56.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Account\\Profile.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Account\\Profile.cshtml",
+              "RelativeToolTip": "Views\\Account\\Profile.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAJoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:22:02.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "BookingHistory.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Account\\BookingHistory.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\BookingHistory.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Account\\BookingHistory.cshtml",
+              "RelativeToolTip": "Views\\Account\\BookingHistory.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:22:24.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMcAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:16:48.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "duanminiveprogresql.http",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.http",
+              "RelativeDocumentMoniker": "duanminiveprogresql.http",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.http",
+              "RelativeToolTip": "duanminiveprogresql.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-01-14T17:11:54.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Chatmessage.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\Chatmessage.cs",
+              "RelativeDocumentMoniker": "Models\\Chatmessage.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\Chatmessage.cs",
+              "RelativeToolTip": "Models\\Chatmessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:54:23.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-14T17:52:02.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-14T17:06:17.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Xe\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Xe\\Index.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Xe\\Index.cshtml",
+              "RelativeToolTip": "Views\\Xe\\Index.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:18:14.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-14T17:24:21.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Xe\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Xe\\Details.cshtml",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Views\\Xe\\Details.cshtml",
+              "RelativeToolTip": "Views\\Xe\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-14T17:19:36.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "Khachhang.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\Khachhang.cs",
+              "RelativeDocumentMoniker": "Models\\Khachhang.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\Khachhang.cs",
+              "RelativeToolTip": "Models\\Khachhang.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:12:42.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\Models\\AppDbContext.cs",
+              "RelativeToolTip": "Models\\AppDbContext.cs",
+              "ViewState": "AgIAANQAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T17:03:48.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "duanminiveprogresql",
+              "DocumentMoniker": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.csproj",
+              "RelativeDocumentMoniker": "duanminiveprogresql.csproj",
+              "ToolTip": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.csproj",
+              "RelativeToolTip": "duanminiveprogresql.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-14T16:55:48.967Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 271,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

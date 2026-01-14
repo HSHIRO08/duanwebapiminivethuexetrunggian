@@ -1,0 +1,1084 @@
+[
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.DatXeApiController",
+    "Method": "GetDatXes",
+    "RelativePath": "api/DatXeApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.DatXeApiController",
+    "Method": "CreateDatXe",
+    "RelativePath": "api/DatXeApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "datxe",
+        "Type": "duanminiveprogresql.Models.Datxe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Datxe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.DatXeApiController",
+    "Method": "GetDatXe",
+    "RelativePath": "api/DatXeApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Datxe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.DatXeApiController",
+    "Method": "DeleteDatXe",
+    "RelativePath": "api/DatXeApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.DatXeApiController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/DatXeApi/{id}/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "trangthai",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.DatXeApiController",
+    "Method": "GetDatXeByKhachhang",
+    "RelativePath": "api/DatXeApi/khachhang/{khachhangId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "khachhangId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Datxe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "GetHotrokhachhangs",
+    "RelativePath": "api/HoTroKhachHangApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "CreateHotrokhachhang",
+    "RelativePath": "api/HoTroKhachHangApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hotro",
+        "Type": "duanminiveprogresql.Models.Hotrokhachhang",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Hotrokhachhang",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "GetHotrokhachhang",
+    "RelativePath": "api/HoTroKhachHangApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Hotrokhachhang",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "UpdateHotrokhachhang",
+    "RelativePath": "api/HoTroKhachHangApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "hotro",
+        "Type": "duanminiveprogresql.Models.Hotrokhachhang",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "DeleteHotrokhachhang",
+    "RelativePath": "api/HoTroKhachHangApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "ReplyHotro",
+    "RelativePath": "api/HoTroKhachHangApi/{id}/reply",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "duanminiveprogresql.Controllers.API.ReplyModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/HoTroKhachHangApi/{id}/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "trangthai",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "GetHotroByKhachhang",
+    "RelativePath": "api/HoTroKhachHangApi/khachhang/{khachhangId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "khachhangId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Hotrokhachhang, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.HoTroKhachHangApiController",
+    "Method": "GetHotroByStatus",
+    "RelativePath": "api/HoTroKhachHangApi/trangthai/{trangthai}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "trangthai",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Hotrokhachhang, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.KhachHangApiController",
+    "Method": "GetKhachhangs",
+    "RelativePath": "api/KhachHangApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.KhachHangApiController",
+    "Method": "CreateKhachhang",
+    "RelativePath": "api/KhachHangApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "khachhang",
+        "Type": "duanminiveprogresql.Models.Khachhang",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Khachhang",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.KhachHangApiController",
+    "Method": "GetKhachhang",
+    "RelativePath": "api/KhachHangApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Khachhang",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.KhachHangApiController",
+    "Method": "UpdateKhachhang",
+    "RelativePath": "api/KhachHangApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "khachhang",
+        "Type": "duanminiveprogresql.Models.Khachhang",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.KhachHangApiController",
+    "Method": "DeleteKhachhang",
+    "RelativePath": "api/KhachHangApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.KhachHangApiController",
+    "Method": "VerifyKhachhang",
+    "RelativePath": "api/KhachHangApi/{id}/verify",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.KhachHangApiController",
+    "Method": "GetKhachhangByUserId",
+    "RelativePath": "api/KhachHangApi/user/{nguoidungId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nguoidungId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Khachhang",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.LichSuThueApiController",
+    "Method": "GetLichsuthues",
+    "RelativePath": "api/LichSuThueApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Lichsuthue, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.LichSuThueApiController",
+    "Method": "CreateLichsuthue",
+    "RelativePath": "api/LichSuThueApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lichsuthue",
+        "Type": "duanminiveprogresql.Models.Lichsuthue",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Lichsuthue",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.LichSuThueApiController",
+    "Method": "GetLichsuthue",
+    "RelativePath": "api/LichSuThueApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Lichsuthue",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.LichSuThueApiController",
+    "Method": "UpdateLichsuthue",
+    "RelativePath": "api/LichSuThueApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "lichsuthue",
+        "Type": "duanminiveprogresql.Models.Lichsuthue",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.LichSuThueApiController",
+    "Method": "DeleteLichsuthue",
+    "RelativePath": "api/LichSuThueApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.LichSuThueApiController",
+    "Method": "RateLichsuthue",
+    "RelativePath": "api/LichSuThueApi/{id}/rate",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "duanminiveprogresql.Controllers.API.RatingModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.LichSuThueApiController",
+    "Method": "GetLichsuthueByKhachhang",
+    "RelativePath": "api/LichSuThueApi/khachhang/{khachhangId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "khachhangId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Lichsuthue, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.LichSuThueApiController",
+    "Method": "GetLichsuthueByXe",
+    "RelativePath": "api/LichSuThueApi/xe/{xeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "xeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Lichsuthue, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.NguoiDungApiController",
+    "Method": "GetNguoidungs",
+    "RelativePath": "api/NguoiDungApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.NguoiDungApiController",
+    "Method": "CreateNguoidung",
+    "RelativePath": "api/NguoiDungApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "duanminiveprogresql.Controllers.API.CreateNguoidungModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.NguoiDungApiController",
+    "Method": "GetNguoidung",
+    "RelativePath": "api/NguoiDungApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.NguoiDungApiController",
+    "Method": "UpdateNguoidung",
+    "RelativePath": "api/NguoiDungApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "duanminiveprogresql.Controllers.API.UpdateNguoidungModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.NguoiDungApiController",
+    "Method": "DeleteNguoidung",
+    "RelativePath": "api/NguoiDungApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.NguoiDungApiController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/NguoiDungApi/{id}/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "trangthai",
+        "Type": "System.Boolean",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.NguoiDungApiController",
+    "Method": "GetNguoidungByEmail",
+    "RelativePath": "api/NguoiDungApi/email/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.ThanhToanApiController",
+    "Method": "GetThanhtoans",
+    "RelativePath": "api/ThanhToanApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Thanhtoan, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.ThanhToanApiController",
+    "Method": "CreateThanhtoan",
+    "RelativePath": "api/ThanhToanApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "thanhtoan",
+        "Type": "duanminiveprogresql.Models.Thanhtoan",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Thanhtoan",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.ThanhToanApiController",
+    "Method": "GetThanhtoan",
+    "RelativePath": "api/ThanhToanApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Thanhtoan",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.ThanhToanApiController",
+    "Method": "DeleteThanhtoan",
+    "RelativePath": "api/ThanhToanApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.ThanhToanApiController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/ThanhToanApi/{id}/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "trangthai",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.ThanhToanApiController",
+    "Method": "GetThanhtoanByDatxe",
+    "RelativePath": "api/ThanhToanApi/datxe/{datxeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "datxeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Thanhtoan, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeApiController",
+    "Method": "GetXes",
+    "RelativePath": "api/XeApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Xe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeApiController",
+    "Method": "CreateXe",
+    "RelativePath": "api/XeApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "xe",
+        "Type": "duanminiveprogresql.Models.Xe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Xe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeApiController",
+    "Method": "GetXe",
+    "RelativePath": "api/XeApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Xe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeApiController",
+    "Method": "UpdateXe",
+    "RelativePath": "api/XeApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "xe",
+        "Type": "duanminiveprogresql.Models.Xe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeApiController",
+    "Method": "DeleteXe",
+    "RelativePath": "api/XeApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeApiController",
+    "Method": "SearchXe",
+    "RelativePath": "api/XeApi/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loaixe",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "hangxe",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "minPrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "maxPrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Xe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

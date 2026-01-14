@@ -1,0 +1,183 @@
+@model Xe
+
+@{
+    ViewData["Title"] = Model.Tenxe;
+    var avgRating = ViewBag.AvgRating ?? 0.0;
+    var reviews = ViewBag.RecentReviews as List<Lichsuthue>;
+}
+
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang ch?</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Xe")">Danh sách xe</a></li>
+            <li class="breadcrumb-item active">@Model.Tenxe</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Image Gallery -->
+        <div class="col-lg-7 mb-4">
+            <div class="card">
+                @if (!string.IsNullOrEmpty(Model.Hinhanh))
+                {
+                    <img src="@Model.Hinhanh" class="card-img-top" alt="@Model.Tenxe" style="height: 400px; object-fit: cover;">
+                }
+                else
+                {
+                    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 400px;">
+                        <i class="fas fa-car fa-5x text-white"></i>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Car Info -->
+        <div class="col-lg-5 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">@Model.Tenxe</h2>
+                    <div class="mb-3">
+                        <span class="badge bg-primary">@Model.Loaixe</span>
+                        <span class="badge bg-success">@Model.Trangthai</span>
+                    </div>
+
+                    <!-- Rating -->
+                    <div class="mb-3">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            if (i <= avgRating)
+                            {
+                                <i class="fas fa-star text-warning"></i>
+                            }
+                            else
+                            {
+                                <i class="far fa-star text-warning"></i>
+                            }
+                        }
+                        <span class="ms-2">(@avgRating.ToString("0.0"))</span>
+                    </div>
+
+                    <h3 class="text-primary mb-3">@Model.Giathuetheongay.ToString("N0") ?/ngày</h3>
+
+                    <!-- Specifications -->
+                    <h5 class="mb-3">Thông s? k? thu?t</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-tag text-primary"></i>
+                            <strong>Hãng xe:</strong> @Model.Hangxe
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-users text-primary"></i>
+                            <strong>S? ch? ng?i:</strong> @Model.Sochongoi ch?
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-calendar text-primary"></i>
+                            <strong>N?m s?n xu?t:</strong> @Model.Namsanxuat
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-palette text-primary"></i>
+                            <strong>Màu xe:</strong> @Model.Mauxe
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-car text-primary"></i>
+                            <strong>Bi?n s?:</strong> @Model.Biensoxe
+                        </li>
+                    </ul>
+
+                    @if (Model.Trangthai == "Available")
+                    {
+                        <a href="@Url.Action("Create", "DatXe", new { xeId = Model.Id })" class="btn btn-primary btn-lg w-100 mt-3">
+                            <i class="fas fa-calendar-check"></i> ??t xe ngay
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary btn-lg w-100 mt-3" disabled>
+                            <i class="fas fa-ban"></i> Xe không kh? d?ng
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description -->
+    @if (!string.IsNullOrEmpty(Model.Mota))
+    {
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title"><i class="fas fa-info-circle"></i> Mô t?</h4>
+                <p class="card-text">@Model.Mota</p>
+            </div>
+        </div>
+    }
+
+    <!-- Reviews -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title mb-4">
+                <i class="fas fa-comments"></i> ?ánh giá t? khách hàng
+            </h4>
+            
+            @if (reviews != null && reviews.Any())
+            {
+                @foreach (var review in reviews)
+                {
+                    <div class="review-item mb-3 pb-3 border-bottom">
+                        <div class="d-flex justify-content-between mb-2">
+                            <strong>@review.Khachhang.Nguoidung.Hoten</strong>
+                            <small class="text-muted">
+                                @review.Ngaytraxe?.ToString("dd/MM/yyyy")
+                            </small>
+                        </div>
+                        @if (review.Danhgia.HasValue)
+                        {
+                            <div class="mb-2">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= review.Danhgia.Value)
+                                    {
+                                        <i class="fas fa-star text-warning"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-star text-warning"></i>
+                                    }
+                                }
+                            </div>
+                        }
+                        <p class="mb-0">@review.Nhanxet</p>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted text-center">Ch?a có ?ánh giá nào</p>
+            }
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-3"><i class="fas fa-check-circle"></i> D?ch v? ?i kèm</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> B?o hi?m xe</li>
+                        <li><i class="fas fa-check text-success"></i> H? tr? 24/7</li>
+                        <li><i class="fas fa-check text-success"></i> Giao xe t?n n?i</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> B?o d??ng ??nh k?</li>
+                        <li><i class="fas fa-check text-success"></i> V? sinh s?ch s?</li>
+                        <li><i class="fas fa-check text-success"></i> Nhiên li?u ??y</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

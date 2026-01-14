@@ -1,0 +1,167 @@
+﻿@model IEnumerable<duanminiveprogresql.Models.Datxe>
+
+@{
+    ViewData["Title"] = "Quản lý đơn thuê";
+}
+
+<div class="container-fluid py-4">
+    <h2 class="mb-4"><i class="fas fa-clipboard-list text-primary"></i> Quản lý đơn thuê</h2>
+
+    <!-- Filter Tabs -->
+    <ul class="nav nav-pills mb-3">
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.CurrentStatus == "All" ? "active" : "")" 
+               href="@Url.Action("DonThue", new { status = "All" })">
+                <i class="fas fa-list"></i> Tất cả
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.CurrentStatus == "Pending" ? "active" : "")" 
+               href="@Url.Action("DonThue", new { status = "Pending" })">
+                <i class="fas fa-clock"></i> Chờ xác nhận
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.CurrentStatus == "Confirmed" ? "active" : "")" 
+               href="@Url.Action("DonThue", new { status = "Confirmed" })">
+                <i class="fas fa-check"></i> Đã xác nhận
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.CurrentStatus == "Completed" ? "active" : "")" 
+               href="@Url.Action("DonThue", new { status = "Completed" })">
+                <i class="fas fa-check-double"></i> Hoàn thành
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.CurrentStatus == "Cancelled" ? "active" : "")" 
+               href="@Url.Action("DonThue", new { status = "Cancelled" })">
+                <i class="fas fa-times"></i> Đã hủy
+            </a>
+        </li>
+    </ul>
+
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">
+                Danh sách đơn thuê
+                @if (ViewBag.CurrentStatus != "All")
+                {
+                    <span class="badge bg-light text-dark">@ViewBag.CurrentStatus</span>
+                }
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (Model != null && Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Khách hàng</th>
+                                <th>Xe</th>
+                                <th>Ngày đặt</th>
+                                <th>Thời gian thuê</th>
+                                <th>Số ngày</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var booking in Model)
+                            {
+                                <tr>
+                                    <td><strong>#@booking.Id</strong></td>
+                                    <td>
+                                        <strong>@booking.Khachhang.Nguoidung.Hoten</strong><br>
+                                        <small class="text-muted">
+                                            <i class="fas fa-envelope"></i> @booking.Khachhang.Nguoidung.Email<br>
+                                            <i class="fas fa-phone"></i> @booking.Khachhang.Nguoidung.Sodienthoai
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <strong>@booking.Xe.Tenxe</strong><br>
+                                        <small class="text-muted">@booking.Xe.Biensoxe</small>
+                                    </td>
+                                    <td>
+                                        <small>@booking.Ngaydat.ToString("dd/MM/yyyy")<br>@booking.Ngaydat.ToString("HH:mm")</small>
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-calendar-alt"></i> @booking.Ngaybatdau.ToString("dd/MM/yyyy")<br>
+                                        <i class="fas fa-calendar-check"></i> @booking.Ngayketthuc.ToString("dd/MM/yyyy")
+                                    </td>
+                                    <td><span class="badge bg-secondary">@booking.Songaythue ngày</span></td>
+                                    <td><strong class="text-success">@booking.Tongtien.ToString("N0") đ</strong></td>
+                                    <td>
+                                        @switch (booking.Trangthai)
+                                        {
+                                            case "Pending":
+                                                <span class="badge bg-warning text-dark">
+                                                    <i class="fas fa-clock"></i> Chờ xác nhận
+                                                </span>
+                                                break;
+                                            case "Confirmed":
+                                                <span class="badge bg-success">
+                                                    <i class="fas fa-check"></i> Đã xác nhận
+                                                </span>
+                                                break;
+                                            case "Completed":
+                                                <span class="badge bg-primary">
+                                                    <i class="fas fa-check-double"></i> Hoàn thành
+                                                </span>
+                                                break;
+                                            case "Cancelled":
+                                                <span class="badge bg-danger">
+                                                    <i class="fas fa-times"></i> Đã hủy
+                                                </span>
+                                                break;
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (booking.Trangthai == "Pending")
+                                        {
+                                            <a href="@Url.Action("ConfirmBooking", new { id = booking.Id })" 
+                                               class="btn btn-sm btn-success mb-1" 
+                                               onclick="return confirm('Xác nhận đơn thuê #@booking.Id?')"
+                                               title="Xác nhận">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                            <a href="@Url.Action("CancelBooking", new { id = booking.Id })" 
+                                               class="btn btn-sm btn-danger mb-1"
+                                               onclick="return confirm('Hủy đơn thuê #@booking.Id?')"
+                                               title="Hủy">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">-</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> Không có đơn thuê nào
+                    @if (ViewBag.CurrentStatus != "All")
+                    {
+                        <text> với trạng thái <strong>@ViewBag.CurrentStatus</strong></text>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a href="@Url.Action("Index")" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay lại Dashboard
+        </a>
+    </div>
+</div>

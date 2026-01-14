@@ -1,0 +1,188 @@
+﻿@model IEnumerable<Hotrokhachhang>
+
+@{
+    ViewData["Title"] = "Hỗ trợ khách hàng";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4"><i class="fas fa-headset"></i> Hỗ Trợ Khách Hàng</h1>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-plus-circle"></i> Tạo yêu cầu hỗ trợ mới</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="CreateSupport" asp-controller="Account">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label class="form-label">Loại yêu cầu *</label>
+                            <select class="form-select" name="loaiyeucau" required>
+                                <option value="">Chọn loại yêu cầu</option>
+                                <option value="Thắc mắc">Thắc mắc</option>
+                                <option value="Khiếu nại">Khiếu nại</option>
+                                <option value="Hỗ trợ kỹ thuật">Hỗ trợ kỹ thuật</option>
+                                <option value="Đề xuất">Đề xuất</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Tiêu đề *</label>
+                            <input type="text" class="form-control" name="tieude" required 
+                                   placeholder="Nhập tiêu đề ngắn gọn">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nội dung chi tiết *</label>
+                            <textarea class="form-control" name="noidung" rows="5" required
+                                      placeholder="Mô tả chi tiết vấn đề của bạn..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Gửi yêu cầu
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Ticket List -->
+            <h4 class="mb-3">Danh sách yêu cầu của bạn</h4>
+            
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var ticket in Model)
+                {
+                    <div class="card mb-3">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>#@ticket.Id</strong>
+                                <span class="badge bg-secondary ms-2">@ticket.Loaiyeucau</span>
+                            </div>
+                            <div>
+                                @if (ticket.Trangthai == "Open")
+                                {
+                                    <span class="badge bg-warning">Đang xử lý</span>
+                                }
+                                else if (ticket.Trangthai == "In Progress")
+                                {
+                                    <span class="badge bg-info">Đang giải quyết</span>
+                                }
+                                else if (ticket.Trangthai == "Resolved")
+                                {
+                                    <span class="badge bg-success">Đã giải quyết</span>
+                                }
+                                else if (ticket.Trangthai == "Closed")
+                                {
+                                    <span class="badge bg-secondary">Đã đóng</span>
+                                }
+                                
+                                @if (!string.IsNullOrEmpty(ticket.Mucdouutien))
+                                {
+                                    @if (ticket.Mucdouutien == "High")
+                                    {
+                                        <span class="badge bg-danger">Cao</span>
+                                    }
+                                    else if (ticket.Mucdouutien == "Normal")
+                                    {
+                                        <span class="badge bg-primary">Bình thường</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Thấp</span>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6>@ticket.Tieude</h6>
+                            <p class="text-muted small mb-2">
+                                <i class="fas fa-calendar"></i> @ticket.Ngaytao.ToString("dd/MM/yyyy HH:mm")
+                                @if (ticket.Ngaycapnhat != null)
+                                {
+                                    <span class="ms-2">
+                                        <i class="fas fa-sync-alt"></i> Cập nhật: @ticket.Ngaycapnhat?.ToString("dd/MM/yyyy HH:mm")
+                                    </span>
+                                }
+                            </p>
+                            <p class="mb-2">@ticket.Noidung</p>
+                            
+                            @if (!string.IsNullOrEmpty(ticket.Traloi))
+                            {
+                                <div class="alert alert-success mt-3 mb-0">
+                                    <h6 class="alert-heading">
+                                        <i class="fas fa-reply"></i> Phản hồi từ hỗ trợ:
+                                    </h6>
+                                    <p class="mb-0">@ticket.Traloi</p>
+                                    @if (ticket.Ngaygiaiquyet != null)
+                                    {
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock"></i> @ticket.Ngaygiaiquyet?.ToString("dd/MM/yyyy HH:mm")
+                                        </small>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="card">
+                    <div class="card-body text-center py-4">
+                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">Bạn chưa có yêu cầu hỗ trợ nào</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-phone"></i> Liên hệ trực tiếp</h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2"><strong>Hotline 24/7:</strong></p>
+                    <p class="text-primary h5 mb-3">
+                        <i class="fas fa-phone-alt"></i> 0123-456-789
+                    </p>
+                    
+                    <p class="mb-2"><strong>Email:</strong></p>
+                    <p class="mb-3">
+                        <i class="fas fa-envelope"></i> support@autorent.vn
+                    </p>
+
+                    <p class="mb-2"><strong>Giờ làm việc:</strong></p>
+                    <p class="small mb-0">
+                        Thứ 2 - Thứ 6: 8:00 - 18:00<br>
+                        Thứ 7 - CN: 8:00 - 17:00
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-question-circle"></i> Câu hỏi thường gặp</h6>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-angle-right"></i> Làm sao để đặt xe?
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-angle-right"></i> Chính sách hủy đơn
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-angle-right"></i> Bảo hiểm xe như thế nào?
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-angle-right"></i> Phương thức thanh toán
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

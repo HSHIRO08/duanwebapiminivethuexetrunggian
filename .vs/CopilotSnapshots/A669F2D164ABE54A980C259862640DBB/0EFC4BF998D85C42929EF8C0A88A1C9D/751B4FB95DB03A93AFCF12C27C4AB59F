@@ -1,0 +1,190 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using duanminiveprogresql.Models;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace duanminiveprogresql.Controllers
+{
+    public class DebugController : Controller
+    {
+        private readonly AppDbContext _context;
+        private readonly ILogger<DebugController> _logger;
+
+        public DebugController(AppDbContext context, ILogger<DebugController> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
+
+        // Action để kiểm tra session
+        public IActionResult CheckSession()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var userName = HttpContext.Session.GetString("UserName");
+            var userEmail = HttpContext.Session.GetString("UserEmail");
+            var userRole = HttpContext.Session.GetString("UserRole");
+
+            var result = $@"
+                <h2>Thông tin Session:</h2>
+                <ul>
+                    <li>UserId: {userId?.ToString() ?? "NULL"}</li>
+                    <li>UserName: {userName ?? "NULL"}</li>
+                    <li>UserEmail: {userEmail ?? "NULL"}</li>
+                    <li>UserRole: {userRole ?? "NULL"}</li>
+                    <li>Session Available: {HttpContext.Session.IsAvailable}</li>
+                </ul>
+                <p><a href='/'>Về trang chủ</a></p>
+            ";
+
+            return Content(result, "text/html", Encoding.UTF8);
+        }
+
+        // Action để hash password
+        public IActionResult HashPassword(string password)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                return Content("Vui lòng nhập password. Ví dụ: /Debug/HashPassword?password=123456");
+            }
+
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                var hashed = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+
+                var result = $@"
+                    <h2>Kết quả Hash Password:</h2>
+                    <ul>
+                        <li><strong>Password gốc:</strong> {password}</li>
+                        <li><strong>Password đã hash (SHA256):</strong> {hashed}</li>
+                    </ul>
+                    <h3>Để cập nhật trong database:</h3>
+                    <pre>
+UPDATE nguoidung 
+SET matkhau = '{hashed}' 
+WHERE email = 'your-email@example.com';
+                    </pre>
+                    <p><a href='/'>Về trang chủ</a></p>
+                ";
+
+                return Content(result, "text/html", Encoding.UTF8);
+            }
+        }
+
+        // Action để xem danh sách users
+        public async Task<IActionResult> ListUsers()
+        {
+            var users = await _context.Nguoidungs
+                .Select(u => new
+                {
+                    u.Id,
+                    u.Email,
+                    u.Hoten,
+                    u.Vaitro,
+                    u.Trangthai,
+                    PasswordLength = u.Matkhau != null ? u.Matkhau.Length : 0
+                })
+                .ToListAsync();
+
+            var html = new StringBuilder();
+            html.AppendLine("<h2>Danh sách Users trong Database:</h2>");
+            html.AppendLine("<table border='1' cellpadding='5' style='border-collapse: collapse;'>");
+            html.AppendLine("<tr><th>ID</th><th>Email</th><th>Họ tên</th><th>Vai trò</th><th>Trạng thái</th><th>Password Length</th></tr>");
+
+            foreach (var user in users)
+            {
+                html.AppendLine($@"
+                    <tr>
+                        <td>{user.Id}</td>
+                        <td>{user.Email}</td>
+                        <td>{user.Hoten}</td>
+                        <td>{user.Vaitro}</td>
+                        <td>{(user.Trangthai ? "Active" : "Inactive")}</td>
+                        <td>{user.PasswordLength}</td>
+                    </tr>
+                ");
+            }
+
+            html.AppendLine("</table>");
+            html.AppendLine("<br><p><a href='/Debug/HashPassword?password=123456'>Hash password mẫu</a></p>");
+            html.AppendLine("<p><a href='/'>Về trang chủ</a></p>");
+
+            return Content(html.ToString(), "text/html", Encoding.UTF8);
+        }
+
+        // Action để test đăng nhập
+        public async Task<IActionResult> TestLogin(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return Content(@"
+                    <h2>Test Login</h2>
+                    <p>Sử dụng: /Debug/TestLogin?email=your@email.com&password=yourpassword</p>
+                    <p><a href='/Debug/ListUsers'>Xem danh sách users</a></p>
+                    <p><a href='/'>Về trang chủ</a></p>
+                ", "text/html", Encoding.UTF8);
+            }
+
+            var html = new StringBuilder();
+            html.AppendLine("<h2>Kết quả Test Login:</h2>");
+
+            try
+            {
+                // Tìm user
+                var user = await _context.Nguoidungs.FirstOrDefaultAsync(u => u.Email == email);
+                
+                if (user == null)
+                {
+                    html.AppendLine($"<p style='color: red;'>❌ Không tìm thấy user với email: {email}</p>");
+                }
+                else
+                {
+                    html.AppendLine($"<p style='color: green;'>✅ Tìm thấy user:</p>");
+                    html.AppendLine("<ul>");
+                    html.AppendLine($"<li>ID: {user.Id}</li>");
+                    html.AppendLine($"<li>Email: {user.Email}</li>");
+                    html.AppendLine($"<li>Họ tên: {user.Hoten}</li>");
+                    html.AppendLine($"<li>Vai trò: {user.Vaitro}</li>");
+                    html.AppendLine($"<li>Trạng thái: {(user.Trangthai ? "Active" : "Inactive")}</li>");
+                    html.AppendLine("</ul>");
+
+                    // Hash password nhập vào
+                    using (var sha256 = SHA256.Create())
+                    {
+                        var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                        var hashedPassword = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+
+                        html.AppendLine("<h3>So sánh Password:</h3>");
+                        html.AppendLine("<ul>");
+                        html.AppendLine($"<li>Password nhập vào: <code>{password}</code></li>");
+                        html.AppendLine($"<li>Password đã hash: <code>{hashedPassword}</code></li>");
+                        html.AppendLine($"<li>Password trong DB: <code>{user.Matkhau}</code></li>");
+                        
+                        if (user.Matkhau == hashedPassword)
+                        {
+                            html.AppendLine("<li style='color: green;'><strong>✅ Password KHỚP - Đăng nhập thành công!</strong></li>");
+                        }
+                        else
+                        {
+                            html.AppendLine("<li style='color: red;'><strong>❌ Password KHÔNG KHỚP</strong></li>");
+                            html.AppendLine($"<li>Để cập nhật password trong DB, chạy SQL:</li>");
+                            html.AppendLine($"<pre>UPDATE nguoidung SET matkhau = '{hashedPassword}' WHERE email = '{email}';</pre>");
+                        }
+                        html.AppendLine("</ul>");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                html.AppendLine($"<p style='color: red;'>❌ Lỗi: {ex.Message}</p>");
+                _logger.LogError(ex, "Error in TestLogin");
+            }
+
+            html.AppendLine("<br><p><a href='/Debug/ListUsers'>Xem danh sách users</a></p>");
+            html.AppendLine("<p><a href='/'>Về trang chủ</a></p>");
+
+            return Content(html.ToString(), "text/html", Encoding.UTF8);
+        }
+    }
+}

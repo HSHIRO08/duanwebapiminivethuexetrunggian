@@ -1,0 +1,151 @@
+﻿@{
+    ViewData["Title"] = "Đặt xe";
+    var xe = ViewBag.Xe as Xe;
+}
+
+<div class="container py-4">
+    <h1 class="mb-4">Đặt Xe</h1>
+
+    <div class="row">
+        <!-- Car Info Summary -->
+        <div class="col-lg-4 mb-4">
+            <div class="card sticky-top" style="top: 20px;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-car"></i> Thông tin xe</h5>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(xe.Hinhanh))
+                    {
+                        <img src="@xe.Hinhanh" class="img-fluid rounded mb-3" alt="@xe.Tenxe">
+                    }
+                    <h5>@xe.Tenxe</h5>
+                    <p class="text-muted mb-2">@xe.Hangxe - @xe.Loaixe</p>
+                    <ul class="list-unstyled small mb-3">
+                        <li><i class="fas fa-users text-primary"></i> @xe.Sochongoi chỗ</li>
+                        <li><i class="fas fa-calendar text-primary"></i> @xe.Namsanxuat</li>
+                        <li><i class="fas fa-palette text-primary"></i> @xe.Mauxe</li>
+                    </ul>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span>Giá thuê:</span>
+                        <strong class="h5 text-primary mb-0">@xe.Giathuetheongay.ToString("N0") đ/ngày</strong>
+                    </div>
+                    <div id="totalPrice" class="alert alert-info">
+                        <strong>Tổng tiền:</strong>
+                        <span id="totalAmount" class="float-end">0 đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-file-alt"></i> Thông tin đặt xe</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="Create" asp-controller="DatXe" id="bookingForm">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="xeId" value="@xe.Id" />
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </div>
+                        }
+
+                        <h6 class="mb-3">Thời gian thuê</h6>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Ngày bắt đầu *</label>
+                                <input type="datetime-local" class="form-control" name="ngaybatdau" id="startDate" required 
+                                       min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ngày kết thúc *</label>
+                                <input type="datetime-local" class="form-control" name="ngayketthuc" id="endDate" required
+                                       min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-ddTHH:mm")">
+                            </div>
+                        </div>
+                        <div class="alert alert-info mb-3">
+                            <small><i class="fas fa-info-circle"></i> Số ngày thuê: <strong id="rentalDays">0</strong> ngày</small>
+                        </div>
+
+                        <h6 class="mb-3">Địa điểm</h6>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Địa điểm nhận xe *</label>
+                                <input type="text" class="form-control" name="diadiemnhan" required 
+                                       placeholder="Địa chỉ nhận xe">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Địa điểm trả xe *</label>
+                                <input type="text" class="form-control" name="diadiemtra" required 
+                                       placeholder="Địa chỉ trả xe">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ghi chú</label>
+                            <textarea class="form-control" name="ghichu" rows="3" 
+                                      placeholder="Thêm ghi chú cho đơn đặt xe (nếu có)"></textarea>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <h6><i class="fas fa-exclamation-triangle"></i> Lưu ý quan trọng:</h6>
+                            <ul class="mb-0 small">
+                                <li>Vui lòng mang theo CMND và bằng lái xe hợp lệ khi nhận xe</li>
+                                <li>Đặt cọc sẽ được hoàn trả sau khi trả xe không có vấn đề</li>
+                                <li>Vui lòng trả xe đúng giờ để tránh phát sinh chi phí</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-check-circle"></i> Xác nhận đặt xe
+                            </button>
+                            <a href="@Url.Action("Details", "Xe", new { id = xe.Id })" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left"></i> Quay lại
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const pricePerDay = @xe.Giathuetheongay;
+        
+        function calculateTotal() {
+            const startDate = new Date(document.getElementById('startDate').value);
+            const endDate = new Date(document.getElementById('endDate').value);
+            
+            if (startDate && endDate && endDate > startDate) {
+                const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                const total = days * pricePerDay;
+                
+                document.getElementById('rentalDays').textContent = days;
+                document.getElementById('totalAmount').textContent = total.toLocaleString('vi-VN') + ' đ';
+            } else {
+                document.getElementById('rentalDays').textContent = '0';
+                document.getElementById('totalAmount').textContent = '0 đ';
+            }
+        }
+        
+        document.getElementById('startDate').addEventListener('change', calculateTotal);
+        document.getElementById('endDate').addEventListener('change', calculateTotal);
+        
+        // Set minimum end date based on start date
+        document.getElementById('startDate').addEventListener('change', function() {
+            const startDate = new Date(this.value);
+            const minEndDate = new Date(startDate);
+            minEndDate.setDate(minEndDate.getDate() + 1);
+            document.getElementById('endDate').min = minEndDate.toISOString().slice(0, 16);
+        });
+    </script>
+}

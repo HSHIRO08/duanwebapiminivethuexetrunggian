@@ -1,0 +1,217 @@
+﻿@model IEnumerable<Lichsuthue>
+
+@{
+    ViewData["Title"] = "Lịch sử thuê xe";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4"><i class="fas fa-list"></i> Lịch Sử Thuê Xe</h1>
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var rental in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            @if (!string.IsNullOrEmpty(rental.Xe.Hinhanh))
+                            {
+                                <img src="@rental.Xe.Hinhanh" class="img-fluid rounded" alt="@rental.Xe.Tenxe">
+                            }
+                            else
+                            {
+                                <div class="bg-secondary rounded d-flex align-items-center justify-content-center" style="height: 100px;">
+                                    <i class="fas fa-car fa-3x text-white"></i>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-7">
+                            <h5>@rental.Xe.Tenxe</h5>
+                            <p class="text-muted mb-2">@rental.Xe.Hangxe - @rental.Xe.Loaixe | Biển số: @rental.Xe.Biensoxe</p>
+                            
+                            <div class="row small">
+                                <div class="col-6">
+                                    <i class="fas fa-calendar-check text-primary"></i> Nhận xe: 
+                                    <strong>@rental.Ngaynhanxe?.ToString("dd/MM/yyyy HH:mm")</strong>
+                                </div>
+                                <div class="col-6">
+                                    <i class="fas fa-calendar-times text-primary"></i> Trả xe: 
+                                    <strong>@rental.Ngaytraxe?.ToString("dd/MM/yyyy HH:mm")</strong>
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <i class="fas fa-tachometer-alt text-primary"></i> Km bắt đầu: 
+                                    <strong>@rental.Kmbatdau</strong>
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <i class="fas fa-tachometer-alt text-primary"></i> Km kết thúc: 
+                                    <strong>@rental.Kmketthuc</strong>
+                                </div>
+                            </div>
+
+                            @if (rental.Phiphatsinh > 0)
+                            {
+                                <div class="mt-2">
+                                    <span class="badge bg-warning">
+                                        <i class="fas fa-exclamation-triangle"></i> Phí phát sinh: @rental.Phiphatsinh.ToString("N0") đ
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-3">
+                            @if (rental.Danhgia.HasValue)
+                            {
+                                <div class="mb-2">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= rental.Danhgia.Value)
+                                        {
+                                            <i class="fas fa-star text-warning"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="far fa-star text-warning"></i>
+                                        }
+                                    }
+                                </div>
+                                @if (!string.IsNullOrEmpty(rental.Nhanxet))
+                                {
+                                    <p class="small text-muted fst-italic">"@rental.Nhanxet"</p>
+                                }
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-sm btn-outline-primary w-100" 
+                                        data-bs-toggle="modal" data-bs-target="#rateModal-@rental.Id">
+                                    <i class="fas fa-star"></i> Đánh giá
+                                </button>
+                            }
+
+                            <a href="@Url.Action("Details", "DatXe", new { id = rental.Datxeid })" 
+                               class="btn btn-sm btn-outline-secondary w-100 mt-2">
+                                <i class="fas fa-info-circle"></i> Chi tiết
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rating Modal -->
+            <div class="modal fade" id="rateModal-@rental.Id" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Đánh giá chuyến đi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="ratingForm-@rental.Id">
+                                <div class="mb-3 text-center">
+                                    <label class="form-label d-block">Đánh giá của bạn</label>
+                                    <div class="rating-stars" data-rental-id="@rental.Id">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            <i class="far fa-star fa-2x text-warning rating-star" data-rating="@i" style="cursor: pointer;"></i>
+                                        }
+                                    </div>
+                                    <input type="hidden" id="rating-@rental.Id" name="rating" value="0">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Nhận xét</label>
+                                    <textarea class="form-control" id="comment-@rental.Id" rows="3" 
+                                              placeholder="Chia sẻ trải nghiệm của bạn..."></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary" onclick="submitRating(@rental.Id)">
+                                <i class="fas fa-paper-plane"></i> Gửi đánh giá
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                <h4>Chưa có lịch sử thuê xe</h4>
+                <p class="text-muted">Bạn chưa hoàn thành chuyến thuê xe nào</p>
+                <a href="@Url.Action("BookingHistory", "Account")" class="btn btn-primary">
+                    <i class="fas fa-history"></i> Xem đơn đặt xe
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Rating stars interaction
+        $('.rating-star').on('mouseenter', function() {
+            const rating = $(this).data('rating');
+            const container = $(this).parent();
+            container.find('.rating-star').each(function(index) {
+                if (index < rating) {
+                    $(this).removeClass('far').addClass('fas');
+                } else {
+                    $(this).removeClass('fas').addClass('far');
+                }
+            });
+        });
+
+        $('.rating-stars').on('mouseleave', function() {
+            const rentalId = $(this).data('rental-id');
+            const currentRating = $('#rating-' + rentalId).val();
+            $(this).find('.rating-star').each(function(index) {
+                if (index < currentRating) {
+                    $(this).removeClass('far').addClass('fas');
+                } else {
+                    $(this).removeClass('fas').addClass('far');
+                }
+            });
+        });
+
+        $('.rating-star').on('click', function() {
+            const rating = $(this).data('rating');
+            const container = $(this).parent();
+            const rentalId = container.data('rental-id');
+            $('#rating-' + rentalId).val(rating);
+        });
+
+        function submitRating(rentalId) {
+            const rating = $('#rating-' + rentalId).val();
+            const comment = $('#comment-' + rentalId).val();
+
+            if (rating == 0) {
+                alert('Vui lòng chọn số sao đánh giá!');
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("RateRental", "Account")',
+                type: 'POST',
+                data: {
+                    lichsuId: rentalId,
+                    rating: rating,
+                    comment: comment
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
+        }
+    </script>
+}

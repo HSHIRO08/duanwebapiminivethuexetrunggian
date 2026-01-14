@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Về chúng tôi";
+}
+
+<div class="container py-5">
+    <!-- Hero Section -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="fas fa-car text-primary"></i> Về AutoRent
+            </h1>
+            <p class="lead text-muted">Dịch vụ cho thuê xe ô tô uy tín hàng đầu Việt Nam</p>
+        </div>
+    </div>
+
+    <!-- Company Info -->
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <img src="https://via.placeholder.com/600x400/007bff/ffffff?text=AutoRent" 
+                 class="img-fluid rounded shadow" alt="AutoRent">
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-4">Giới Thiệu</h2>
+            <p class="text-justify">
+                <strong>@ViewBag.CompanyName</strong> là đơn vị hàng đầu trong lĩnh vực cho thuê xe ô tô tự lái và có lái tại Việt Nam. 
+                Thành lập từ năm <strong>@ViewBag.Founded</strong>, chúng tôi tự hào mang đến dịch vụ chất lượng cao với đội ngũ xe đa dạng, 
+                hiện đại và luôn được bảo dưỡng định kỳ.
+            </p>
+            <p class="text-justify">
+                Với phương châm <em>"An toàn - Uy tín - Chất lượng"</em>, AutoRent cam kết mang đến trải nghiệm thuê xe tốt nhất 
+                cho mọi khách hàng, từ cá nhân đến doanh nghiệp.
+            </p>
+
+            <!-- Stats -->
+            <div class="row mt-4">
+                <div class="col-6 mb-3">
+                    <div class="card text-center border-primary">
+                        <div class="card-body">
+                            <h3 class="text-primary mb-0">@ViewBag.TotalCars+</h3>
+                            <p class="mb-0 text-muted">Xe khả dụng</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="card text-center border-success">
+                        <div class="card-body">
+                            <h3 class="text-success mb-0">@ViewBag.TotalCustomers+</h3>
+                            <p class="mb-0 text-muted">Khách hàng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Values -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center mb-4">Giá Trị Cốt Lõi</h2>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">An Toàn</h5>
+                    <p class="card-text">
+                        Xe được bảo dưỡng định kỳ, có bảo hiểm toàn diện. An toàn của khách hàng là ưu tiên hàng đầu.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-handshake fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Uy Tín</h5>
+                    <p class="card-text">
+                        Minh bạch về giá cả, không phát sinh chi phí. Cam kết hoàn tiền 100% nếu không hài lòng.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center border-0 shadow-sm">
+                <div class="card-body">
+                    <i class="fas fa-star fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Chất Lượng</h5>
+                    <p class="card-text">
+                        Xe mới, sạch sẽ, hiện đại. Dịch vụ chuyên nghiệp, hỗ trợ 24/7 trong suốt hành trình.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="row mb-5 bg-light py-5">
+        <div class="col-12">
+            <h2 class="text-center mb-4">Tại Sao Chọn AutoRent?</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong>Đa dạng dòng xe:</strong> Từ 4 chỗ đến 7 chỗ, sedan đến SUV
+                </li>
+                <li class="mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong>Giá cả hợp lý:</strong> Nhiều chương trình khuyến mãi hấp dẫn
+                </li>
+                <li class="mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong>Thủ tục đơn giản:</strong> Đăng ký online nhanh chóng
+                </li>
+                <li class="mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong>Giao xe tận nơi:</strong> Miễn phí trong nội thành
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong>Bảo hiểm đầy đủ:</strong> Vật chất xe và trách nhiệm dân sự
+                </li>
+                <li class="mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong>Hỗ trợ 24/7:</strong> Luôn sẵn sàng hỗ trợ khách hàng
+                </li>
+                <li class="mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong>Thanh toán linh hoạt:</strong> Tiền mặt, chuyển khoản, thẻ
+                </li>
+                <li class="mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong>Ưu đãi khách quen:</strong> Tích điểm và nhận quà
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <h3 class="mb-4">Sẵn sàng bắt đầu chuyến đi của bạn?</h3>
+            <a href="@Url.Action("Index", "Xe")" class="btn btn-primary btn-lg me-2">
+                <i class="fas fa-car"></i> Xem danh sách xe
+            </a>
+            <a href="@Url.Action("Contact")" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-phone"></i> Liên hệ ngay
+            </a>
+        </div>
+    </div>
+</div>

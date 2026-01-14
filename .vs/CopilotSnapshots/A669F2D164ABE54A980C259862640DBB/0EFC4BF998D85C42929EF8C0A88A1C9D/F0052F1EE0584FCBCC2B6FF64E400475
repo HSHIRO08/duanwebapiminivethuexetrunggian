@@ -1,0 +1,43 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using duanminiveprogresql.Models;
+
+namespace duanminiveprogresql.Controllers
+{
+    public class HomeController : Controller
+    {
+        private readonly AppDbContext _context;
+
+        public HomeController(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            // Lấy xe nổi bật (Available)
+            var featuredCars = await _context.Xes
+                .Where(x => x.Trangthai == "Available")
+                .OrderByDescending(x => x.Ngaytao)
+                .Take(6)
+                .ToListAsync();
+
+            return View(featuredCars);
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
+    }
+}

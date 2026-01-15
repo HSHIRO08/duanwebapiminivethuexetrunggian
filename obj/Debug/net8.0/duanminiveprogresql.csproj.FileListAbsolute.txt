@@ -149,3 +149,4 @@ C:\Users\mainh\source\repos\duanminiveprogresql\obj\Debug\net8.0\ref\duanminivep
 C:\Users\mainh\source\repos\duanminiveprogresql\obj\Debug\net8.0\duanminiveprogresql.RazorAssemblyInfo.cache
 C:\Users\mainh\source\repos\duanminiveprogresql\obj\Debug\net8.0\duanminiveprogresql.RazorAssemblyInfo.cs
 C:\Users\mainh\source\repos\duanminiveprogresql\bin\Debug\net8.0\duanminiveprogresql.staticwebassets.runtime.json
+C:\Users\mainh\source\repos\duanminiveprogresql\obj\Debug\net8.0\duanminiveprogresql.sourcelink.json

@@ -116,6 +116,7 @@ namespace duanminiveprogresql.Controllers.API
                 return BadRequest(new { message = "Email đã được sử dụng" });
             }
 
+            // SỬA: DateTime.Now thay vì DateTime.UtcNow
             var nguoidung = new Nguoidung
             {
                 Email = model.Email,
@@ -125,7 +126,7 @@ namespace duanminiveprogresql.Controllers.API
                 Diachi = model.Diachi,
                 Vaitro = model.Vaitro ?? "Customer",
                 Trangthai = true,
-                Ngaytao = DateTime.UtcNow
+                Ngaytao = DateTime.Now  // ✅ SỬA: DateTime.Now
             };
 
             _context.Nguoidungs.Add(nguoidung);

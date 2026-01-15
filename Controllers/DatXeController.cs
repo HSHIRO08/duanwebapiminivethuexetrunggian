@@ -70,7 +70,7 @@ namespace duanminiveprogresql.Controllers
             // Tính tổng tiền
             var tongtien = xe.Giathuetheongay * songaythue;
 
-            // Tạo đơn đặt xe
+            // Tạo đơn đặt xe - SỬA: DateTime.Now thay vì DateTime.UtcNow
             var datxe = new Datxe
             {
                 Khachhangid = khachhang.Id,
@@ -84,7 +84,7 @@ namespace duanminiveprogresql.Controllers
                 Diadiemtra = diadiemtra,
                 Ghichu = ghichu,
                 Trangthai = "Pending",
-                Ngaydat = DateTime.UtcNow
+                Ngaydat = DateTime.Now  // ✅ SỬA: DateTime.Now
             };
 
             _context.Datxes.Add(datxe);

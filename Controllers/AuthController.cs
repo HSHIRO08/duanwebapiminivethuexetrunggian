@@ -144,7 +144,7 @@ namespace duanminiveprogresql.Controllers
 
             try
             {
-                // Ki?m tra email ?ã t?n t?i
+                // Kiểm tra email đã tồn tại
                 var existingUser = await _context.Nguoidungs.FirstOrDefaultAsync(u => u.Email == email);
                 if (existingUser != null)
                 {
@@ -152,7 +152,7 @@ namespace duanminiveprogresql.Controllers
                     return View();
                 }
 
-                // T?o ng??i dùng m?i
+                // Tạo người dùng mới - SỬA: DateTime.Now thay vì DateTime.UtcNow
                 var newUser = new Nguoidung
                 {
                     Hoten = hoten,
@@ -161,7 +161,7 @@ namespace duanminiveprogresql.Controllers
                     Sodienthoai = sodienthoai,
                     Vaitro = "Customer",
                     Trangthai = true,
-                    Ngaytao = DateTime.UtcNow
+                    Ngaytao = DateTime.Now  // ✅ SỬA: DateTime.Now cho timestamp without time zone
                 };
 
                 _context.Nguoidungs.Add(newUser);
@@ -169,24 +169,24 @@ namespace duanminiveprogresql.Controllers
 
                 _logger.LogInformation($"New user created: ID={newUser.Id}, Email={email}");
 
-                // T?o khách hàng
+                // Tạo khách hàng - SỬA: DateTime.Now thay vì DateTime.UtcNow
                 var newCustomer = new Khachhang
                 {
                     Nguoidungid = newUser.Id,
                     Daxacthuc = false,
-                    Ngaydangky = DateTime.UtcNow
+                    Ngaydangky = DateTime.Now  // ✅ SỬA: DateTime.Now cho timestamp without time zone
                 };
 
                 _context.Khachhangs.Add(newCustomer);
                 await _context.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = "Đăng ký thành công.";
+                TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập.";
                 return RedirectToAction("Login");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Registration error");
-                ModelState.AddModelError("", "Có lỗi xảy ra");
+                ModelState.AddModelError("", $"Có lỗi xảy ra: {ex.Message}");
                 return View();
             }
         }
@@ -212,7 +212,7 @@ namespace duanminiveprogresql.Controllers
             }
         }
 
-        // Test action ?? ki?m tra session
+        // Test action để kiểm tra session
         public IActionResult TestSession()
         {
             var userId = HttpContext.Session.GetInt32("UserId");

@@ -83,9 +83,9 @@ namespace duanminiveprogresql.Controllers.API
                 return BadRequest(new { message = "Đơn đặt xe không tồn tại" });
             }
 
-            // Tạo mã giao dịch
-            thanhtoan.Magiaodich = $"TT{DateTime.UtcNow:yyyyMMddHHmmss}{thanhtoan.Datxeid}";
-            thanhtoan.Ngaythanhtoan = DateTime.UtcNow;
+            // Tạo mã giao dịch - SỬA: DateTime.Now thay vì DateTime.UtcNow
+            thanhtoan.Magiaodich = $"TT{DateTime.Now:yyyyMMddHHmmss}{thanhtoan.Datxeid}";
+            thanhtoan.Ngaythanhtoan = DateTime.Now;  // ✅ SỬA: DateTime.Now
             thanhtoan.Trangthai = "Pending";
 
             _context.Thanhtoans.Add(thanhtoan);
@@ -113,7 +113,7 @@ namespace duanminiveprogresql.Controllers.API
             
             if (trangthai == "Completed")
             {
-                thanhtoan.Ngayxacnhan = DateTime.UtcNow;
+                thanhtoan.Ngayxacnhan = DateTime.Now;  // ✅ SỬA: DateTime.Now
             }
 
             await _context.SaveChangesAsync();

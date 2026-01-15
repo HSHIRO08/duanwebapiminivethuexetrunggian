@@ -109,7 +109,7 @@ namespace duanminiveprogresql.Controllers.API
                 return BadRequest(new { message = "Khách hàng không tồn tại" });
             }
 
-            hotro.Ngaytao = DateTime.UtcNow;
+            hotro.Ngaytao = DateTime.Now;
             hotro.Trangthai = "Open";
             hotro.Mucdouutien = hotro.Mucdouutien ?? "Normal";
 
@@ -133,7 +133,7 @@ namespace duanminiveprogresql.Controllers.API
                 return BadRequest(new { message = "ID không khớp" });
             }
 
-            hotro.Ngaycapnhat = DateTime.UtcNow;
+            hotro.Ngaycapnhat = DateTime.Now;
             _context.Entry(hotro).State = EntityState.Modified;
 
             try
@@ -173,8 +173,8 @@ namespace duanminiveprogresql.Controllers.API
             hotro.Traloi = model.Traloi;
             hotro.Nhanvienxulyid = model.NhanvienxulyId;
             hotro.Trangthai = "Resolved";
-            hotro.Ngaygiaiquyet = DateTime.UtcNow;
-            hotro.Ngaycapnhat = DateTime.UtcNow;
+            hotro.Ngaygiaiquyet = DateTime.Now;
+            hotro.Ngaycapnhat = DateTime.Now;
 
             await _context.SaveChangesAsync();
 
@@ -197,11 +197,11 @@ namespace duanminiveprogresql.Controllers.API
             }
 
             hotro.Trangthai = trangthai;
-            hotro.Ngaycapnhat = DateTime.UtcNow;
+            hotro.Ngaycapnhat = DateTime.Now;
 
             if (trangthai == "Resolved" || trangthai == "Closed")
             {
-                hotro.Ngaygiaiquyet = DateTime.UtcNow;
+                hotro.Ngaygiaiquyet = DateTime.Now;
             }
 
             await _context.SaveChangesAsync();

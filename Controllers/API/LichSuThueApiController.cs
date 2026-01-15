@@ -111,7 +111,7 @@ namespace duanminiveprogresql.Controllers.API
                 return BadRequest(new { message = "Đơn đặt xe không tồn tại" });
             }
 
-            lichsuthue.Ngaynhanxe = DateTime.UtcNow;
+            lichsuthue.Ngaynhanxe = DateTime.Now; // ✅ SỬA: DateTime.Now
 
             _context.Lichsuthues.Add(lichsuthue);
             await _context.SaveChangesAsync();

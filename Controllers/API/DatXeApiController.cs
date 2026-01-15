@@ -114,7 +114,7 @@ namespace duanminiveprogresql.Controllers.API
             datxe.Giatheongay = xe.Giathuetheongay;
             datxe.Tongtien = xe.Giathuetheongay * songay;
             datxe.Trangthai = "Pending";
-            datxe.Ngaydat = DateTime.UtcNow;
+            datxe.Ngaydat = DateTime.Now;  // ✅ SỬA: DateTime.Now
 
             _context.Datxes.Add(datxe);
             await _context.SaveChangesAsync();
@@ -141,11 +141,11 @@ namespace duanminiveprogresql.Controllers.API
 
             if (trangthai == "Confirmed")
             {
-                datxe.Ngayxacnhan = DateTime.UtcNow;
+                datxe.Ngayxacnhan = DateTime.Now;  // ✅ SỬA: DateTime.Now
             }
             else if (trangthai == "Completed")
             {
-                datxe.Ngayhoanthanh = DateTime.UtcNow;
+                datxe.Ngayhoanthanh = DateTime.Now;  // ✅ SỬA: DateTime.Now
             }
 
             await _context.SaveChangesAsync();

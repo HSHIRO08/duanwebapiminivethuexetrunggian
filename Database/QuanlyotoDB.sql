@@ -206,20 +206,5 @@ END $$;
 select * from nguoidung
 
 
--- Admin@123 -> e86f78a8a3caf0b60d8e74e5942aa6d86dc150cd3c03338aef25b7d2d7e3acc7
-UPDATE nguoidung 
-SET matkhau = 'e86f78a8a3caf0b60d8e74e5942aa6d86dc150cd3c03338aef25b7d2d7e3acc7'
-WHERE email = 'admin@chothuexeoto.com' 
-
-
--- Ncc@123 -> 5e3a8e5c8f9e6b7d4a2c1f8e9b6c3d7a4e5f2b1c8d9e6a7f3b4c5d2e1a8f9b6c
-UPDATE nguoidung 
-SET matkhau = '5e3a8e5c8f9e6b7d4a2c1f8e9b6c3d7a4e5f2b1c8d9e6a7f3b4c5d2e1a8f9b6c'
-WHERE email = 'nhacungcap@example.com' 
-
-
--- Kh@123 -> 8b4c7d1e9f2a6b5c3d8e4f7a1b9c6d2e5f3a8b7c1d4e9f6a2b5c8d3e7f1a4b9c
-UPDATE nguoidung 
-SET matkhau = '8b4c7d1e9f2a6b5c3d8e4f7a1b9c6d2e5f3a8b7c1d4e9f6a2b5c8d3e7f1a4b9c'
-WHERE email = 'khachhang@example.com' 
+select * from xe
 

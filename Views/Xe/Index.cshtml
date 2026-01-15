@@ -1,11 +1,11 @@
-@model IEnumerable<Xe>
+﻿@model IEnumerable<Xe>
 
 @{
-    ViewData["Title"] = "Danh s�ch xe";
+    ViewData["Title"] = "Danh sách xe";
 }
 
 <div class="container py-4">
-    <h1 class="mb-4">Danh S�ch Xe Cho Thu�</h1>
+    <h1 class="mb-4">Danh Sách Xe Cho Thuê</h1>
 
     <!-- Filter Section -->
     <div class="card mb-4">
@@ -13,13 +13,13 @@
             <form method="get" asp-action="Index">
                 <div class="row g-3">
                     <div class="col-md-3">
-                        <label class="form-label">T�m ki?m</label>
-                        <input type="text" class="form-control" name="search" placeholder="T�n xe, h�ng, bi?n s?..." value="@Context.Request.Query["search"]">
+                        <label class="form-label">Tìm kiếm</label>
+                        <input type="text" class="form-control" name="search" placeholder="Tên xe, hãng, biển số..." value="@Context.Request.Query["search"]">
                     </div>
                     <div class="col-md-2">
-                        <label class="form-label">Lo?i xe</label>
+                        <label class="form-label">Loại xe</label>
                         <select class="form-select" name="loaixe">
-                            <option value="">T?t c?</option>
+                            <option value="">Tất cả</option>
                             @if (ViewBag.LoaiXeList != null)
                             {
                                 @foreach (var loai in ViewBag.LoaiXeList)
@@ -30,9 +30,9 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label class="form-label">H�ng xe</label>
+                        <label class="form-label">Hãng xe</label>
                         <select class="form-select" name="hangxe">
-                            <option value="">T?t c?</option>
+                            <option value="">Tất cả</option>
                             @if (ViewBag.HangXeList != null)
                             {
                                 @foreach (var hang in ViewBag.HangXeList)
@@ -43,11 +43,11 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label class="form-label">Gi� t?</label>
+                        <label class="form-label">Giá từ</label>
                         <input type="number" class="form-control" name="minPrice" placeholder="0" value="@Context.Request.Query["minPrice"]">
                     </div>
                     <div class="col-md-2">
-                        <label class="form-label">Gi� ??n</label>
+                        <label class="form-label">Giá đến</label>
                         <input type="number" class="form-control" name="maxPrice" placeholder="10000000" value="@Context.Request.Query["maxPrice"]">
                     </div>
                     <div class="col-md-1 d-flex align-items-end">
@@ -65,7 +65,7 @@
         @if (Model != null && Model.Any())
         {
             <div class="col-12 mb-3">
-                <p class="text-muted">T�m th?y @Model.Count() xe</p>
+                <p class="text-muted">Tìm thấy @Model.Count() xe</p>
             </div>
             
             @foreach (var xe in Model)
@@ -91,7 +91,7 @@
                             </p>
                             <div class="mb-2">
                                 <small class="text-muted">
-                                    <i class="fas fa-users"></i> @xe.Sochongoi ch? |
+                                    <i class="fas fa-users"></i> @xe.Sochongoi chỗ |
                                     <i class="fas fa-calendar"></i> @xe.Namsanxuat |
                                     <i class="fas fa-palette"></i> @xe.Mauxe
                                 </small>
@@ -104,11 +104,11 @@
                             }
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <div>
-                                    <span class="h5 text-primary mb-0">@xe.Giathuetheongay.ToString("N0") ?</span>
-                                    <small class="text-muted d-block">/ng�y</small>
+                                    <span class="h5 text-primary mb-0">@xe.Giathuetheongay.ToString("N0") ₫</span>
+                                    <small class="text-muted d-block">/ngày</small>
                                 </div>
                                 <a href="@Url.Action("Details", "Xe", new { id = xe.Id })" class="btn btn-primary">
-                                    <i class="fas fa-info-circle"></i> Chi ti?t
+                                    <i class="fas fa-info-circle"></i> Chi tiết
                                 </a>
                             </div>
                         </div>
@@ -121,10 +121,10 @@
             <div class="col-12">
                 <div class="alert alert-info text-center">
                     <i class="fas fa-info-circle fa-3x mb-3"></i>
-                    <h4>Kh�ng t�m th?y xe n�o</h4>
-                    <p>Vui l�ng th? l?i v?i ti�u ch� t�m ki?m kh�c</p>
+                    <h4>Không tìm thấy xe nào</h4>
+                    <p>Vui lòng thử lại với tiêu chí tìm kiếm khác</p>
                     <a href="@Url.Action("Index", "Xe")" class="btn btn-primary">
-                        <i class="fas fa-redo"></i> Xem t?t c? xe
+                        <i class="fas fa-redo"></i> Xem tất cả xe
                     </a>
                 </div>
             </div>

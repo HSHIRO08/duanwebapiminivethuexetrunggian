@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using duanminiveprogresql.Models;
 
-namespace duanminiveprogresql.Controllers
+namespace duanminivepropgsql.Controllers
 {
     public class AdminController : Controller
     {
@@ -80,7 +80,7 @@ namespace duanminiveprogresql.Controllers
 
             try
             {
-                xe.Ngaytao = DateTime.UtcNow;
+                xe.Ngaytao = DateTime.Now;  // ✅ SỬA: DateTime.Now
                 xe.Trangthai = "Available";
 
                 _context.Xes.Add(xe);
@@ -92,7 +92,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error creating car");
-                TempData["ErrorMessage"] = "Có lỗi xảy ra!";
+                TempData["ErrorMessage"] = $"Có lỗi xảy ra: {ex.Message}";
                 return View(xe);
             }
         }
@@ -119,7 +119,7 @@ namespace duanminiveprogresql.Controllers
 
             try
             {
-                xe.Ngaycapnhat = DateTime.UtcNow;
+                xe.Ngaycapnhat = DateTime.Now;  // ✅ SỬA: DateTime.Now
                 _context.Update(xe);
                 await _context.SaveChangesAsync();
 
@@ -129,7 +129,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error updating car");
-                TempData["ErrorMessage"] = "Có lỗi xảy ra!";
+                TempData["ErrorMessage"] = $"Có lỗi xảy ra: {ex.Message}";
                 return View(xe);
             }
         }
@@ -192,7 +192,7 @@ namespace duanminiveprogresql.Controllers
                 if (booking != null)
                 {
                     booking.Trangthai = "Confirmed";
-                    booking.Ngayxacnhan = DateTime.UtcNow;
+                    booking.Ngayxacnhan = DateTime.Now;  // ✅ SỬA: DateTime.Now
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Đã xác nhận đơn thuê!";
                 }
@@ -274,7 +274,7 @@ namespace duanminiveprogresql.Controllers
         {
             if (!IsAdmin()) return RedirectToAction("Index", "Home");
 
-            var today = DateTime.UtcNow.Date;
+            var today = DateTime.Now.Date;  // ✅ SỬA: DateTime.Now
             var thisMonth = new DateTime(today.Year, today.Month, 1);
             var lastMonth = thisMonth.AddMonths(-1);
 
@@ -353,8 +353,8 @@ namespace duanminiveprogresql.Controllers
                     ticket.Traloi = reply;
                     ticket.Nhanvienxulyid = userId;
                     ticket.Trangthai = "Resolved";
-                    ticket.Ngaygiaiquyet = DateTime.UtcNow;
-                    ticket.Ngaycapnhat = DateTime.UtcNow;
+                    ticket.Ngaygiaiquyet = DateTime.Now;  // ✅ SỬA: DateTime.Now
+                    ticket.Ngaycapnhat = DateTime.Now;    // ✅ SỬA: DateTime.Now
 
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Đã trả lời hỗ trợ!";
@@ -363,7 +363,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error replying support");
-                TempData["ErrorMessage"] = "Có lỗi xảy ra!";
+                TempData["ErrorMessage"] = $"Có lỗi xảy ra: {ex.Message}";
             }
 
             return RedirectToAction("HoTro");

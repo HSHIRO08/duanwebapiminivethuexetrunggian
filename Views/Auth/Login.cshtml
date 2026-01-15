@@ -77,19 +77,6 @@
                     </form>
                 </div>
             </div>
-
-            @* Debug panel - XÓA SAU KHI FIX XONG *@
-            <div class="card shadow mt-3 bg-light">
-                <div class="card-body">
-                    <h6 class="text-muted">🔧 Debug Info</h6>
-                    <small>
-                        <strong>Session UserId:</strong> @Context.Session.GetInt32("UserId")<br>
-                        <strong>Session UserName:</strong> @Context.Session.GetString("UserName")<br>
-                        <a href="/Debug/TestLogin?email=YOUR_EMAIL&password=YOUR_PASSWORD" class="btn btn-sm btn-warning mt-2" target="_blank">
-                            Test Login
-                        </a>
-                    </small>
-                </div>
             </div>
         </div>
     </div>

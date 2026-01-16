@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("duanminiveprogresql")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95a21b7644fb08d05226f099a3c6bf0775609729")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b59a7bdca0865b1a6f3bb75b67243b2e9ad17fef")]
 [assembly: System.Reflection.AssemblyProductAttribute("duanminiveprogresql")]
 [assembly: System.Reflection.AssemblyTitleAttribute("duanminiveprogresql")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

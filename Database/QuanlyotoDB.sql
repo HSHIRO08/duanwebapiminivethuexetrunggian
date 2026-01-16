@@ -168,7 +168,7 @@ CREATE TABLE HoTroKhachHang (
         REFERENCES NguoiDung(Id)
 );
 
-
+select * from Xe
 
 -- Dùng khối DO để xử lý biến tạm trong PostgreSQL
 DO $$
@@ -207,4 +207,164 @@ select * from nguoidung
 
 
 select * from xe
+
+
+DO $$
+DECLARE 
+    supplier_id INT;
+    customer_user_id INT;
+    customer_id INT;
+BEGIN
+INSERT INTO Xe (
+    NhaCungCapId,
+    TenXe,
+    BienSoXe,
+    HangXe,
+    MauXe,
+    NamSanXuat,
+    SoChoNgoi,
+    LoaiXe,
+    GiaThueTheoNgay,
+    MoTa,
+    HinhAnh,
+    TrangThai
+) VALUES
+
+(2, 'Toyota Vios 2022', '51A-12345', 'Toyota', 'Trắng', 2022, 5, 'Sedan', 700000,
+ 'Xe tiết kiệm nhiên liệu, phù hợp đi thành phố',
+ 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'Honda City 2021', '51A-23456', 'Honda', 'Đen', 2021, 5, 'Sedan', 750000,
+ 'Xe bền bỉ, nội thất rộng rãi',
+ 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'Mazda CX-5 2023', '51A-34567', 'Mazda', 'Đỏ', 2023, 5, 'SUV', 1200000,
+ 'SUV cao cấp, nhiều công nghệ an toàn',
+ 'https://images.unsplash.com/photo-1617654112368-307921291f42?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'Ford Everest 2022', '51A-45678', 'Ford', 'Xám', 2022, 7, 'SUV', 1500000,
+ 'Xe 7 chỗ mạnh mẽ, phù hợp đi gia đình',
+ 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'Kia Morning 2020', '51A-56789', 'Kia', 'Xanh', 2020, 4, 'Hatchback', 500000,
+ 'Xe nhỏ gọn, dễ di chuyển trong đô thị',
+ 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'Hyundai Accent 2021', '51A-67890', 'Hyundai', 'Bạc', 2021, 5, 'Sedan', 650000,
+ 'Xe phổ thông, giá thuê hợp lý',
+ 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'Toyota Fortuner 2023', '51A-78901', 'Toyota', 'Đen', 2023, 7, 'SUV', 1600000,
+ 'SUV 7 chỗ cao cấp, vận hành ổn định',
+ 'https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'VinFast Lux A2.0 2022', '51A-89012', 'VinFast', 'Trắng', 2022, 5, 'Sedan', 1300000,
+ 'Sedan cao cấp thương hiệu Việt',
+ 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'Mitsubishi Xpander 2021', '51A-90123', 'Mitsubishi', 'Cam', 2021, 7, 'MPV', 900000,
+ 'Xe gia đình 7 chỗ, tiết kiệm nhiên liệu',
+ 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop', 'Available'),
+
+(2, 'Toyota Innova 2020', '51A-01234', 'Toyota', 'Bạc', 2020, 7, 'MPV', 850000,
+ 'Xe rộng rãi, phù hợp đi nhóm',
+ 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop', 'Available');
+
+END $$;
+
+UPDATE Xe 
+SET GiaThueTheoNgay = 550000,
+    MoTa = 'Xe sedan 5 chỗ tiết kiệm nhiên liệu, có camera lùi, cảm biến lùi, màn hình cảm ứng',
+    HinhAnh = 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '30A-12345';
+
+-- Cập nhật Honda CR-V 2023 (BienSoXe: 30B-67890)
+UPDATE Xe 
+SET GiaThueTheoNgay = 950000,
+    MoTa = 'SUV 7 chỗ cao cấp, rộng rãi, có hệ thống an toàn Honda Sensing, camera 360 độ',
+    HinhAnh = 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '30B-67890';
+
+-- Cập nhật Toyota Vios 2022 (BienSoXe: 51A-12345)
+UPDATE Xe 
+SET GiaThueTheoNgay = 700000,
+    MoTa = 'Xe sedan tiết kiệm nhiên liệu, phù hợp đi thành phố, nội thất thoải mái',
+    HinhAnh = 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-12345';
+
+-- Cập nhật Honda City 2021 (BienSoXe: 51A-23456)
+UPDATE Xe 
+SET GiaThueTheoNgay = 750000,
+    MoTa = 'Xe bền bỉ, nội thất rộng rãi, động cơ 1.5L tiết kiệm nhiên liệu',
+    HinhAnh = 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-23456';
+
+-- Cập nhật Mazda CX-5 2023 (BienSoXe: 51A-34567)
+UPDATE Xe 
+SET GiaThueTheoNgay = 1250000,
+    MoTa = 'SUV cao cấp, nhiều công nghệ an toàn, động cơ Skyactiv, màn hình HUD',
+    HinhAnh = 'https://images.unsplash.com/photo-1617654112368-307921291f42?w=800&h=600&fit=crop',
+    MauXe = 'Đỏ Soul Red',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-34567';
+
+-- Cập nhật Ford Everest 2022 (BienSoXe: 51A-45678)
+UPDATE Xe 
+SET GiaThueTheoNgay = 1500000,
+    MoTa = 'SUV 7 chỗ mạnh mẽ, phù hợp đi gia đình, địa hình phức tạp, có chế độ off-road',
+    HinhAnh = 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-45678';
+
+-- Cập nhật Kia Morning 2020 (BienSoXe: 51A-56789)
+UPDATE Xe 
+SET GiaThueTheoNgay = 500000,
+    MoTa = 'Xe nhỏ gọn, dễ di chuyển trong đô thị, tiết kiệm nhiên liệu, giá thuê hợp lý',
+    HinhAnh = 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-56789';
+
+-- Cập nhật Hyundai Accent 2021 (BienSoXe: 51A-67890)
+UPDATE Xe 
+SET GiaThueTheoNgay = 650000,
+    MoTa = 'Xe phổ thông, giá thuê hợp lý, nội thất hiện đại, tiện nghi cơ bản đầy đủ',
+    HinhAnh = 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-67890';
+
+-- Cập nhật Toyota Fortuner 2023 (BienSoXe: 51A-78901)
+UPDATE Xe 
+SET GiaThueTheoNgay = 1600000,
+    MoTa = 'SUV 7 chỗ cao cấp, vận hành ổn định, mạnh mẽ, phù hợp đường dài và địa hình xấu',
+    HinhAnh = 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-78901';
+
+-- Cập nhật VinFast Lux A2.0 2022 (BienSoXe: 51A-89012)
+UPDATE Xe 
+SET GiaThueTheoNgay = 1350000,
+    MoTa = 'Sedan cao cấp thương hiệu Việt, nội thất sang trọng, động cơ mạnh mẽ, công nghệ hiện đại',
+    HinhAnh = 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-89012';
+
+-- Cập nhật Mitsubishi Xpander 2021 (BienSoXe: 51A-90123)
+UPDATE Xe 
+SET GiaThueTheoNgay = 900000,
+    MoTa = 'MPV gia đình 7 chỗ, tiết kiệm nhiên liệu, không gian rộng rãi, phù hợp đi du lịch',
+    HinhAnh = 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-90123';
+
+-- Cập nhật Toyota Innova 2020 (BienSoXe: 51A-01234)
+UPDATE Xe 
+SET GiaThueTheoNgay = 850000,
+    MoTa = 'MPV 7 chỗ rộng rãi, phù hợp đi nhóm, đi du lịch, động cơ bền bỉ',
+    HinhAnh = 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop',
+    NgayCapNhat = CURRENT_TIMESTAMP
+WHERE BienSoXe = '51A-01234';
 

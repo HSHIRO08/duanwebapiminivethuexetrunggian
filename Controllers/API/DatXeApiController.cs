@@ -17,9 +17,9 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y danh sách t?t c? don d?t xe
+        /// Lấy danh sách tất cả đơn đặt xe
         /// </summary>
-        /// <returns>Danh sách don d?t xe</returns>
+        /// <returns>Danh sách đơn đặt xe</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetDatXes()
         {
@@ -45,10 +45,10 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y thông tin chi ti?t don d?t xe
+        /// Lấy thông tin chi tiết đơn đặt xe
         /// </summary>
-        /// <param name="id">ID don d?t xe</param>
-        /// <returns>Thông tin don d?t xe</returns>
+        /// <param name="id">ID đơn đặt xe</param>
+        /// <returns>Thông tin đơn đặt xe</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Datxe>> GetDatXe(int id)
         {
@@ -68,10 +68,10 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y don d?t xe theo khách hàng
+        /// Lấy đơn đặt xe theo khách hàng
         /// </summary>
         /// <param name="khachhangId">ID khách hàng</param>
-        /// <returns>Danh sách don d?t xe</returns>
+        /// <returns>Danh sách đơn đặt xe</returns>
         [HttpGet("khachhang/{khachhangId}")]
         public async Task<ActionResult<IEnumerable<Datxe>>> GetDatXeByKhachhang(int khachhangId)
         {
@@ -83,30 +83,30 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// T?o don d?t xe m?i
+        /// Tạo đơn đặt xe mới
         /// </summary>
-        /// <param name="datxe">Thông tin d?t xe</param>
-        /// <returns>Ðon d?t xe v?a t?o</returns>
+        /// <param name="datxe">Thông tin đặt xe</param>
+        /// <returns>Đơn đặt xe vừa tạo</returns>
         [HttpPost]
         public async Task<ActionResult<Datxe>> CreateDatXe(Datxe datxe)
         {
-            // Ki?m tra xe có t?n t?i
+            // Kiểm tra xe có tồn tại
             var xe = await _context.Xes.FindAsync(datxe.Xeid);
             if (xe == null)
             {
-                return BadRequest(new { message = "Xe không t?n t?i" });
+                return BadRequest(new { message = "Xe không tồn tại" });
             }
 
             if (xe.Trangthai != "Available")
             {
-                return BadRequest(new { message = "Xe không kh? d?ng" });
+                return BadRequest(new { message = "Xe không khả dụng" });
             }
 
-            // Ki?m tra khách hàng
+            // Kiểm tra khách hàng
             var khachhang = await _context.Khachhangs.FindAsync(datxe.Khachhangid);
             if (khachhang == null)
             {
-                return BadRequest(new { message = "Khách hàng không t?n t?i" });
+                return BadRequest(new { message = "Khách hàng không tồn tại" });
             }
 
             // Tính toán
@@ -115,7 +115,7 @@ namespace duanminiveprogresql.Controllers.API
             datxe.Giatheongay = xe.Giathuetheongay;
             datxe.Tongtien = xe.Giathuetheongay * songay;
             datxe.Trangthai = "Pending";
-            datxe.Ngaydat = DateTime.Now;  // ? S?A: DateTime.Now
+            datxe.Ngaydat = DateTime.Now;  // ✅ SỬa: DateTime.Now
 
             _context.Datxes.Add(datxe);
             await _context.SaveChangesAsync();
@@ -124,54 +124,54 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// C?p nh?t tr?ng thái don d?t xe
+        /// Cập nhật trạng thái đơn đặt xe
         /// </summary>
-        /// <param name="id">ID don d?t xe</param>
-        /// <param name="trangthai">Tr?ng thái m?i (Pending, Confirmed, Completed, Cancelled)</param>
-        /// <returns>K?t qu? c?p nh?t</returns>
+        /// <param name="id">ID đơn đặt xe</param>
+        /// <param name="trangthai">Trạng thái mới (Pending, Confirmed, Completed, Cancelled)</param>
+        /// <returns>Kết quả cập nhật</returns>
         [HttpPatch("{id}/status")]
         public async Task<IActionResult> UpdateStatus(int id, [FromBody] string trangthai)
         {
             var datxe = await _context.Datxes.FindAsync(id);
             if (datxe == null)
             {
-                return NotFound(new { message = "Không tìm th?y don d?t xe" });
+                return NotFound(new { message = "Không tìm thấy đơn đặt xe" });
             }
 
             datxe.Trangthai = trangthai;
 
             if (trangthai == "Confirmed")
             {
-                datxe.Ngayxacnhan = DateTime.Now;  // ? S?A: DateTime.Now
+                datxe.Ngayxacnhan = DateTime.Now;  // ✅ SỬa: DateTime.Now
             }
             else if (trangthai == "Completed")
             {
-                datxe.Ngayhoanthanh = DateTime.Now;  // ? S?A: DateTime.Now
+                datxe.Ngayhoanthanh = DateTime.Now;  // ✅ SỬa: DateTime.Now
             }
 
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "C?p nh?t tr?ng thái thành công", trangthai = datxe.Trangthai });
+            return Ok(new { message = "Cập nhật trạng thái thành công", trangthai = datxe.Trangthai });
         }
 
         /// <summary>
-        /// Xóa don d?t xe
+        /// Xóa đơn đặt xe
         /// </summary>
-        /// <param name="id">ID don d?t xe</param>
-        /// <returns>K?t qu? xóa</returns>
+        /// <param name="id">ID đơn đặt xe</param>
+        /// <returns>Kết quả xóa</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDatXe(int id)
         {
             var datxe = await _context.Datxes.FindAsync(id);
             if (datxe == null)
             {
-                return NotFound(new { message = "Không tìm th?y don d?t xe" });
+                return NotFound(new { message = "Không tìm thấy đơn đặt xe" });
             }
 
             _context.Datxes.Remove(datxe);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Xóa don d?t xe thành công" });
+            return Ok(new { message = "Xóa đơn đặt xe thành công" });
         }
     }
 }

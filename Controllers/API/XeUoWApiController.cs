@@ -206,7 +206,7 @@ namespace duanminiveprogresql.Controllers.API
                     startDate,
                     endDate,
                     available = isAvailable,
-                    message = isAvailable ? "Xe kh? d?ng" : "Xe ?ã ???c ??t trong th?i gian này"
+                    message = isAvailable ? "Xe kh? d?ng" : "Xe đã được đặt trong thời gian này"
                 });
             }
             catch (Exception ex)
@@ -227,7 +227,7 @@ namespace duanminiveprogresql.Controllers.API
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} không t?n t?i");
+                    return NotFound($"Xe ID {id} không tồn tại");
                 }
 
                 // S? d?ng multiple repositories

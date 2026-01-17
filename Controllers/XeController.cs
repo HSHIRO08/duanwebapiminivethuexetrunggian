@@ -19,7 +19,7 @@ namespace duanminiveprogresql.Controllers
         {
             var query = _context.Xes.Where(x => x.Trangthai == "Available");
 
-            // Tìm ki?m
+            // Tìm kiếm
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(x => x.Tenxe.Contains(search) || 
@@ -27,19 +27,19 @@ namespace duanminiveprogresql.Controllers
                                         x.Biensoxe.Contains(search));
             }
 
-            // L?c theo lo?i xe
+            // Lọc theo loại xe
             if (!string.IsNullOrEmpty(loaixe))
             {
                 query = query.Where(x => x.Loaixe == loaixe);
             }
 
-            // L?c theo hãng xe
+            // Lọc theo hãng xe
             if (!string.IsNullOrEmpty(hangxe))
             {
                 query = query.Where(x => x.Hangxe == hangxe);
             }
 
-            // L?c theo giá
+            // Lọc theo giá
             if (minPrice.HasValue)
             {
                 query = query.Where(x => x.Giathuetheongay >= minPrice.Value);
@@ -52,7 +52,7 @@ namespace duanminiveprogresql.Controllers
 
             var cars = await query.OrderBy(x => x.Tenxe).ToListAsync();
 
-            // L?y danh sách lo?i xe và hãng xe d? hi?n th? filter
+            // Lấy danh sách loại xe và hãng xe để hiển thị filter
             ViewBag.LoaiXeList = await _context.Xes.Select(x => x.Loaixe).Distinct().ToListAsync();
             ViewBag.HangXeList = await _context.Xes.Select(x => x.Hangxe).Distinct().ToListAsync();
 

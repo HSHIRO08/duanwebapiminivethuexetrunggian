@@ -14,7 +14,7 @@ namespace duanminiveprogresql.Controllers
             _context = context;
         }
 
-        // GET: Trang d?t xe
+        // GET: Trang đặt xe
         public async Task<IActionResult> Create(int xeId)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -26,7 +26,7 @@ namespace duanminiveprogresql.Controllers
             var xe = await _context.Xes.FindAsync(xeId);
             if (xe == null || xe.Trangthai != "Available")
             {
-                TempData["ErrorMessage"] = "Xe không t?n t?i ho?c không kh? d?ng";
+                TempData["ErrorMessage"] = "Xe không tồn tại hoặc không khả dụng";
                 return RedirectToAction("Index", "Xe");
             }
 
@@ -34,7 +34,7 @@ namespace duanminiveprogresql.Controllers
             return View();
         }
 
-        // POST: Ð?t xe
+        // POST: Đặt xe
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int xeId, DateTime ngaybatdau, DateTime ngayketthuc, string diadiemnhan, string diadiemtra, string ghichu)
@@ -48,30 +48,30 @@ namespace duanminiveprogresql.Controllers
             var khachhang = await _context.Khachhangs.FirstOrDefaultAsync(k => k.Nguoidungid == userId.Value);
             if (khachhang == null)
             {
-                TempData["ErrorMessage"] = "Không tìm th?y thông tin khách hàng";
+                TempData["ErrorMessage"] = "Không tìm thấy thông tin khách hàng";
                 return RedirectToAction("Index", "Home");
             }
 
             var xe = await _context.Xes.FindAsync(xeId);
             if (xe == null || xe.Trangthai != "Available")
             {
-                TempData["ErrorMessage"] = "Xe không kh? d?ng";
+                TempData["ErrorMessage"] = "Xe không khả dụng";
                 return RedirectToAction("Index", "Xe");
             }
 
-            // Tính s? ngày thuê
+            // Tính số ngày thuê
             var songaythue = (int)(ngayketthuc - ngaybatdau).TotalDays;
             if (songaythue <= 0)
             {
-                ModelState.AddModelError("", "Ngày k?t thúc ph?i sau ngày b?t d?u");
+                ModelState.AddModelError("", "Ngày kết thúc phải sau ngày bắt đầu");
                 ViewBag.Xe = xe;
                 return View();
             }
 
-            // Tính t?ng ti?n
+            // Tính tổng tiền
             var tongtien = xe.Giathuetheongay * songaythue;
 
-            // T?o don d?t xe - S?A: DateTime.Now thay vì DateTime.UtcNow
+            // Tạo đơn đặt xe - SỬa: DateTime.Now thay vì DateTime.UtcNow
             var datxe = new Datxe
             {
                 Khachhangid = khachhang.Id,
@@ -85,17 +85,17 @@ namespace duanminiveprogresql.Controllers
                 Diadiemtra = diadiemtra,
                 Ghichu = ghichu,
                 Trangthai = "Pending",
-                Ngaydat = DateTime.Now  // ? S?A: DateTime.Now
+                Ngaydat = DateTime.Now  // ✅ SỬa: DateTime.Now
             };
 
             _context.Datxes.Add(datxe);
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Ð?t xe thành công! Vui lòng ch? xác nh?n.";
+            TempData["SuccessMessage"] = "Đặt xe thành công! Vui lòng chờ xác nhận.";
             return RedirectToAction("Details", new { id = datxe.Id });
         }
 
-        // Chi ti?t don d?t xe
+        // Chi tiết đơn đặt xe
         public async Task<IActionResult> Details(int id)
         {
             var userId = HttpContext.Session.GetInt32("UserId");

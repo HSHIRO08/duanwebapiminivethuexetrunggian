@@ -16,19 +16,19 @@ namespace duanminiveprogresql.Controllers
             _logger = logger;
         }
 
-        // Trang ch? - Hi?n th? xe n?i b?t
+        // Trang chủ - Hiển thị xe nổi bật
         public async Task<IActionResult> Index()
         {
             try
             {
-                // L?y xe n?i b?t (Available)
+                // Lấy xe nổi bật (Available)
                 var featuredCars = await _context.Xes
                     .Where(x => x.Trangthai == "Available")
                     .OrderByDescending(x => x.Ngaytao)
                     .Take(6)
                     .ToListAsync();
 
-                // Th?ng kê
+                // Thống kê
                 ViewBag.TotalCars = await _context.Xes.CountAsync();
                 ViewBag.AvailableCars = await _context.Xes.CountAsync(x => x.Trangthai == "Available");
                 ViewBag.TotalBookings = await _context.Datxes.CountAsync();
@@ -42,7 +42,7 @@ namespace duanminiveprogresql.Controllers
             }
         }
 
-        // V? chúng tôi
+        // Về chúng tôi
         public IActionResult About()
         {
             ViewBag.CompanyName = "AutoRent - Cho Thuê Xe Ô Tô";
@@ -53,26 +53,26 @@ namespace duanminiveprogresql.Controllers
             return View();
         }
 
-        // Liên h?
+        // Liên hệ
         public IActionResult Contact()
         {
             return View();
         }
 
-        // X? lý form liên h?
+        // Xử lý form liên hệ
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Contact(string name, string email, string phone, string message)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(message))
             {
-                TempData["ErrorMessage"] = "Vui lòng di?n d?y d? thông tin!";
+                TempData["ErrorMessage"] = "Vui lòng điền đầy đủ thông tin!";
                 return View();
             }
 
             try
             {
-                // T?o ticket h? tr?
+                // Tạo ticket hỗ trợ
                 var userId = HttpContext.Session.GetInt32("UserId");
                 
                 if (userId != null)
@@ -85,9 +85,9 @@ namespace duanminiveprogresql.Controllers
                         var ticket = new Hotrokhachhang
                         {
                             Khachhangid = khachhang.Id,
-                            Tieude = $"Liên h? t? {name}",
-                            Noidung = $"Email: {email}\nSÐT: {phone}\n\n{message}",
-                            Loaiyeucau = "Liên h?",
+                            Tieude = $"Liên hệ từ {name}",
+                            Noidung = $"Email: {email}\nSĐT: {phone}\n\n{message}",
+                            Loaiyeucau = "Liên hệ",
                             Trangthai = "Open",
                             Mucdouutien = "Normal",
                             Ngaytao = DateTime.UtcNow

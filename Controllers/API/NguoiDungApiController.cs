@@ -19,9 +19,9 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y danh sách t?t c? ngu?i dùng
+        /// Lấy danh sách tất cả người dùng
         /// </summary>
-        /// <returns>Danh sách ngu?i dùng</returns>
+        /// <returns>Danh sách người dùng</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetNguoidungs()
         {
@@ -36,16 +36,16 @@ namespace duanminiveprogresql.Controllers.API
                     n.Vaitro,
                     n.Trangthai,
                     n.Ngaytao
-                    // Không tr? v? m?t kh?u
+                    // Không trả về mật khẩu
                 })
                 .ToListAsync();
         }
 
         /// <summary>
-        /// L?y thông tin ngu?i dùng theo ID
+        /// Lấy thông tin người dùng theo ID
         /// </summary>
-        /// <param name="id">ID ngu?i dùng</param>
-        /// <returns>Thông tin ngu?i dùng</returns>
+        /// <param name="id">ID người dùng</param>
+        /// <returns>Thông tin người dùng</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<object>> GetNguoidung(int id)
         {
@@ -66,17 +66,17 @@ namespace duanminiveprogresql.Controllers.API
 
             if (nguoidung == null)
             {
-                return NotFound(new { message = "Không tìm th?y ngu?i dùng" });
+                return NotFound(new { message = "Không tìm thấy người dùng" });
             }
 
             return nguoidung;
         }
 
         /// <summary>
-        /// Tìm ki?m ngu?i dùng theo email
+        /// Tìm kiếm người dùng theo email
         /// </summary>
         /// <param name="email">Email</param>
-        /// <returns>Thông tin ngu?i dùng</returns>
+        /// <returns>Thông tin người dùng</returns>
         [HttpGet("email/{email}")]
         public async Task<ActionResult<object>> GetNguoidungByEmail(string email)
         {
@@ -97,27 +97,27 @@ namespace duanminiveprogresql.Controllers.API
 
             if (nguoidung == null)
             {
-                return NotFound(new { message = "Không tìm th?y ngu?i dùng" });
+                return NotFound(new { message = "Không tìm thấy người dùng" });
             }
 
             return nguoidung;
         }
 
         /// <summary>
-        /// T?o ngu?i dùng m?i
+        /// Tạo người dùng mới
         /// </summary>
-        /// <param name="model">Thông tin ngu?i dùng</param>
-        /// <returns>Ngu?i dùng v?a t?o</returns>
+        /// <param name="model">Thông tin người dùng</param>
+        /// <returns>Người dùng vừa tạo</returns>
         [HttpPost]
         public async Task<ActionResult<object>> CreateNguoidung([FromBody] CreateNguoidungModel model)
         {
-            // Ki?m tra email dã t?n t?i
+            // Kiểm tra email đã tồn tại
             if (await _context.Nguoidungs.AnyAsync(n => n.Email == model.Email))
             {
-                return BadRequest(new { message = "Email dã du?c s? d?ng" });
+                return BadRequest(new { message = "Email đã được sử dụng" });
             }
 
-            // S?A: DateTime.Now thay vì DateTime.UtcNow
+            // SỬa: DateTime.Now thay vì DateTime.UtcNow
             var nguoidung = new Nguoidung
             {
                 Email = model.Email,
@@ -127,7 +127,7 @@ namespace duanminiveprogresql.Controllers.API
                 Diachi = model.Diachi,
                 Vaitro = model.Vaitro ?? "Customer",
                 Trangthai = true,
-                Ngaytao = DateTime.Now  // ? S?A: DateTime.Now
+                Ngaytao = DateTime.Now  // ✅ SỬa: DateTime.Now
             };
 
             _context.Nguoidungs.Add(nguoidung);
@@ -147,26 +147,26 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// C?p nh?t thông tin ngu?i dùng
+        /// Cập nhật thông tin người dùng
         /// </summary>
-        /// <param name="id">ID ngu?i dùng</param>
-        /// <param name="model">Thông tin c?p nh?t</param>
-        /// <returns>K?t qu? c?p nh?t</returns>
+        /// <param name="id">ID người dùng</param>
+        /// <param name="model">Thông tin cập nhật</param>
+        /// <returns>Kết quả cập nhật</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateNguoidung(int id, [FromBody] UpdateNguoidungModel model)
         {
             var nguoidung = await _context.Nguoidungs.FindAsync(id);
             if (nguoidung == null)
             {
-                return NotFound(new { message = "Không tìm th?y ngu?i dùng" });
+                return NotFound(new { message = "Không tìm thấy người dùng" });
             }
 
-            // Ki?m tra email trùng v?i user khác
+            // Kiểm tra email trùng với user khác
             if (model.Email != nguoidung.Email)
             {
                 if (await _context.Nguoidungs.AnyAsync(n => n.Email == model.Email && n.Id != id))
                 {
-                    return BadRequest(new { message = "Email dã du?c s? d?ng" });
+                    return BadRequest(new { message = "Email đã được sử dụng" });
                 }
                 nguoidung.Email = model.Email;
             }
@@ -182,48 +182,48 @@ namespace duanminiveprogresql.Controllers.API
 
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "C?p nh?t thành công" });
+            return Ok(new { message = "Cập nhật thành công" });
         }
 
         /// <summary>
-        /// C?p nh?t tr?ng thái ngu?i dùng
+        /// Cập nhật trạng thái người dùng
         /// </summary>
-        /// <param name="id">ID ngu?i dùng</param>
-        /// <param name="trangthai">Tr?ng thái (true: active, false: inactive)</param>
-        /// <returns>K?t qu? c?p nh?t</returns>
+        /// <param name="id">ID người dùng</param>
+        /// <param name="trangthai">Trạng thái (true: active, false: inactive)</param>
+        /// <returns>Kết quả cập nhật</returns>
         [HttpPatch("{id}/status")]
         public async Task<IActionResult> UpdateStatus(int id, [FromBody] bool trangthai)
         {
             var nguoidung = await _context.Nguoidungs.FindAsync(id);
             if (nguoidung == null)
             {
-                return NotFound(new { message = "Không tìm th?y ngu?i dùng" });
+                return NotFound(new { message = "Không tìm thấy người dùng" });
             }
 
             nguoidung.Trangthai = trangthai;
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "C?p nh?t tr?ng thái thành công", trangthai });
+            return Ok(new { message = "Cập nhật trạng thái thành công", trangthai });
         }
 
         /// <summary>
-        /// Xóa ngu?i dùng
+        /// Xóa người dùng
         /// </summary>
-        /// <param name="id">ID ngu?i dùng</param>
-        /// <returns>K?t qu? xóa</returns>
+        /// <param name="id">ID người dùng</param>
+        /// <returns>Kết quả xóa</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteNguoidung(int id)
         {
             var nguoidung = await _context.Nguoidungs.FindAsync(id);
             if (nguoidung == null)
             {
-                return NotFound(new { message = "Không tìm th?y ngu?i dùng" });
+                return NotFound(new { message = "Không tìm thấy người dùng" });
             }
 
             _context.Nguoidungs.Remove(nguoidung);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Xóa ngu?i dùng thành công" });
+            return Ok(new { message = "Xóa người dùng thành công" });
         }
 
         private string HashPassword(string password)

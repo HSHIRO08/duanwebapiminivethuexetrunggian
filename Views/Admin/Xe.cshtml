@@ -56,20 +56,20 @@
                                     <td>@xe.Hangxe</td>
                                     <td><span class="badge bg-info">@xe.Loaixe</span></td>
                                     <td>@xe.Biensoxe</td>
-                                    <td>@xe.Sochongoi ch?</td>
+                                    <td>@xe.Sochongoi chỗ</td>
                                     <td><strong class="text-success">@xe.Giathuetheongay.ToString("N0") d</strong></td>
                                     <td>
                                         @if (xe.Trangthai == "Available")
                                         {
-                                            <span class="badge bg-success">Kh? d?ng</span>
+                                            <span class="badge bg-success">Khả dụng</span>
                                         }
                                         else
                                         {
-                                            <span class="badge bg-danger">Ðang thuê</span>
+                                            <span class="badge bg-danger">Đang thuê</span>
                                         }
                                     </td>
                                     <td>
-                                        <a href="@Url.Action("EditXe", new { id = xe.Id })" class="btn btn-sm btn-primary" title="S?a">
+                                        <a href="@Url.Action("EditXe", new { id = xe.Id })" class="btn btn-sm btn-primary" title="Sửa">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="@Url.Action("DeleteXe", new { id = xe.Id })" 

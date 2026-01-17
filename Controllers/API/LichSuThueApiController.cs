@@ -17,9 +17,9 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y danh sách t?t c? l?ch s? thuê xe
+        /// Lấy danh sách tất cả lịch sử thuê xe
         /// </summary>
-        /// <returns>Danh sách l?ch s?</returns>
+        /// <returns>Danh sách lịch sử</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Lichsuthue>>> GetLichsuthues()
         {
@@ -32,10 +32,10 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y l?ch s? thuê theo ID
+        /// Lấy lịch sử thuê theo ID
         /// </summary>
-        /// <param name="id">ID l?ch s?</param>
-        /// <returns>Thông tin l?ch s?</returns>
+        /// <param name="id">ID lịch sử</param>
+        /// <returns>Thông tin lịch sử</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Lichsuthue>> GetLichsuthue(int id)
         {
@@ -48,17 +48,17 @@ namespace duanminiveprogresql.Controllers.API
 
             if (lichsuthue == null)
             {
-                return NotFound(new { message = "Không tìm th?y l?ch s?" });
+                return NotFound(new { message = "Không tìm thấy lịch sử" });
             }
 
             return lichsuthue;
         }
 
         /// <summary>
-        /// L?y l?ch s? thuê theo khách hàng
+        /// Lấy lịch sử thuê theo khách hàng
         /// </summary>
         /// <param name="khachhangId">ID khách hàng</param>
-        /// <returns>Danh sách l?ch s?</returns>
+        /// <returns>Danh sách lịch sử</returns>
         [HttpGet("khachhang/{khachhangId}")]
         public async Task<ActionResult<IEnumerable<Lichsuthue>>> GetLichsuthueByKhachhang(int khachhangId)
         {
@@ -70,10 +70,10 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y l?ch s? thuê theo xe
+        /// Lấy lịch sử thuê theo xe
         /// </summary>
         /// <param name="xeId">ID xe</param>
-        /// <returns>Danh sách l?ch s?</returns>
+        /// <returns>Danh sách lịch sử</returns>
         [HttpGet("xe/{xeId}")]
         public async Task<ActionResult<IEnumerable<Lichsuthue>>> GetLichsuthueByXe(int xeId)
         {
@@ -86,10 +86,10 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// T?o l?ch s? thuê m?i
+        /// Tạo lịch sử thuê mới
         /// </summary>
-        /// <param name="lichsuthue">Thông tin l?ch s?</param>
-        /// <returns>L?ch s? v?a t?o</returns>
+        /// <param name="lichsuthue">Thông tin lịch sử</param>
+        /// <returns>Lịch sử vừa tạo</returns>
         [HttpPost]
         public async Task<ActionResult<Lichsuthue>> CreateLichsuthue(Lichsuthue lichsuthue)
         {
@@ -97,22 +97,22 @@ namespace duanminiveprogresql.Controllers.API
             var xe = await _context.Xes.FindAsync(lichsuthue.Xeid);
             if (xe == null)
             {
-                return BadRequest(new { message = "Xe không t?n t?i" });
+                return BadRequest(new { message = "Xe không tồn tại" });
             }
 
             var khachhang = await _context.Khachhangs.FindAsync(lichsuthue.Khachhangid);
             if (khachhang == null)
             {
-                return BadRequest(new { message = "Khách hàng không t?n t?i" });
+                return BadRequest(new { message = "Khách hàng không tồn tại" });
             }
 
             var datxe = await _context.Datxes.FindAsync(lichsuthue.Datxeid);
             if (datxe == null)
             {
-                return BadRequest(new { message = "Ðon d?t xe không t?n t?i" });
+                return BadRequest(new { message = "Đơn đặt xe không tồn tại" });
             }
 
-            lichsuthue.Ngaynhanxe = DateTime.Now; // ? S?A: DateTime.Now
+            lichsuthue.Ngaynhanxe = DateTime.Now; // ✅ SỬa: DateTime.Now
 
             _context.Lichsuthues.Add(lichsuthue);
             await _context.SaveChangesAsync();
@@ -121,17 +121,17 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// C?p nh?t l?ch s? (tr? xe, phí phát sinh, dánh giá)
+        /// Cập nhật lịch sử (trả xe, phí phát sinh, đánh giá)
         /// </summary>
-        /// <param name="id">ID l?ch s?</param>
-        /// <param name="lichsuthue">Thông tin c?p nh?t</param>
-        /// <returns>K?t qu? c?p nh?t</returns>
+        /// <param name="id">ID lịch sử</param>
+        /// <param name="lichsuthue">Thông tin cập nhật</param>
+        /// <returns>Kết quả cập nhật</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateLichsuthue(int id, Lichsuthue lichsuthue)
         {
             if (id != lichsuthue.Id)
             {
-                return BadRequest(new { message = "ID không kh?p" });
+                return BadRequest(new { message = "ID không khớp" });
             }
 
             _context.Entry(lichsuthue).State = EntityState.Modified;
@@ -144,7 +144,7 @@ namespace duanminiveprogresql.Controllers.API
             {
                 if (!LichsuthueExists(id))
                 {
-                    return NotFound(new { message = "Không tìm th?y l?ch s?" });
+                    return NotFound(new { message = "Không tìm thấy lịch sử" });
                 }
                 else
                 {
@@ -152,27 +152,27 @@ namespace duanminiveprogresql.Controllers.API
                 }
             }
 
-            return Ok(new { message = "C?p nh?t thành công" });
+            return Ok(new { message = "Cập nhật thành công" });
         }
 
         /// <summary>
-        /// Ðánh giá chuy?n thuê
+        /// Đánh giá chuyến thuê
         /// </summary>
-        /// <param name="id">ID l?ch s?</param>
-        /// <param name="model">Thông tin dánh giá</param>
-        /// <returns>K?t qu? dánh giá</returns>
+        /// <param name="id">ID lịch sử</param>
+        /// <param name="model">Thông tin đánh giá</param>
+        /// <returns>Kết quả đánh giá</returns>
         [HttpPatch("{id}/rate")]
         public async Task<IActionResult> RateLichsuthue(int id, [FromBody] RatingModel model)
         {
             var lichsuthue = await _context.Lichsuthues.FindAsync(id);
             if (lichsuthue == null)
             {
-                return NotFound(new { message = "Không tìm th?y l?ch s?" });
+                return NotFound(new { message = "Không tìm thấy lịch sử" });
             }
 
             if (model.Danhgia < 1 || model.Danhgia > 5)
             {
-                return BadRequest(new { message = "Ðánh giá ph?i t? 1-5 sao" });
+                return BadRequest(new { message = "Đánh giá phải từ 1-5 sao" });
             }
 
             lichsuthue.Danhgia = model.Danhgia;
@@ -180,27 +180,27 @@ namespace duanminiveprogresql.Controllers.API
 
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Ðánh giá thành công" });
+            return Ok(new { message = "Đánh giá thành công" });
         }
 
         /// <summary>
-        /// Xóa l?ch s?
+        /// Xóa lịch sử
         /// </summary>
-        /// <param name="id">ID l?ch s?</param>
-        /// <returns>K?t qu? xóa</returns>
+        /// <param name="id">ID lịch sử</param>
+        /// <returns>Kết quả xóa</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLichsuthue(int id)
         {
             var lichsuthue = await _context.Lichsuthues.FindAsync(id);
             if (lichsuthue == null)
             {
-                return NotFound(new { message = "Không tìm th?y l?ch s?" });
+                return NotFound(new { message = "Không tìm thấy lịch sử" });
             }
 
             _context.Lichsuthues.Remove(lichsuthue);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Xóa l?ch s? thành công" });
+            return Ok(new { message = "Xóa lịch sử thành công" });
         }
 
         private bool LichsuthueExists(int id)

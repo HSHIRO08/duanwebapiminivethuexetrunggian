@@ -16,7 +16,7 @@ namespace duanminivepropgsql.Controllers
             _logger = logger;
         }
 
-        // Middleware ki?m tra role Admin
+        // Middleware kiểm tra role Admin
         private bool IsAdmin()
         {
             var role = HttpContext.Session.GetString("UserRole");
@@ -32,7 +32,7 @@ namespace duanminivepropgsql.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            // Th?ng kê t?ng quan
+            // Thống kê tổng quan
             ViewBag.TotalCars = await _context.Xes.CountAsync();
             ViewBag.AvailableCars = await _context.Xes.CountAsync(x => x.Trangthai == "Available");
             ViewBag.TotalBookings = await _context.Datxes.CountAsync();
@@ -42,7 +42,7 @@ namespace duanminivepropgsql.Controllers
                 .Where(t => t.Trangthai == "Completed")
                 .SumAsync(t => (decimal?)t.Sotien) ?? 0;
 
-            // Ðon d?t xe g?n dây
+            // Đơn đặt xe gần đây
             var recentBookings = await _context.Datxes
                 .Include(d => d.Xe)
                 .Include(d => d.Khachhang)
@@ -54,7 +54,7 @@ namespace duanminivepropgsql.Controllers
             return View(recentBookings);
         }
 
-        // ========== QU?N LÝ XE ==========
+        // ========== QUẢN LÝ XE ==========
 
         // Danh sách xe
         public async Task<IActionResult> Xe()
@@ -98,7 +98,7 @@ namespace duanminivepropgsql.Controllers
             }
         }
 
-        // S?a xe - GET
+        // Sửa xe - GET
         public async Task<IActionResult> EditXe(int id)
         {
             if (!IsAdmin()) return RedirectToAction("Index", "Home");
@@ -109,7 +109,7 @@ namespace duanminivepropgsql.Controllers
             return View(xe);
         }
 
-        // S?a xe - POST
+        // Sửa xe - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditXe(int id, Xe xe)
@@ -120,7 +120,7 @@ namespace duanminivepropgsql.Controllers
 
             try
             {
-                xe.Ngaycapnhat = DateTime.Now;  // ? S?A: DateTime.Now
+                xe.Ngaycapnhat = DateTime.Now;  // ✅ SỬa: DateTime.Now
                 _context.Update(xe);
                 await _context.SaveChangesAsync();
 
@@ -159,7 +159,7 @@ namespace duanminivepropgsql.Controllers
             return RedirectToAction("Xe");
         }
 
-        // ========== QU?N LÝ ÐON THUÊ ==========
+        // ========== QUẢN LÝ ĐƠN THUÊ ==========
 
         public async Task<IActionResult> DonThue(string status = "All")
         {
@@ -182,7 +182,7 @@ namespace duanminivepropgsql.Controllers
             return View(bookings);
         }
 
-        // Xác nh?n don
+        // Xác nhận đơn
         public async Task<IActionResult> ConfirmBooking(int id)
         {
             if (!IsAdmin()) return RedirectToAction("Index", "Home");
@@ -193,9 +193,9 @@ namespace duanminivepropgsql.Controllers
                 if (booking != null)
                 {
                     booking.Trangthai = "Confirmed";
-                    booking.Ngayxacnhan = DateTime.Now;  // ? S?A: DateTime.Now
+                    booking.Ngayxacnhan = DateTime.Now;  // ✅ SỬa: DateTime.Now
                     await _context.SaveChangesAsync();
-                    TempData["SuccessMessage"] = "Ðã xác nhận đơn thuê!";
+                    TempData["SuccessMessage"] = "Đã xác nhận đơn thuê!";
                 }
             }
             catch (Exception ex)
@@ -207,7 +207,7 @@ namespace duanminivepropgsql.Controllers
             return RedirectToAction("DonThue");
         }
 
-        // H?y don
+        // Hủy đơn
         public async Task<IActionResult> CancelBooking(int id)
         {
             if (!IsAdmin()) return RedirectToAction("Index", "Home");
@@ -219,7 +219,7 @@ namespace duanminivepropgsql.Controllers
                 {
                     booking.Trangthai = "Cancelled";
                     await _context.SaveChangesAsync();
-                    TempData["SuccessMessage"] = "Ðã hủy đơn thuê!";
+                    TempData["SuccessMessage"] = "Đã hủy đơn thuê!";
                 }
             }
             catch (Exception ex)
@@ -231,7 +231,7 @@ namespace duanminivepropgsql.Controllers
             return RedirectToAction("DonThue");
         }
 
-        // ========== QU?N LÝ KHÁCH HÀNG ==========
+        // ========== QUẢN LÝ KHÁCH HÀNG ==========
 
         public async Task<IActionResult> KhachHang()
         {
@@ -245,7 +245,7 @@ namespace duanminivepropgsql.Controllers
             return View(customers);
         }
 
-        // Xác th?c khách hàng
+        // Xác thực khách hàng
         public async Task<IActionResult> VerifyCustomer(int id)
         {
             if (!IsAdmin()) return RedirectToAction("Index", "Home");
@@ -257,7 +257,7 @@ namespace duanminivepropgsql.Controllers
                 {
                     customer.Daxacthuc = true;
                     await _context.SaveChangesAsync();
-                    TempData["SuccessMessage"] = "Ðã xác thực khách hàng!";
+                    TempData["SuccessMessage"] = "Đã xác thực khách hàng!";
                 }
             }
             catch (Exception ex)
@@ -269,17 +269,17 @@ namespace duanminivepropgsql.Controllers
             return RedirectToAction("KhachHang");
         }
 
-        // ========== BÁO CÁO & TH?NG KÊ ==========
+        // ========== BÁO CÁO & THỐNG KÊ ==========
 
         public async Task<IActionResult> BaoCao()
         {
             if (!IsAdmin()) return RedirectToAction("Index", "Home");
 
-            var today = DateTime.Now.Date;  // ? S?A: DateTime.Now
+            var today = DateTime.Now.Date;  // ✅ SỬa: DateTime.Now
             var thisMonth = new DateTime(today.Year, today.Month, 1);
             var lastMonth = thisMonth.AddMonths(-1);
 
-            // Th?ng kê theo tháng
+            // Thống kê theo tháng
             ViewBag.BookingsThisMonth = await _context.Datxes
                 .CountAsync(d => d.Ngaydat >= thisMonth);
             ViewBag.BookingsLastMonth = await _context.Datxes
@@ -293,7 +293,7 @@ namespace duanminivepropgsql.Controllers
                 .Where(t => t.Ngaythanhtoan >= lastMonth && t.Ngaythanhtoan < thisMonth && t.Trangthai == "Completed")
                 .SumAsync(t => (decimal?)t.Sotien) ?? 0;
 
-            // Top xe du?c thuê nhi?u
+            // Top xe được thuê nhiều
             var topCars = await _context.Lichsuthues
                 .GroupBy(l => l.Xeid)
                 .Select(g => new
@@ -317,7 +317,7 @@ namespace duanminivepropgsql.Controllers
             return View();
         }
 
-        // ========== H? TR? KHÁCH HÀNG ==========
+        // ========== HỖ TRỢ KHÁCH HÀNG ==========
 
         public async Task<IActionResult> HoTro(string status = "All")
         {
@@ -339,7 +339,7 @@ namespace duanminivepropgsql.Controllers
             return View(tickets);
         }
 
-        // Tr? l?i h? tr?
+        // Trả lời hỗ trợ
         [HttpPost]
         public async Task<IActionResult> ReplySupport(int id, string reply)
         {
@@ -354,11 +354,11 @@ namespace duanminivepropgsql.Controllers
                     ticket.Traloi = reply;
                     ticket.Nhanvienxulyid = userId;
                     ticket.Trangthai = "Resolved";
-                    ticket.Ngaygiaiquyet = DateTime.Now;  // ? S?A: DateTime.Now
-                    ticket.Ngaycapnhat = DateTime.Now;    // ? S?A: DateTime.Now
+                    ticket.Ngaygiaiquyet = DateTime.Now;  // ✅ SỬa: DateTime.Now
+                    ticket.Ngaycapnhat = DateTime.Now;    // ✅ SỬa: DateTime.Now
 
                     await _context.SaveChangesAsync();
-                    TempData["SuccessMessage"] = "Ðã trả lời hỗ trợ!";
+                    TempData["SuccessMessage"] = "Đã trả lời hỗ trợ!";
                 }
             }
             catch (Exception ex)

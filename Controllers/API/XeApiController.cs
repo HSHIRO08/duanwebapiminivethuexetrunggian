@@ -17,7 +17,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y danh sách t?t c? xe
+        /// Lấy danh sách tất cả xe
         /// </summary>
         /// <returns>Danh sách xe</returns>
         [HttpGet]
@@ -27,9 +27,9 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// L?y thông tin chi ti?t m?t xe theo ID
+        /// Lấy thông tin chi tiết một xe theo ID
         /// </summary>
-        /// <param name="id">ID c?a xe</param>
+        /// <param name="id">ID của xe</param>
         /// <returns>Thông tin xe</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Xe>> GetXe(int id)
@@ -38,20 +38,20 @@ namespace duanminiveprogresql.Controllers.API
 
             if (xe == null)
             {
-                return NotFound(new { message = "Không tìm th?y xe" });
+                return NotFound(new { message = "Không tìm thấy xe" });
             }
 
             return xe;
         }
 
         /// <summary>
-        /// Tìm ki?m xe theo lo?i, hãng, giá
+        /// Tìm kiếm xe theo loại, hãng, giá
         /// </summary>
-        /// <param name="loaixe">Lo?i xe</param>
+        /// <param name="loaixe">Loại xe</param>
         /// <param name="hangxe">Hãng xe</param>
-        /// <param name="minPrice">Giá t?i thi?u</param>
-        /// <param name="maxPrice">Giá t?i da</param>
-        /// <returns>Danh sách xe phù h?p</returns>
+        /// <param name="minPrice">Giá tối thiểu</param>
+        /// <param name="maxPrice">Giá tối đa</param>
+        /// <returns>Danh sách xe phù hợp</returns>
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Xe>>> SearchXe(
             [FromQuery] string? loaixe,
@@ -85,10 +85,10 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Thêm xe m?i
+        /// Thêm xe mới
         /// </summary>
         /// <param name="xe">Thông tin xe</param>
-        /// <returns>Xe v?a t?o</returns>
+        /// <returns>Xe vừa tạo</returns>
         [HttpPost]
         public async Task<ActionResult<Xe>> CreateXe(Xe xe)
         {
@@ -102,17 +102,17 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// C?p nh?t thông tin xe
+        /// Cập nhật thông tin xe
         /// </summary>
-        /// <param name="id">ID c?a xe</param>
-        /// <param name="xe">Thông tin xe m?i</param>
-        /// <returns>K?t qu? c?p nh?t</returns>
+        /// <param name="id">ID của xe</param>
+        /// <param name="xe">Thông tin xe mới</param>
+        /// <returns>Kết quả cập nhật</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateXe(int id, Xe xe)
         {
             if (id != xe.Id)
             {
-                return BadRequest(new { message = "ID không kh?p" });
+                return BadRequest(new { message = "ID không khớp" });
             }
 
             xe.Ngaycapnhat = DateTime.UtcNow;
@@ -126,7 +126,7 @@ namespace duanminiveprogresql.Controllers.API
             {
                 if (!XeExists(id))
                 {
-                    return NotFound(new { message = "Không tìm th?y xe" });
+                    return NotFound(new { message = "Không tìm thấy xe" });
                 }
                 else
                 {
@@ -140,15 +140,15 @@ namespace duanminiveprogresql.Controllers.API
         /// <summary>
         /// Xóa xe
         /// </summary>
-        /// <param name="id">ID c?a xe</param>
-        /// <returns>K?t qu? xóa</returns>
+        /// <param name="id">ID của xe</param>
+        /// <returns>Kết quả xóa</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteXe(int id)
         {
             var xe = await _context.Xes.FindAsync(id);
             if (xe == null)
             {
-                return NotFound(new { message = "Không tìm th?y xe" });
+                return NotFound(new { message = "Không tìm thấy xe" });
             }
 
             _context.Xes.Remove(xe);

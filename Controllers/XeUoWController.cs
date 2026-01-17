@@ -28,7 +28,7 @@ namespace duanminiveprogresql.Controllers
             {
                 IEnumerable<Xe> xes;
 
-                // S? d?ng specific repository methods
+                // Sử dụng specific repository methods
                 if (!string.IsNullOrEmpty(search))
                 {
                     xes = await _unitOfWork.Xes.SearchCarsAsync(search);
@@ -51,7 +51,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error loading cars");
-                TempData["ErrorMessage"] = "Có l?i x?y ra khi t?i danh sách xe";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra khi tải danh sách xe";
                 return View(new List<Xe>());
             }
         }
@@ -65,7 +65,7 @@ namespace duanminiveprogresql.Controllers
                 
                 if (xe == null)
                 {
-                    TempData["ErrorMessage"] = "Không tìm th?y xe";
+                    TempData["ErrorMessage"] = "Không tìm thấy xe";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -74,7 +74,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error loading car {id}");
-                TempData["ErrorMessage"] = "Có l?i x?y ra";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra";
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -97,10 +97,10 @@ namespace duanminiveprogresql.Controllers
                     return View(xe);
                 }
 
-                // S? d?ng transaction cho consistency
+                // Sử dụng transaction cho consistency
                 await _unitOfWork.BeginTransactionAsync();
 
-                // Thêm xe m?i
+                // Thêm xe mới
                 await _unitOfWork.Xes.AddAsync(xe);
                 
                 // Save changes và commit transaction
@@ -114,7 +114,7 @@ namespace duanminiveprogresql.Controllers
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 _logger.LogError(ex, "Error creating car");
-                ModelState.AddModelError("", "Có l?i x?y ra khi thêm xe");
+                ModelState.AddModelError("", "Có lỗi xảy ra khi thêm xe");
                 return View(xe);
             }
         }
@@ -128,7 +128,7 @@ namespace duanminiveprogresql.Controllers
                 
                 if (xe == null)
                 {
-                    TempData["ErrorMessage"] = "Không tìm th?y xe";
+                    TempData["ErrorMessage"] = "Không tìm thấy xe";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -137,7 +137,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error loading car {id} for edit");
-                TempData["ErrorMessage"] = "Có l?i x?y ra";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra";
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -165,14 +165,14 @@ namespace duanminiveprogresql.Controllers
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Updated car: {xe.Tenxe}");
-                TempData["SuccessMessage"] = "C?p nh?t xe thành công!";
+                TempData["SuccessMessage"] = "Cập nhật xe thành công!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 _logger.LogError(ex, $"Error updating car {id}");
-                ModelState.AddModelError("", "Có l?i x?y ra khi c?p nh?t xe");
+                ModelState.AddModelError("", "Có lỗi xảy ra khi cập nhật xe");
                 return View(xe);
             }
         }
@@ -188,7 +188,7 @@ namespace duanminiveprogresql.Controllers
                 
                 if (xe == null)
                 {
-                    TempData["ErrorMessage"] = "Không tìm th?y xe";
+                    TempData["ErrorMessage"] = "Không tìm thấy xe";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -205,12 +205,12 @@ namespace duanminiveprogresql.Controllers
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 _logger.LogError(ex, $"Error deleting car {id}");
-                TempData["ErrorMessage"] = "Có l?i x?y ra khi xóa xe";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra khi xóa xe";
                 return RedirectToAction(nameof(Index));
             }
         }
 
-        // Ki?m tra xe có available không
+        // Kiểm tra xe có available không
         public async Task<IActionResult> CheckAvailability(int xeId, DateTime startDate, DateTime endDate)
         {
             try
@@ -221,7 +221,7 @@ namespace duanminiveprogresql.Controllers
                 {
                     success = true,
                     available = isAvailable,
-                    message = isAvailable ? "Xe kh? d?ng" : "Xe ?ã ???c ??t trong th?i gian này"
+                    message = isAvailable ? "Xe khả dụng" : "Xe đã được đặt trong thời gian này"
                 });
             }
             catch (Exception ex)
@@ -230,12 +230,12 @@ namespace duanminiveprogresql.Controllers
                 return Json(new
                 {
                     success = false,
-                    message = "Có l?i x?y ra"
+                    message = "Có lỗi xảy ra"
                 });
             }
         }
 
-        // Example: Complex operation v?i multiple repositories
+        // Example: Complex operation với multiple repositories
         public async Task<IActionResult> BookingStats(int xeId)
         {
             try
@@ -246,10 +246,10 @@ namespace duanminiveprogresql.Controllers
                     return NotFound();
                 }
 
-                // L?y bookings c?a xe này
+                // Lấy bookings của xe này
                 var bookings = await _unitOfWork.DatXes.GetBookingsByCarAsync(xeId);
                 
-                // Tính th?ng kê
+                // Tính thống kê
                 var stats = new
                 {
                     TenXe = xe.Tenxe,

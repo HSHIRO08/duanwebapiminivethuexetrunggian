@@ -1,49 +1,49 @@
 ﻿@model IEnumerable<Domain.Entities.Hotrokhachhang>
 
 @{
-    ViewData["Title"] = "H? tr? khách hàng";
+    ViewData["Title"] = "Hỗ trợ khách hàng";
 }
 
 <div class="container-fluid py-4">
-    <h2 class="mb-4"><i class="fas fa-headset text-primary"></i> H? tr? khách hàng</h2>
+    <h2 class="mb-4"><i class="fas fa-headset text-primary"></i> Hỗ trợ khách hàng</h2>
 
     <!-- Filter Tabs -->
     <ul class="nav nav-pills mb-3">
         <li class="nav-item">
             <a class="nav-link @(ViewBag.CurrentStatus == "All" ? "active" : "")" 
                href="@Url.Action("HoTro", new { status = "All" })">
-                <i class="fas fa-list"></i> T?t c?
+                <i class="fas fa-list"></i> Tất cả
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link @(ViewBag.CurrentStatus == "Open" ? "active" : "")" 
                href="@Url.Action("HoTro", new { status = "Open" })">
-                <i class="fas fa-folder-open"></i> M?i
+                <i class="fas fa-folder-open"></i> Mới
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link @(ViewBag.CurrentStatus == "In Progress" ? "active" : "")" 
                href="@Url.Action("HoTro", new { status = "In Progress" })">
-                <i class="fas fa-spinner"></i> Ðang x? lý
+                <i class="fas fa-spinner"></i> Đang xử lý
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link @(ViewBag.CurrentStatus == "Resolved" ? "active" : "")" 
                href="@Url.Action("HoTro", new { status = "Resolved" })">
-                <i class="fas fa-check"></i> Ðã gi?i quy?t
+                <i class="fas fa-check"></i> Đã giải quyết
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link @(ViewBag.CurrentStatus == "Closed" ? "active" : "")" 
                href="@Url.Action("HoTro", new { status = "Closed" })">
-                <i class="fas fa-lock"></i> Ðã dóng
+                <i class="fas fa-lock"></i> Đã đóng
             </a>
         </li>
     </ul>
 
     <div class="card shadow">
         <div class="card-header bg-danger text-white">
-            <h5 class="mb-0">Danh sách yêu c?u h? tr?</h5>
+            <h5 class="mb-0">Danh sách yêu cầu hỗ trợ</h5>
         </div>
         <div class="card-body">
             @if (Model != null && Model.Any())
@@ -101,7 +101,7 @@
                                                     </small>
                                                 </p>
 
-                                                <h6><i class="fas fa-align-left"></i> N?i dung</h6>
+                                                <h6><i class="fas fa-align-left"></i> Nội dung</h6>
                                                 <div class="card bg-light">
                                                     <div class="card-body">
                                                         <p class="mb-0">@ticket.Noidung</p>
@@ -110,29 +110,29 @@
 
                                                 @if (!string.IsNullOrEmpty(ticket.Traloi))
                                                 {
-                                                    <h6 class="mt-3"><i class="fas fa-reply"></i> Tr? l?i</h6>
+                                                    <h6 class="mt-3"><i class="fas fa-reply"></i> Trả lời</h6>
                                                     <div class="card bg-success text-white">
                                                         <div class="card-body">
                                                             <p class="mb-0">@ticket.Traloi</p>
                                                             @if (ticket.Ngaygiaiquyet.HasValue)
                                                             {
-                                                                <small>Gi?i quy?t lúc: @ticket.Ngaygiaiquyet.Value.ToString("dd/MM/yyyy HH:mm")</small>
+                                                                <small>Giải quyết lúc: @ticket.Ngaygiaiquyet.Value.ToString("dd/MM/yyyy HH:mm")</small>
                                                             }
                                                         </div>
                                                     </div>
                                                 }
                                                 else if (ticket.Trangthai != "Resolved" && ticket.Trangthai != "Closed")
                                                 {
-                                                    <h6 class="mt-3"><i class="fas fa-reply"></i> Tr? l?i yêu c?u</h6>
+                                                    <h6 class="mt-3"><i class="fas fa-reply"></i> Trả lời yêu cầu</h6>
                                                     <form method="post" asp-action="ReplySupport">
                                                         @Html.AntiForgeryToken()
                                                         <input type="hidden" name="id" value="@ticket.Id" />
                                                         <div class="mb-3">
                                                             <textarea class="form-control" name="reply" rows="4" 
-                                                                      placeholder="Nh?p n?i dung tr? l?i..." required></textarea>
+                                                                      placeholder="Nhập nội dung trả lời..." required></textarea>
                                                         </div>
                                                         <button type="submit" class="btn btn-success">
-                                                            <i class="fas fa-paper-plane"></i> G?i tr? l?i
+                                                            <i class="fas fa-paper-plane"></i> Gửi trả lời
                                                         </button>
                                                     </form>
                                                 }
@@ -141,25 +141,25 @@
                                                 <h6><i class="fas fa-info-circle"></i> Thông tin</h6>
                                                 <table class="table table-sm table-bordered">
                                                     <tr>
-                                                        <th>Lo?i:</th>
+                                                        <th>Loại:</th>
                                                         <td>@ticket.Loaiyeucau</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Uu tiên:</th>
+                                                        <th>Ưu tiên:</th>
                                                         <td><span class="badge @priorityBadge">@ticket.Mucdouutien</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Tr?ng thái:</th>
+                                                        <th>Trạng thái:</th>
                                                         <td><span class="badge @badgeClass">@ticket.Trangthai</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>T?o lúc:</th>
+                                                        <th>Tạo lúc:</th>
                                                         <td>@ticket.Ngaytao.ToString("dd/MM/yyyy HH:mm")</td>
                                                     </tr>
                                                     @if (ticket.Ngaycapnhat.HasValue)
                                                     {
                                                         <tr>
-                                                            <th>C?p nh?t:</th>
+                                                            <th>Cập nhật:</th>
                                                             <td>@ticket.Ngaycapnhat.Value.ToString("dd/MM/yyyy HH:mm")</td>
                                                         </tr>
                                                     }
@@ -176,7 +176,7 @@
             else
             {
                 <div class="alert alert-info">
-                    <i class="fas fa-info-circle"></i> Không có yêu c?u h? tr? nào
+                    <i class="fas fa-info-circle"></i> Không có yêu cầu hỗ trợ nào
                     @if (ViewBag.CurrentStatus != "All")
                     {
                         <text> v?i tr?ng thái <strong>@ViewBag.CurrentStatus</strong></text>

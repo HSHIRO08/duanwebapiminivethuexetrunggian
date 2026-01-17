@@ -1,4 +1,5 @@
 ﻿using duanminiveprogresql.Models;
+using duanminiveprogresql.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -10,6 +11,18 @@ builder.Services.AddControllersWithViews();
 // Add DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register Repository Pattern & Unit of Work
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Register Specific Repositories (Optional - vì UnitOfWork đã có)
+builder.Services.AddScoped<IXeRepository, XeRepository>();
+builder.Services.AddScoped<IDatXeRepository, DatXeRepository>();
+builder.Services.AddScoped<INguoiDungRepository, NguoiDungRepository>();
+builder.Services.AddScoped<IKhachHangRepository, KhachHangRepository>();
+
+// Register Generic Repository
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 // Add session
 builder.Services.AddDistributedMemoryCache();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using duanminiveprogresql.Models;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace duanminiveprogresql.Controllers
@@ -78,58 +77,53 @@ namespace duanminiveprogresql.Controllers
             return Content(result, "text/html", Encoding.UTF8);
         }
 
-        // Action để hash password
-        public IActionResult HashPassword(string password)
+        // Action để xem password (plain text - không hash)
+        public IActionResult ViewPassword(string password)
         {
             if (string.IsNullOrEmpty(password))
             {
-                return Content("Vui lòng nhập password. Ví dụ: /Debug/HashPassword?password=123456");
+                return Content("Vui lòng nhập password. Ví dụ: /Debug/ViewPassword?password=123456");
             }
 
-            using (var sha256 = SHA256.Create())
-            {
-                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                var hashed = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-
-                var result = $@"
-                    <html>
-                    <head>
-                        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
-                    </head>
-                    <body style='padding: 20px;'>
-                        <div class='container'>
-                            <div class='card'>
-                                <div class='card-header bg-success text-white'>
-                                    <h2>🔐 Password Hash Result</h2>
+            var result = $@"
+                <html>
+                <head>
+                    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
+                </head>
+                <body style='padding: 20px;'>
+                    <div class='container'>
+                        <div class='card'>
+                            <div class='card-header bg-success text-white'>
+                                <h2>🔓 Plain Text Password (No Hash)</h2>
+                            </div>
+                            <div class='card-body'>
+                                <table class='table'>
+                                    <tr>
+                                        <th>Password:</th>
+                                        <td><code>{password}</code></td>
+                                    </tr>
+                                </table>
+                                <div class='alert alert-warning'>
+                                    <h5>⚠️ CHÚ Ý BẢO MẬT</h5>
+                                    <p>Password hiện đang được lưu dạng <strong>plain text</strong> (không mã hóa)</p>
+                                    <p>Điều này <strong>CỰC KỲ KHÔNG AN TOÀN</strong> và chỉ nên dùng cho môi trường development/testing!</p>
                                 </div>
-                                <div class='card-body'>
-                                    <table class='table'>
-                                        <tr>
-                                            <th>Password gốc:</th>
-                                            <td><code>{password}</code></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Password đã hash (SHA256):</th>
-                                            <td><code style='word-break: break-all;'>{hashed}</code></td>
-                                        </tr>
-                                    </table>
-                                    <div class='alert alert-info'>
-                                        <h5>📝 SQL để cập nhật trong database:</h5>
-                                        <pre>UPDATE nguoidung 
-SET matkhau = '{hashed}' 
+                                <div class='alert alert-info'>
+                                    <h5>📝 SQL để cập nhật trong database:</h5>
+                                    <pre>UPDATE nguoidung 
+SET matkhau = '{password}' 
 WHERE email = 'your-email@example.com';</pre>
-                                    </div>
-                                    <a href='/Debug/ListUsers' class='btn btn-primary'>View All Users</a>
-                                    <a href='/' class='btn btn-secondary'>Home</a>
                                 </div>
+                                <a href='/Debug/ListUsers' class='btn btn-primary'>View All Users</a>
+                                <a href='/' class='btn btn-secondary'>Home</a>
                             </div>
                         </div>
-                    </body>
-                    </html>
-                ";
+                    </div>
+                </body>
+                </html>
+            ";
 
-                return Content(result, "text/html", Encoding.UTF8);
-            }
+            return Content(result, "text/html", Encoding.UTF8);
         }
 
         // Action để xem danh sách users
@@ -183,7 +177,7 @@ WHERE email = 'your-email@example.com';</pre>
 
             html.AppendLine("</tbody></table>");
             html.AppendLine("<hr>");
-            html.AppendLine("<a href='/Debug/HashPassword?password=123456' class='btn btn-success'>Hash Password '123456'</a> ");
+            html.AppendLine("<a href='/Debug/ViewPassword?password=123456' class='btn btn-success'>View Password '123456'</a> ");
             html.AppendLine("<a href='/Debug/CheckSession' class='btn btn-info'>Check Session</a> ");
             html.AppendLine("<a href='/' class='btn btn-secondary'>Home</a>");
             html.AppendLine("</div></div></div>");
@@ -241,32 +235,25 @@ WHERE email = 'your-email@example.com';</pre>
                     html.AppendLine($"<tr><th>Trạng thái:</th><td>{(user.Trangthai ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>")}</td></tr>");
                     html.AppendLine("</table>");
 
-                    // Hash password nhập vào
-                    using (var sha256 = SHA256.Create())
+                    // So sánh plain text password
+                    html.AppendLine("<div class='card mt-3'><div class='card-header bg-info text-white'><h5>🔓 Password Comparison (Plain Text)</h5></div><div class='card-body'>");
+                    html.AppendLine("<table class='table'>");
+                    html.AppendLine($"<tr><th>Password nhập vào:</th><td><code>{password}</code></td></tr>");
+                    html.AppendLine($"<tr><th>Password trong DB:</th><td><code>{user.Matkhau}</code></td></tr>");
+                    
+                    if (user.Matkhau == password)
                     {
-                        var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                        var hashedPassword = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-
-                        html.AppendLine("<div class='card mt-3'><div class='card-header bg-info text-white'><h5>🔐 Password Comparison</h5></div><div class='card-body'>");
-                        html.AppendLine("<table class='table'>");
-                        html.AppendLine($"<tr><th>Password nhập vào:</th><td><code>{password}</code></td></tr>");
-                        html.AppendLine($"<tr><th>Password đã hash:</th><td><code style='word-break: break-all;'>{hashedPassword}</code></td></tr>");
-                        html.AppendLine($"<tr><th>Password trong DB:</th><td><code style='word-break: break-all;'>{user.Matkhau}</code></td></tr>");
-                        
-                        if (user.Matkhau == hashedPassword)
-                        {
-                            html.AppendLine("<tr><td colspan='2'><div class='alert alert-success mb-0'><strong>✅ Password KHỚP - Đăng nhập sẽ thành công!</strong></div></td></tr>");
-                        }
-                        else
-                        {
-                            html.AppendLine("<tr><td colspan='2'><div class='alert alert-danger mb-0'><strong>❌ Password KHÔNG KHỚP - Đăng nhập sẽ thất bại!</strong>");
-                            html.AppendLine("<hr>");
-                            html.AppendLine("<p>Để cập nhật password trong DB, chạy SQL:</p>");
-                            html.AppendLine($"<pre>UPDATE nguoidung SET matkhau = '{hashedPassword}' WHERE email = '{email}';</pre>");
-                            html.AppendLine("</div></td></tr>");
-                        }
-                        html.AppendLine("</table></div></div>");
+                        html.AppendLine("<tr><td colspan='2'><div class='alert alert-success mb-0'><strong>✅ Password KHỚP - Đăng nhập sẽ thành công!</strong></div></td></tr>");
                     }
+                    else
+                    {
+                        html.AppendLine("<tr><td colspan='2'><div class='alert alert-danger mb-0'><strong>❌ Password KHÔNG KHỚP - Đăng nhập sẽ thất bại!</strong>");
+                        html.AppendLine("<hr>");
+                        html.AppendLine("<p>Để cập nhật password trong DB, chạy SQL:</p>");
+                        html.AppendLine($"<pre>UPDATE nguoidung SET matkhau = '{password}' WHERE email = '{email}';</pre>");
+                        html.AppendLine("</div></td></tr>");
+                    }
+                    html.AppendLine("</table></div></div>");
                 }
             }
             catch (Exception ex)

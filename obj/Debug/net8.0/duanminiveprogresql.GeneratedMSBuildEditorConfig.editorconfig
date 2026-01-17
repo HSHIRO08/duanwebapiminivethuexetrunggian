@@ -1,5 +1,7 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
@@ -9,113 +11,113 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = duanminiveprogresql
 build_property.RootNamespace = duanminiveprogresql
-build_property.ProjectDir = C:\Users\mainh\source\repos\duanminiveprogresql\
+build_property.ProjectDir = C:\Users\mainh\source\repos\duanwebapiminivethuexetrunggian\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\mainh\source\repos\duanminiveprogresql
+build_property.MSBuildProjectDirectory = C:\Users\mainh\source\repos\duanwebapiminivethuexetrunggian
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Account/BookingHistory.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Account/BookingHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxCb29raW5nSGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Account/Profile.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Account/RentalHistory.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Account/RentalHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZW50YWxIaXN0b3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Account/Support.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Account/Support.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTdXBwb3J0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Admin/BaoCao.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Admin/BaoCao.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQmFvQ2FvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Admin/CreateXe.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Admin/CreateXe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlWGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Admin/DonThue.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Admin/DonThue.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRG9uVGh1ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Admin/EditXe.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Admin/EditXe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFhlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Admin/HoTro.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Admin/HoTro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSG9Ucm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Admin/Index.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Admin/KhachHang.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Admin/KhachHang.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cS2hhY2hIYW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Admin/Xe.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Admin/Xe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cWGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Auth/Login.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Auth/Register.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Auth/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Chat/Index.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Chat/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/DatXe/Create.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/DatXe/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0WGVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/DatXe/Details.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/DatXe/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0WGVcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Home/About.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Home/Contact.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Home/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Home/Index.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Shared/_Layout.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Xe/Details.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Xe/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWGVcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/Xe/Index.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/Xe/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/_ViewImports.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mainh/source/repos/duanminiveprogresql/Views/_ViewStart.cshtml]
+[C:/Users/mainh/source/repos/duanwebapiminivethuexetrunggian/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -186,12 +186,6 @@ BEGIN
     VALUES ('Nhà Cung Cấp Demo', 'nhacungcap@example.com', 'Ncc@123', '0987654321', 'TP. Hồ Chí Minh', 'NhaCungCap')
     RETURNING Id INTO supplier_id;
 
-    -- Insert Cars
-    INSERT INTO Xe (NhaCungCapId, TenXe, BienSoXe, HangXe, MauXe, NamSanXuat, SoChoNgoi, LoaiXe, GiaThueTheoNgay, MoTa, HinhAnh, TrangThai)
-    VALUES 
-    (supplier_id, 'Toyota Vios 2023', '30A-12345', 'Toyota', 'Trắng', 2023, 5, 'Sedan', 500000, 'Xe sedan 5 chỗ, tiết kiệm nhiên liệu', '/images/xe/toyota-vios.jpg', 'Available'),
-    (supplier_id, 'Honda CR-V 2023', '30B-67890', 'Honda', 'Đen', 2023, 7, 'SUV', 900000, 'SUV 7 chỗ cao cấp, rộng rãi', '/images/xe/honda-crv.jpg', 'Available');
-
     -- Insert Customer User và lấy Id
     INSERT INTO NguoiDung (HoTen, Email, MatKhau, SoDienThoai, DiaChi, VaiTro)
     VALUES ('Nguyễn Văn A', 'khachhang@example.com', 'Kh@123', '0912345678', 'Hà Nội', 'KhachHang')

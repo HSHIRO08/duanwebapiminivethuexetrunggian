@@ -1080,5 +1080,182 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeUoWApiController",
+    "Method": "CreateCar",
+    "RelativePath": "api/XeUoWApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "xe",
+        "Type": "duanminiveprogresql.Models.Xe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Xe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeUoWApiController",
+    "Method": "GetCar",
+    "RelativePath": "api/XeUoWApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "duanminiveprogresql.Models.Xe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeUoWApiController",
+    "Method": "UpdateCar",
+    "RelativePath": "api/XeUoWApi/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "xe",
+        "Type": "duanminiveprogresql.Models.Xe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeUoWApiController",
+    "Method": "DeleteCar",
+    "RelativePath": "api/XeUoWApi/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeUoWApiController",
+    "Method": "CheckAvailability",
+    "RelativePath": "api/XeUoWApi/{id}/availability",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeUoWApiController",
+    "Method": "GetCarStats",
+    "RelativePath": "api/XeUoWApi/{id}/stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeUoWApiController",
+    "Method": "GetAvailableCars",
+    "RelativePath": "api/XeUoWApi/available",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Xe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "duanminiveprogresql.Controllers.API.XeUoWApiController",
+    "Method": "SearchCars",
+    "RelativePath": "api/XeUoWApi/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Xe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

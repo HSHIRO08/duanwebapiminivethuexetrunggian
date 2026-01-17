@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using duanminiveprogresql.Models;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -60,19 +58,11 @@ namespace duanminiveprogresql.Controllers
 
                 _logger.LogInformation($"User found: ID={user.Id}, Email={user.Email}, Role={user.Vaitro}");
 
-                var hashedPassword = HashPassword(password);
+                // So sánh password trực tiếp (plain text)
+                _logger.LogInformation($"Password check - Input: {password}");
+                _logger.LogInformation($"Password check - DB: {user.Matkhau}");
                 
-                string inputPreview = hashedPassword.Length > 20 ? hashedPassword.Substring(0, 20) + "..." : hashedPassword;
-                string dbPreview = "NULL";
-                if (!string.IsNullOrEmpty(user.Matkhau))
-                {
-                    dbPreview = user.Matkhau.Length > 20 ? user.Matkhau.Substring(0, 20) + "..." : user.Matkhau;
-                }
-                
-                _logger.LogInformation($"Password check - Input: {inputPreview}");
-                _logger.LogInformation($"Password check - DB: {dbPreview}");
-                
-                if (user.Matkhau != hashedPassword)
+                if (user.Matkhau != password)
                 {
                     _logger.LogWarning($"Password mismatch for: {email}");
                     ModelState.AddModelError("", "Email hoặc mật khẩu không đúng");
@@ -152,16 +142,16 @@ namespace duanminiveprogresql.Controllers
                     return View();
                 }
 
-                // Tạo người dùng mới - SỬA: DateTime.Now thay vì DateTime.UtcNow
+                // Tạo người dùng mới với password plain text
                 var newUser = new Nguoidung
                 {
                     Hoten = hoten,
                     Email = email,
-                    Matkhau = HashPassword(password),
+                    Matkhau = password, // ⚠️ Lưu plain text - CHỈ DÙNG CHO DEVELOPMENT!
                     Sodienthoai = sodienthoai,
                     Vaitro = "Customer",
                     Trangthai = true,
-                    Ngaytao = DateTime.Now  // ✅ SỬA: DateTime.Now cho timestamp without time zone
+                    Ngaytao = DateTime.Now
                 };
 
                 _context.Nguoidungs.Add(newUser);
@@ -200,16 +190,6 @@ namespace duanminiveprogresql.Controllers
             HttpContext.Session.Clear();
             TempData["SuccessMessage"] = "Đã đăng xuất thành công";
             return RedirectToAction("Index", "Home");
-        }
-
-        // Helper method to hash password
-        private string HashPassword(string password)
-        {
-            using (var sha256 = SHA256.Create())
-            {
-                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-            }
         }
 
         // Test action để kiểm tra session

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.csproj": {}
+    "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\duanminiveprogresql.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.csproj": {
+    "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\duanminiveprogresql.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.csproj",
+        "projectUniqueName": "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\duanminiveprogresql.csproj",
         "projectName": "duanminiveprogresql",
-        "projectPath": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\duanminiveprogresql.csproj",
+        "projectPath": "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\duanminiveprogresql.csproj",
         "packagesPath": "C:\\Users\\mainh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mainh\\source\\repos\\duanminiveprogresql\\obj\\",
+        "outputPath": "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\mainh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -103,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

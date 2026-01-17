@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
+using DataAccess.Context;
+using Domain.Entities;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -15,19 +16,19 @@ namespace duanminiveprogresql.Controllers
             _logger = logger;
         }
 
-        // Trang chủ - Hiển thị xe nổi bật
+        // Trang ch? - Hi?n th? xe n?i b?t
         public async Task<IActionResult> Index()
         {
             try
             {
-                // Lấy xe nổi bật (Available)
+                // L?y xe n?i b?t (Available)
                 var featuredCars = await _context.Xes
                     .Where(x => x.Trangthai == "Available")
                     .OrderByDescending(x => x.Ngaytao)
                     .Take(6)
                     .ToListAsync();
 
-                // Thống kê
+                // Th?ng kê
                 ViewBag.TotalCars = await _context.Xes.CountAsync();
                 ViewBag.AvailableCars = await _context.Xes.CountAsync(x => x.Trangthai == "Available");
                 ViewBag.TotalBookings = await _context.Datxes.CountAsync();
@@ -41,7 +42,7 @@ namespace duanminiveprogresql.Controllers
             }
         }
 
-        // Về chúng tôi
+        // V? chúng tôi
         public IActionResult About()
         {
             ViewBag.CompanyName = "AutoRent - Cho Thuê Xe Ô Tô";
@@ -52,26 +53,26 @@ namespace duanminiveprogresql.Controllers
             return View();
         }
 
-        // Liên hệ
+        // Liên h?
         public IActionResult Contact()
         {
             return View();
         }
 
-        // Xử lý form liên hệ
+        // X? lý form liên h?
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Contact(string name, string email, string phone, string message)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(message))
             {
-                TempData["ErrorMessage"] = "Vui lòng điền đầy đủ thông tin!";
+                TempData["ErrorMessage"] = "Vui lòng di?n d?y d? thông tin!";
                 return View();
             }
 
             try
             {
-                // Tạo ticket hỗ trợ
+                // T?o ticket h? tr?
                 var userId = HttpContext.Session.GetInt32("UserId");
                 
                 if (userId != null)
@@ -84,9 +85,9 @@ namespace duanminiveprogresql.Controllers
                         var ticket = new Hotrokhachhang
                         {
                             Khachhangid = khachhang.Id,
-                            Tieude = $"Liên hệ từ {name}",
-                            Noidung = $"Email: {email}\nSĐT: {phone}\n\n{message}",
-                            Loaiyeucau = "Liên hệ",
+                            Tieude = $"Liên h? t? {name}",
+                            Noidung = $"Email: {email}\nSÐT: {phone}\n\n{message}",
+                            Loaiyeucau = "Liên h?",
                             Trangthai = "Open",
                             Mucdouutien = "Normal",
                             Ngaytao = DateTime.UtcNow
@@ -97,7 +98,7 @@ namespace duanminiveprogresql.Controllers
                     }
                 }
 
-                TempData["SuccessMessage"] = "Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất.";
+                TempData["SuccessMessage"] = "C?m on b?n dã liên h?! Chúng tôi s? ph?n h?i s?m nh?t.";
                 _logger.LogInformation($"Contact form submitted: {name} - {email}");
                 
                 return RedirectToAction("Contact");
@@ -105,12 +106,12 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error processing contact form");
-                TempData["ErrorMessage"] = "Có lỗi xảy ra. Vui lòng thử lại!";
+                TempData["ErrorMessage"] = "Có l?i x?y ra. Vui lòng th? l?i!";
                 return View();
             }
         }
 
-        // Tìm kiếm nhanh
+        // Tìm ki?m nhanh
         [HttpGet]
         public async Task<IActionResult> Search(string keyword)
         {

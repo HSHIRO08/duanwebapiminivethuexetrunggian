@@ -1,4 +1,4 @@
-﻿@model IEnumerable<duanminiveprogresql.Models.Datxe>
+﻿@model IEnumerable<Domain.Entities.Datxe>
 
 @{
     ViewData["Title"] = "Admin Dashboard";
@@ -21,7 +21,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Tổng số xe
+                                T?ng s? xe
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalCars</div>
                         </div>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <small class="text-success">
-                        <i class="fas fa-check"></i> @ViewBag.AvailableCars xe khả dụng
+                        <i class="fas fa-check"></i> @ViewBag.AvailableCars xe kh? d?ng
                     </small>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                                 Doanh thu
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                @ViewBag.TotalRevenue.ToString("N0") đ
+                                @ViewBag.TotalRevenue.ToString("N0") d
                             </div>
                         </div>
                         <div class="col-auto">
@@ -62,7 +62,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Đơn thuê
+                                Ðon thuê
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.TotalBookings</div>
                         </div>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <small class="text-warning">
-                        <i class="fas fa-clock"></i> @ViewBag.PendingBookings đơn chờ xác nhận
+                        <i class="fas fa-clock"></i> @ViewBag.PendingBookings don ch? xác nh?n
                     </small>
                 </div>
             </div>
@@ -105,13 +105,13 @@
                 </div>
                 <div class="card-body">
                     <a href="@Url.Action("CreateXe")" class="btn btn-success me-2 mb-2">
-                        <i class="fas fa-plus"></i> Thêm xe mới
+                        <i class="fas fa-plus"></i> Thêm xe m?i
                     </a>
                     <a href="@Url.Action("Xe")" class="btn btn-primary me-2 mb-2">
-                        <i class="fas fa-car"></i> Quản lý xe
+                        <i class="fas fa-car"></i> Qu?n lý xe
                     </a>
                     <a href="@Url.Action("DonThue", new { status = "Pending" })" class="btn btn-warning me-2 mb-2">
-                        <i class="fas fa-clock"></i> Đơn chờ xác nhận
+                        <i class="fas fa-clock"></i> Ðon ch? xác nh?n
                     </a>
                     <a href="@Url.Action("KhachHang")" class="btn btn-info me-2 mb-2">
                         <i class="fas fa-users"></i> Khách hàng
@@ -120,7 +120,7 @@
                         <i class="fas fa-chart-bar"></i> Báo cáo
                     </a>
                     <a href="@Url.Action("HoTro", new { status = "Open" })" class="btn btn-danger me-2 mb-2">
-                        <i class="fas fa-headset"></i> Hỗ trợ
+                        <i class="fas fa-headset"></i> H? tr?
                     </a>
                 </div>
             </div>
@@ -132,7 +132,7 @@
         <div class="col-12">
             <div class="card shadow">
                 <div class="card-header bg-info text-white">
-                    <h5 class="mb-0"><i class="fas fa-list"></i> Đơn thuê gần đây</h5>
+                    <h5 class="mb-0"><i class="fas fa-list"></i> Ðon thuê g?n dây</h5>
                 </div>
                 <div class="card-body">
                     @if (Model != null && Model.Any())
@@ -144,10 +144,10 @@
                                         <th>ID</th>
                                         <th>Khách hàng</th>
                                         <th>Xe</th>
-                                        <th>Ngày đặt</th>
+                                        <th>Ngày d?t</th>
                                         <th>Ngày thuê</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Trạng thái</th>
+                                        <th>T?ng ti?n</th>
+                                        <th>Tr?ng thái</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
@@ -166,21 +166,21 @@
                                                 @booking.Ngaybatdau.ToString("dd/MM") - @booking.Ngayketthuc.ToString("dd/MM/yyyy")<br>
                                                 <small class="text-muted">(@booking.Songaythue ngày)</small>
                                             </td>
-                                            <td class="fw-bold">@booking.Tongtien.ToString("N0") đ</td>
+                                            <td class="fw-bold">@booking.Tongtien.ToString("N0") d</td>
                                             <td>
                                                 @switch (booking.Trangthai)
                                                 {
                                                     case "Pending":
-                                                        <span class="badge bg-warning">Chờ xác nhận</span>
+                                                        <span class="badge bg-warning">Ch? xác nh?n</span>
                                                         break;
                                                     case "Confirmed":
-                                                        <span class="badge bg-success">Đã xác nhận</span>
+                                                        <span class="badge bg-success">Ðã xác nh?n</span>
                                                         break;
                                                     case "Completed":
                                                         <span class="badge bg-primary">Hoàn thành</span>
                                                         break;
                                                     case "Cancelled":
-                                                        <span class="badge bg-danger">Đã hủy</span>
+                                                        <span class="badge bg-danger">Ðã h?y</span>
                                                         break;
                                                 }
                                             </td>
@@ -189,12 +189,12 @@
                                                 {
                                                     <a href="@Url.Action("ConfirmBooking", new { id = booking.Id })" 
                                                        class="btn btn-sm btn-success" 
-                                                       onclick="return confirm('Xác nhận đơn thuê này?')">
+                                                       onclick="return confirm('Xác nh?n don thuê này?')">
                                                         <i class="fas fa-check"></i>
                                                     </a>
                                                     <a href="@Url.Action("CancelBooking", new { id = booking.Id })" 
                                                        class="btn btn-sm btn-danger"
-                                                       onclick="return confirm('Hủy đơn thuê này?')">
+                                                       onclick="return confirm('H?y don thuê này?')">
                                                         <i class="fas fa-times"></i>
                                                     </a>
                                                 }
@@ -208,7 +208,7 @@
                     else
                     {
                         <div class="alert alert-info">
-                            <i class="fas fa-info-circle"></i> Chưa có đơn thuê nào
+                            <i class="fas fa-info-circle"></i> Chua có don thuê nào
                         </div>
                     }
                 </div>

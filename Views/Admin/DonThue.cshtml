@@ -1,11 +1,11 @@
-﻿@model IEnumerable<duanminiveprogresql.Models.Datxe>
+﻿@model IEnumerable<Domain.Entities.Datxe>
 
 @{
     ViewData["Title"] = "Quản lý đơn thuê";
 }
 
 <div class="container-fluid py-4">
-    <h2 class="mb-4"><i class="fas fa-clipboard-list text-primary"></i> Quản lý đơn thuê</h2>
+    <h2 class="mb-4"><i class="fas fa-clipboard-list text-primary"></i> Quản lý don thuê</h2>
 
     <!-- Filter Tabs -->
     <ul class="nav nav-pills mb-3">
@@ -24,7 +24,7 @@
         <li class="nav-item">
             <a class="nav-link @(ViewBag.CurrentStatus == "Confirmed" ? "active" : "")" 
                href="@Url.Action("DonThue", new { status = "Confirmed" })">
-                <i class="fas fa-check"></i> Đã xác nhận
+                <i class="fas fa-check"></i> Ðã xác nhận
             </a>
         </li>
         <li class="nav-item">
@@ -36,7 +36,7 @@
         <li class="nav-item">
             <a class="nav-link @(ViewBag.CurrentStatus == "Cancelled" ? "active" : "")" 
                href="@Url.Action("DonThue", new { status = "Cancelled" })">
-                <i class="fas fa-times"></i> Đã hủy
+                <i class="fas fa-times"></i> Ðã hủy
             </a>
         </li>
     </ul>
@@ -93,18 +93,18 @@
                                         <i class="fas fa-calendar-check"></i> @booking.Ngayketthuc.ToString("dd/MM/yyyy")
                                     </td>
                                     <td><span class="badge bg-secondary">@booking.Songaythue ngày</span></td>
-                                    <td><strong class="text-success">@booking.Tongtien.ToString("N0") đ</strong></td>
+                                    <td><strong class="text-success">@booking.Tongtien.ToString("N0") d</strong></td>
                                     <td>
                                         @switch (booking.Trangthai)
                                         {
                                             case "Pending":
                                                 <span class="badge bg-warning text-dark">
-                                                    <i class="fas fa-clock"></i> Chờ xác nhận
+                                                    <i class="fas fa-clock"></i> Ch? xác nh?n
                                                 </span>
                                                 break;
                                             case "Confirmed":
                                                 <span class="badge bg-success">
-                                                    <i class="fas fa-check"></i> Đã xác nhận
+                                                    <i class="fas fa-check"></i> Ðã xác nh?n
                                                 </span>
                                                 break;
                                             case "Completed":
@@ -114,7 +114,7 @@
                                                 break;
                                             case "Cancelled":
                                                 <span class="badge bg-danger">
-                                                    <i class="fas fa-times"></i> Đã hủy
+                                                    <i class="fas fa-times"></i> Ðã h?y
                                                 </span>
                                                 break;
                                         }
@@ -124,14 +124,14 @@
                                         {
                                             <a href="@Url.Action("ConfirmBooking", new { id = booking.Id })" 
                                                class="btn btn-sm btn-success mb-1" 
-                                               onclick="return confirm('Xác nhận đơn thuê #@booking.Id?')"
-                                               title="Xác nhận">
+                                               onclick="return confirm('Xác nh?n don thuê #@booking.Id?')"
+                                               title="Xác nh?n">
                                                 <i class="fas fa-check"></i>
                                             </a>
                                             <a href="@Url.Action("CancelBooking", new { id = booking.Id })" 
                                                class="btn btn-sm btn-danger mb-1"
-                                               onclick="return confirm('Hủy đơn thuê #@booking.Id?')"
-                                               title="Hủy">
+                                               onclick="return confirm('H?y don thuê #@booking.Id?')"
+                                               title="H?y">
                                                 <i class="fas fa-times"></i>
                                             </a>
                                         }
@@ -152,7 +152,7 @@
                     <i class="fas fa-info-circle"></i> Không có đơn thuê nào
                     @if (ViewBag.CurrentStatus != "All")
                     {
-                        <text> với trạng thái <strong>@ViewBag.CurrentStatus</strong></text>
+                        <text> v?i tr?ng thái <strong>@ViewBag.CurrentStatus</strong></text>
                     }
                 </div>
             }

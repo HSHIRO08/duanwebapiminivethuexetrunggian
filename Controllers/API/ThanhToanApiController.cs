@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
+using DataAccess.Context;
+using Domain.Entities;
 
 namespace duanminiveprogresql.Controllers.API
 {
@@ -16,7 +17,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Lấy danh sách tất cả thanh toán
+        /// L?y danh sách t?t c? thanh toán
         /// </summary>
         /// <returns>Danh sách thanh toán</returns>
         [HttpGet]
@@ -32,7 +33,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Lấy thông tin thanh toán theo ID
+        /// L?y thông tin thanh toán theo ID
         /// </summary>
         /// <param name="id">ID thanh toán</param>
         /// <returns>Thông tin thanh toán</returns>
@@ -49,16 +50,16 @@ namespace duanminiveprogresql.Controllers.API
 
             if (thanhtoan == null)
             {
-                return NotFound(new { message = "Không tìm thấy thanh toán" });
+                return NotFound(new { message = "Không tìm th?y thanh toán" });
             }
 
             return thanhtoan;
         }
 
         /// <summary>
-        /// Lấy thanh toán theo đơn đặt xe
+        /// L?y thanh toán theo don d?t xe
         /// </summary>
-        /// <param name="datxeId">ID đơn đặt xe</param>
+        /// <param name="datxeId">ID don d?t xe</param>
         /// <returns>Danh sách thanh toán</returns>
         [HttpGet("datxe/{datxeId}")]
         public async Task<ActionResult<IEnumerable<Thanhtoan>>> GetThanhtoanByDatxe(int datxeId)
@@ -69,23 +70,23 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Tạo thanh toán mới
+        /// T?o thanh toán m?i
         /// </summary>
         /// <param name="thanhtoan">Thông tin thanh toán</param>
-        /// <returns>Thanh toán vừa tạo</returns>
+        /// <returns>Thanh toán v?a t?o</returns>
         [HttpPost]
         public async Task<ActionResult<Thanhtoan>> CreateThanhtoan(Thanhtoan thanhtoan)
         {
-            // Kiểm tra đơn đặt xe có tồn tại
+            // Ki?m tra don d?t xe có t?n t?i
             var datxe = await _context.Datxes.FindAsync(thanhtoan.Datxeid);
             if (datxe == null)
             {
-                return BadRequest(new { message = "Đơn đặt xe không tồn tại" });
+                return BadRequest(new { message = "Ðon d?t xe không t?n t?i" });
             }
 
-            // Tạo mã giao dịch - SỬA: DateTime.Now thay vì DateTime.UtcNow
+            // T?o mã giao d?ch - S?A: DateTime.Now thay vì DateTime.UtcNow
             thanhtoan.Magiaodich = $"TT{DateTime.Now:yyyyMMddHHmmss}{thanhtoan.Datxeid}";
-            thanhtoan.Ngaythanhtoan = DateTime.Now;  // ✅ SỬA: DateTime.Now
+            thanhtoan.Ngaythanhtoan = DateTime.Now;  // ? S?A: DateTime.Now
             thanhtoan.Trangthai = "Pending";
 
             _context.Thanhtoans.Add(thanhtoan);
@@ -95,44 +96,44 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Cập nhật trạng thái thanh toán
+        /// C?p nh?t tr?ng thái thanh toán
         /// </summary>
         /// <param name="id">ID thanh toán</param>
-        /// <param name="trangthai">Trạng thái mới (Pending, Completed, Failed)</param>
-        /// <returns>Kết quả cập nhật</returns>
+        /// <param name="trangthai">Tr?ng thái m?i (Pending, Completed, Failed)</param>
+        /// <returns>K?t qu? c?p nh?t</returns>
         [HttpPatch("{id}/status")]
         public async Task<IActionResult> UpdateStatus(int id, [FromBody] string trangthai)
         {
             var thanhtoan = await _context.Thanhtoans.FindAsync(id);
             if (thanhtoan == null)
             {
-                return NotFound(new { message = "Không tìm thấy thanh toán" });
+                return NotFound(new { message = "Không tìm th?y thanh toán" });
             }
 
             thanhtoan.Trangthai = trangthai;
             
             if (trangthai == "Completed")
             {
-                thanhtoan.Ngayxacnhan = DateTime.Now;  // ✅ SỬA: DateTime.Now
+                thanhtoan.Ngayxacnhan = DateTime.Now;  // ? S?A: DateTime.Now
             }
 
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Cập nhật trạng thái thanh toán thành công", trangthai });
+            return Ok(new { message = "C?p nh?t tr?ng thái thanh toán thành công", trangthai });
         }
 
         /// <summary>
         /// Xóa thanh toán
         /// </summary>
         /// <param name="id">ID thanh toán</param>
-        /// <returns>Kết quả xóa</returns>
+        /// <returns>K?t qu? xóa</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteThanhtoan(int id)
         {
             var thanhtoan = await _context.Thanhtoans.FindAsync(id);
             if (thanhtoan == null)
             {
-                return NotFound(new { message = "Không tìm thấy thanh toán" });
+                return NotFound(new { message = "Không tìm th?y thanh toán" });
             }
 
             _context.Thanhtoans.Remove(thanhtoan);

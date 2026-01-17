@@ -29,13 +29,13 @@
     "Parameters": [
       {
         "Name": "datxe",
-        "Type": "duanminiveprogresql.Models.Datxe",
+        "Type": "Domain.Entities.Datxe",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Datxe",
+        "Type": "Domain.Entities.Datxe",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Datxe",
+        "Type": "Domain.Entities.Datxe",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -124,7 +124,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Datxe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Datxe, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -164,13 +164,13 @@
     "Parameters": [
       {
         "Name": "hotro",
-        "Type": "duanminiveprogresql.Models.Hotrokhachhang",
+        "Type": "Domain.Entities.Hotrokhachhang",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Hotrokhachhang",
+        "Type": "Domain.Entities.Hotrokhachhang",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -196,7 +196,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Hotrokhachhang",
+        "Type": "Domain.Entities.Hotrokhachhang",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -221,7 +221,7 @@
       },
       {
         "Name": "hotro",
-        "Type": "duanminiveprogresql.Models.Hotrokhachhang",
+        "Type": "Domain.Entities.Hotrokhachhang",
         "IsRequired": true
       }
     ],
@@ -301,7 +301,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Hotrokhachhang, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Hotrokhachhang, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -327,7 +327,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Hotrokhachhang, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Hotrokhachhang, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -367,13 +367,13 @@
     "Parameters": [
       {
         "Name": "khachhang",
-        "Type": "duanminiveprogresql.Models.Khachhang",
+        "Type": "Domain.Entities.Khachhang",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Khachhang",
+        "Type": "Domain.Entities.Khachhang",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -399,7 +399,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Khachhang",
+        "Type": "Domain.Entities.Khachhang",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -424,7 +424,7 @@
       },
       {
         "Name": "khachhang",
-        "Type": "duanminiveprogresql.Models.Khachhang",
+        "Type": "Domain.Entities.Khachhang",
         "IsRequired": true
       }
     ],
@@ -478,7 +478,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Khachhang",
+        "Type": "Domain.Entities.Khachhang",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -498,7 +498,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Lichsuthue, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Lichsuthue, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -518,13 +518,13 @@
     "Parameters": [
       {
         "Name": "lichsuthue",
-        "Type": "duanminiveprogresql.Models.Lichsuthue",
+        "Type": "Domain.Entities.Lichsuthue",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Lichsuthue",
+        "Type": "Domain.Entities.Lichsuthue",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -550,7 +550,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Lichsuthue",
+        "Type": "Domain.Entities.Lichsuthue",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -575,7 +575,7 @@
       },
       {
         "Name": "lichsuthue",
-        "Type": "duanminiveprogresql.Models.Lichsuthue",
+        "Type": "Domain.Entities.Lichsuthue",
         "IsRequired": true
       }
     ],
@@ -634,7 +634,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Lichsuthue, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Lichsuthue, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -660,7 +660,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Lichsuthue, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Lichsuthue, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -806,7 +806,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Thanhtoan, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Thanhtoan, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -826,13 +826,13 @@
     "Parameters": [
       {
         "Name": "thanhtoan",
-        "Type": "duanminiveprogresql.Models.Thanhtoan",
+        "Type": "Domain.Entities.Thanhtoan",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Thanhtoan",
+        "Type": "Domain.Entities.Thanhtoan",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -858,7 +858,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Thanhtoan",
+        "Type": "Domain.Entities.Thanhtoan",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -921,7 +921,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Thanhtoan, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Thanhtoan, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -941,7 +941,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Xe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Xe, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -961,13 +961,13 @@
     "Parameters": [
       {
         "Name": "xe",
-        "Type": "duanminiveprogresql.Models.Xe",
+        "Type": "Domain.Entities.Xe",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Xe",
+        "Type": "Domain.Entities.Xe",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -993,7 +993,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Xe",
+        "Type": "Domain.Entities.Xe",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1018,7 +1018,7 @@
       },
       {
         "Name": "xe",
-        "Type": "duanminiveprogresql.Models.Xe",
+        "Type": "Domain.Entities.Xe",
         "IsRequired": true
       }
     ],
@@ -1071,7 +1071,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Xe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Xe, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1091,13 +1091,13 @@
     "Parameters": [
       {
         "Name": "xe",
-        "Type": "duanminiveprogresql.Models.Xe",
+        "Type": "Domain.Entities.Xe",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Xe",
+        "Type": "Domain.Entities.Xe",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1123,7 +1123,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "duanminiveprogresql.Models.Xe",
+        "Type": "Domain.Entities.Xe",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1148,7 +1148,7 @@
       },
       {
         "Name": "xe",
-        "Type": "duanminiveprogresql.Models.Xe",
+        "Type": "Domain.Entities.Xe",
         "IsRequired": true
       }
     ],
@@ -1222,7 +1222,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Xe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Xe, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1248,7 +1248,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[duanminiveprogresql.Models.Xe, duanminiveprogresql, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Domain.Entities.Xe, duanminiveprogresql, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

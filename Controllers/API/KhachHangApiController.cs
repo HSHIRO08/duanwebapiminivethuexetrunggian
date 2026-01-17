@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
+using DataAccess.Context;
+using Domain.Entities;
 
 namespace duanminiveprogresql.Controllers.API
 {
@@ -16,7 +17,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Lấy danh sách tất cả khách hàng
+        /// L?y danh sách t?t c? khách hàng
         /// </summary>
         /// <returns>Danh sách khách hàng</returns>
         [HttpGet]
@@ -43,7 +44,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Lấy thông tin khách hàng theo ID
+        /// L?y thông tin khách hàng theo ID
         /// </summary>
         /// <param name="id">ID khách hàng</param>
         /// <returns>Thông tin khách hàng</returns>
@@ -56,16 +57,16 @@ namespace duanminiveprogresql.Controllers.API
 
             if (khachhang == null)
             {
-                return NotFound(new { message = "Không tìm thấy khách hàng" });
+                return NotFound(new { message = "Không tìm th?y khách hàng" });
             }
 
             return khachhang;
         }
 
         /// <summary>
-        /// Lấy thông tin khách hàng theo User ID
+        /// L?y thông tin khách hàng theo User ID
         /// </summary>
-        /// <param name="nguoidungId">ID người dùng</param>
+        /// <param name="nguoidungId">ID ngu?i dùng</param>
         /// <returns>Thông tin khách hàng</returns>
         [HttpGet("user/{nguoidungId}")]
         public async Task<ActionResult<Khachhang>> GetKhachhangByUserId(int nguoidungId)
@@ -76,31 +77,31 @@ namespace duanminiveprogresql.Controllers.API
 
             if (khachhang == null)
             {
-                return NotFound(new { message = "Không tìm thấy khách hàng" });
+                return NotFound(new { message = "Không tìm th?y khách hàng" });
             }
 
             return khachhang;
         }
 
         /// <summary>
-        /// Tạo khách hàng mới
+        /// T?o khách hàng m?i
         /// </summary>
         /// <param name="khachhang">Thông tin khách hàng</param>
-        /// <returns>Khách hàng vừa tạo</returns>
+        /// <returns>Khách hàng v?a t?o</returns>
         [HttpPost]
         public async Task<ActionResult<Khachhang>> CreateKhachhang(Khachhang khachhang)
         {
-            // Kiểm tra user có tồn tại
+            // Ki?m tra user có t?n t?i
             var nguoidung = await _context.Nguoidungs.FindAsync(khachhang.Nguoidungid);
             if (nguoidung == null)
             {
-                return BadRequest(new { message = "Người dùng không tồn tại" });
+                return BadRequest(new { message = "Ngu?i dùng không t?n t?i" });
             }
 
-            // Kiểm tra đã có khách hàng cho user này chưa
+            // Ki?m tra dã có khách hàng cho user này chua
             if (await _context.Khachhangs.AnyAsync(k => k.Nguoidungid == khachhang.Nguoidungid))
             {
-                return BadRequest(new { message = "Người dùng này đã có thông tin khách hàng" });
+                return BadRequest(new { message = "Ngu?i dùng này dã có thông tin khách hàng" });
             }
 
             khachhang.Ngaydangky = DateTime.UtcNow;
@@ -113,17 +114,17 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Cập nhật thông tin khách hàng
+        /// C?p nh?t thông tin khách hàng
         /// </summary>
         /// <param name="id">ID khách hàng</param>
-        /// <param name="khachhang">Thông tin cập nhật</param>
-        /// <returns>Kết quả cập nhật</returns>
+        /// <param name="khachhang">Thông tin c?p nh?t</param>
+        /// <returns>K?t qu? c?p nh?t</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateKhachhang(int id, Khachhang khachhang)
         {
             if (id != khachhang.Id)
             {
-                return BadRequest(new { message = "ID không khớp" });
+                return BadRequest(new { message = "ID không kh?p" });
             }
 
             _context.Entry(khachhang).State = EntityState.Modified;
@@ -136,7 +137,7 @@ namespace duanminiveprogresql.Controllers.API
             {
                 if (!KhachhangExists(id))
                 {
-                    return NotFound(new { message = "Không tìm thấy khách hàng" });
+                    return NotFound(new { message = "Không tìm th?y khách hàng" });
                 }
                 else
                 {
@@ -144,41 +145,41 @@ namespace duanminiveprogresql.Controllers.API
                 }
             }
 
-            return Ok(new { message = "Cập nhật thành công" });
+            return Ok(new { message = "C?p nh?t thành công" });
         }
 
         /// <summary>
-        /// Xác thực khách hàng
+        /// Xác th?c khách hàng
         /// </summary>
         /// <param name="id">ID khách hàng</param>
-        /// <returns>Kết quả xác thực</returns>
+        /// <returns>K?t qu? xác th?c</returns>
         [HttpPatch("{id}/verify")]
         public async Task<IActionResult> VerifyKhachhang(int id)
         {
             var khachhang = await _context.Khachhangs.FindAsync(id);
             if (khachhang == null)
             {
-                return NotFound(new { message = "Không tìm thấy khách hàng" });
+                return NotFound(new { message = "Không tìm th?y khách hàng" });
             }
 
             khachhang.Daxacthuc = true;
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Xác thực khách hàng thành công" });
+            return Ok(new { message = "Xác th?c khách hàng thành công" });
         }
 
         /// <summary>
         /// Xóa khách hàng
         /// </summary>
         /// <param name="id">ID khách hàng</param>
-        /// <returns>Kết quả xóa</returns>
+        /// <returns>K?t qu? xóa</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteKhachhang(int id)
         {
             var khachhang = await _context.Khachhangs.FindAsync(id);
             if (khachhang == null)
             {
-                return NotFound(new { message = "Không tìm thấy khách hàng" });
+                return NotFound(new { message = "Không tìm th?y khách hàng" });
             }
 
             _context.Khachhangs.Remove(khachhang);

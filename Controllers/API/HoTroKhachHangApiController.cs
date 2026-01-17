@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
+using DataAccess.Context;
+using Domain.Entities;
 
 namespace duanminiveprogresql.Controllers.API
 {

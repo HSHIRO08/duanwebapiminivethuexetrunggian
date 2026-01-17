@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
+using DataAccess.Context;
+using Domain.Entities;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -18,7 +19,7 @@ namespace duanminiveprogresql.Controllers
         {
             var query = _context.Xes.Where(x => x.Trangthai == "Available");
 
-            // Tìm kiếm
+            // Tìm ki?m
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(x => x.Tenxe.Contains(search) || 
@@ -26,19 +27,19 @@ namespace duanminiveprogresql.Controllers
                                         x.Biensoxe.Contains(search));
             }
 
-            // Lọc theo loại xe
+            // L?c theo lo?i xe
             if (!string.IsNullOrEmpty(loaixe))
             {
                 query = query.Where(x => x.Loaixe == loaixe);
             }
 
-            // Lọc theo hãng xe
+            // L?c theo hãng xe
             if (!string.IsNullOrEmpty(hangxe))
             {
                 query = query.Where(x => x.Hangxe == hangxe);
             }
 
-            // Lọc theo giá
+            // L?c theo giá
             if (minPrice.HasValue)
             {
                 query = query.Where(x => x.Giathuetheongay >= minPrice.Value);
@@ -51,14 +52,14 @@ namespace duanminiveprogresql.Controllers
 
             var cars = await query.OrderBy(x => x.Tenxe).ToListAsync();
 
-            // Lấy danh sách loại xe và hãng xe để hiển thị filter
+            // L?y danh sách lo?i xe và hãng xe d? hi?n th? filter
             ViewBag.LoaiXeList = await _context.Xes.Select(x => x.Loaixe).Distinct().ToListAsync();
             ViewBag.HangXeList = await _context.Xes.Select(x => x.Hangxe).Distinct().ToListAsync();
 
             return View(cars);
         }
 
-        // Chi tiết xe
+        // Chi ti?t xe
         public async Task<IActionResult> Details(int id)
         {
             var xe = await _context.Xes
@@ -77,7 +78,7 @@ namespace duanminiveprogresql.Controllers
 
             ViewBag.AvgRating = avgRating;
 
-            // Lấy đánh giá gần nhất
+            // L?y dánh giá g?n nh?t
             var recentReviews = await _context.Lichsuthues
                 .Where(l => l.Xeid == id && !string.IsNullOrEmpty(l.Nhanxet))
                 .Include(l => l.Khachhang)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
+using DataAccess.Context;
+using Domain.Entities;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -58,14 +59,14 @@ namespace duanminiveprogresql.Controllers
 
                 _logger.LogInformation($"User found: ID={user.Id}, Email={user.Email}, Role={user.Vaitro}");
 
-                // So sánh password trực tiếp (plain text)
+                // So sánh password tr?c ti?p (plain text)
                 _logger.LogInformation($"Password check - Input: {password}");
                 _logger.LogInformation($"Password check - DB: {user.Matkhau}");
                 
                 if (user.Matkhau != password)
                 {
                     _logger.LogWarning($"Password mismatch for: {email}");
-                    ModelState.AddModelError("", "Email hoặc mật khẩu không đúng");
+                    ModelState.AddModelError("", "Email hoặc mật khẩu không dúng");
                     return View();
                 }
 
@@ -96,7 +97,7 @@ namespace duanminiveprogresql.Controllers
 
                 _logger.LogInformation($"LOGIN SUCCESS: {email}");
 
-                TempData["SuccessMessage"] = "Đăng nhập thành công!";
+                TempData["SuccessMessage"] = "Ðăng nhập thành công!";
 
                 if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {
@@ -134,7 +135,7 @@ namespace duanminiveprogresql.Controllers
 
             try
             {
-                // Kiểm tra email đã tồn tại
+                // Ki?m tra email dã t?n t?i
                 var existingUser = await _context.Nguoidungs.FirstOrDefaultAsync(u => u.Email == email);
                 if (existingUser != null)
                 {
@@ -142,12 +143,12 @@ namespace duanminiveprogresql.Controllers
                     return View();
                 }
 
-                // Tạo người dùng mới với password plain text
+                // T?o ngu?i dùng m?i v?i password plain text
                 var newUser = new Nguoidung
                 {
                     Hoten = hoten,
                     Email = email,
-                    Matkhau = password, // ⚠️ Lưu plain text - CHỈ DÙNG CHO DEVELOPMENT!
+                    Matkhau = password, // ?? Luu plain text - CH? DÙNG CHO DEVELOPMENT!
                     Sodienthoai = sodienthoai,
                     Vaitro = "Customer",
                     Trangthai = true,
@@ -159,12 +160,12 @@ namespace duanminiveprogresql.Controllers
 
                 _logger.LogInformation($"New user created: ID={newUser.Id}, Email={email}");
 
-                // Tạo khách hàng - SỬA: DateTime.Now thay vì DateTime.UtcNow
+                // T?o khách hàng - S?A: DateTime.Now thay vì DateTime.UtcNow
                 var newCustomer = new Khachhang
                 {
                     Nguoidungid = newUser.Id,
                     Daxacthuc = false,
-                    Ngaydangky = DateTime.Now  // ✅ SỬA: DateTime.Now cho timestamp without time zone
+                    Ngaydangky = DateTime.Now  // ? S?A: DateTime.Now cho timestamp without time zone
                 };
 
                 _context.Khachhangs.Add(newCustomer);
@@ -188,11 +189,11 @@ namespace duanminiveprogresql.Controllers
             _logger.LogInformation($"User logout: ID={userId}");
             
             HttpContext.Session.Clear();
-            TempData["SuccessMessage"] = "Đã đăng xuất thành công";
+            TempData["SuccessMessage"] = "Ðã đăng xuất thành công";
             return RedirectToAction("Index", "Home");
         }
 
-        // Test action để kiểm tra session
+        // Test action d? ki?m tra session
         public IActionResult TestSession()
         {
             var userId = HttpContext.Session.GetInt32("UserId");

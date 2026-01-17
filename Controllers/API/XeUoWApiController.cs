@@ -1,12 +1,14 @@
-using Microsoft.AspNetCore.Mvc;
-using duanminiveprogresql.Repositories;
-using duanminiveprogresql.Models;
+Ôªøusing Microsoft.AspNetCore.Mvc;
+using Domain.Interfaces;
+using DataAccess.Repositories;
+using DataAccess.Context;
+using Domain.Entities;
 
 namespace duanminiveprogresql.Controllers.API
 {
     /// <summary>
-    /// DEMO API Controller s? d?ng Repository Pattern & Unit of Work
-    /// ?‚y l‡ example ?? refactor c·c API controllers kh·c
+    /// DEMO API Controller s·ª≠ d·ª•ng Repository Pattern & Unit of Work
+    /// ƒê√¢y l√† example ƒë·ªÉ refactor c√°c API controllers kh√°c
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -40,7 +42,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// TÏm ki?m xe
+        /// T√¨m ki?m xe
         /// </summary>
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Xe>>> SearchCars([FromQuery] string searchTerm)
@@ -74,7 +76,7 @@ namespace duanminiveprogresql.Controllers.API
                 
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} khÙng t?n t?i");
+                    return NotFound($"Xe ID {id} kh√¥ng t?n t?i");
                 }
 
                 return Ok(xe);
@@ -87,7 +89,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// ThÍm xe m?i
+        /// Th√™m xe m?i
         /// </summary>
         [HttpPost]
         public async Task<ActionResult<Xe>> CreateCar([FromBody] Xe xe)
@@ -132,7 +134,7 @@ namespace duanminiveprogresql.Controllers.API
                 var existingXe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (existingXe == null)
                 {
-                    return NotFound($"Xe ID {id} khÙng t?n t?i");
+                    return NotFound($"Xe ID {id} kh√¥ng t?n t?i");
                 }
 
                 if (!ModelState.IsValid)
@@ -158,7 +160,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// XÛa xe
+        /// X√≥a xe
         /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCar(int id)
@@ -168,7 +170,7 @@ namespace duanminiveprogresql.Controllers.API
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} khÙng t?n t?i");
+                    return NotFound($"Xe ID {id} kh√¥ng t?n t?i");
                 }
 
                 await _unitOfWork.BeginTransactionAsync();
@@ -204,7 +206,7 @@ namespace duanminiveprogresql.Controllers.API
                     startDate,
                     endDate,
                     available = isAvailable,
-                    message = isAvailable ? "Xe kh? d?ng" : "Xe ?„ ???c ??t trong th?i gian n‡y"
+                    message = isAvailable ? "Xe kh? d?ng" : "Xe ?√£ ???c ??t trong th?i gian n√†y"
                 });
             }
             catch (Exception ex)
@@ -215,7 +217,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Th?ng kÍ xe
+        /// Th?ng k√™ xe
         /// </summary>
         [HttpGet("{id}/stats")]
         public async Task<ActionResult> GetCarStats(int id)
@@ -225,7 +227,7 @@ namespace duanminiveprogresql.Controllers.API
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} khÙng t?n t?i");
+                    return NotFound($"Xe ID {id} kh√¥ng t?n t?i");
                 }
 
                 // S? d?ng multiple repositories

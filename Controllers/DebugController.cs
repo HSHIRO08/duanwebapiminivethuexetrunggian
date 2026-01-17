@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
+using DataAccess.Context;
+using Domain.Entities;
 using System.Text;
 
 namespace duanminiveprogresql.Controllers
@@ -16,7 +17,7 @@ namespace duanminiveprogresql.Controllers
             _logger = logger;
         }
 
-        // Action để kiểm tra session
+        // Action d? ki?m tra session
         public IActionResult CheckSession()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -33,38 +34,38 @@ namespace duanminiveprogresql.Controllers
                     <div class='container'>
                         <div class='card'>
                             <div class='card-header bg-primary text-white'>
-                                <h2>🔍 Session Information</h2>
+                                <h2>?? Session Information</h2>
                             </div>
                             <div class='card-body'>
                                 <table class='table'>
                                     <tr>
                                         <th>UserId:</th>
                                         <td><code>{userId?.ToString() ?? "NULL"}</code></td>
-                                        <td>{(userId != null ? "✅" : "❌")}</td>
+                                        <td>{(userId != null ? "?" : "?")}</td>
                                     </tr>
                                     <tr>
                                         <th>UserName:</th>
                                         <td><code>{userName ?? "NULL"}</code></td>
-                                        <td>{(!string.IsNullOrEmpty(userName) ? "✅" : "❌")}</td>
+                                        <td>{(!string.IsNullOrEmpty(userName) ? "?" : "?")}</td>
                                     </tr>
                                     <tr>
                                         <th>UserEmail:</th>
                                         <td><code>{userEmail ?? "NULL"}</code></td>
-                                        <td>{(!string.IsNullOrEmpty(userEmail) ? "✅" : "❌")}</td>
+                                        <td>{(!string.IsNullOrEmpty(userEmail) ? "?" : "?")}</td>
                                     </tr>
                                     <tr>
                                         <th>UserRole:</th>
                                         <td><code>{userRole ?? "NULL"}</code></td>
-                                        <td>{(!string.IsNullOrEmpty(userRole) ? "✅" : "❌")}</td>
+                                        <td>{(!string.IsNullOrEmpty(userRole) ? "?" : "?")}</td>
                                     </tr>
                                     <tr>
                                         <th>Session Available:</th>
                                         <td><code>{HttpContext.Session.IsAvailable}</code></td>
-                                        <td>{(HttpContext.Session.IsAvailable ? "✅" : "❌")}</td>
+                                        <td>{(HttpContext.Session.IsAvailable ? "?" : "?")}</td>
                                     </tr>
                                 </table>
                                 <hr>
-                                <a href='/Auth/Login' class='btn btn-primary'>← Back to Login</a>
+                                <a href='/Auth/Login' class='btn btn-primary'>? Back to Login</a>
                                 <a href='/Auth/Logout' class='btn btn-danger'>Logout</a>
                                 <a href='/' class='btn btn-secondary'>Home</a>
                             </div>
@@ -77,12 +78,12 @@ namespace duanminiveprogresql.Controllers
             return Content(result, "text/html", Encoding.UTF8);
         }
 
-        // Action để xem password (plain text - không hash)
+        // Action d? xem password (plain text - không hash)
         public IActionResult ViewPassword(string password)
         {
             if (string.IsNullOrEmpty(password))
             {
-                return Content("Vui lòng nhập password. Ví dụ: /Debug/ViewPassword?password=123456");
+                return Content("Vui lòng nh?p password. Ví d?: /Debug/ViewPassword?password=123456");
             }
 
             var result = $@"
@@ -94,7 +95,7 @@ namespace duanminiveprogresql.Controllers
                     <div class='container'>
                         <div class='card'>
                             <div class='card-header bg-success text-white'>
-                                <h2>🔓 Plain Text Password (No Hash)</h2>
+                                <h2>?? Plain Text Password (No Hash)</h2>
                             </div>
                             <div class='card-body'>
                                 <table class='table'>
@@ -104,12 +105,12 @@ namespace duanminiveprogresql.Controllers
                                     </tr>
                                 </table>
                                 <div class='alert alert-warning'>
-                                    <h5>⚠️ CHÚ Ý BẢO MẬT</h5>
-                                    <p>Password hiện đang được lưu dạng <strong>plain text</strong> (không mã hóa)</p>
-                                    <p>Điều này <strong>CỰC KỲ KHÔNG AN TOÀN</strong> và chỉ nên dùng cho môi trường development/testing!</p>
+                                    <h5>?? CHÚ Ý B?O M?T</h5>
+                                    <p>Password hi?n dang du?c luu d?ng <strong>plain text</strong> (không mã hóa)</p>
+                                    <p>Ði?u này <strong>C?C K? KHÔNG AN TOÀN</strong> và ch? nên dùng cho môi tru?ng development/testing!</p>
                                 </div>
                                 <div class='alert alert-info'>
-                                    <h5>📝 SQL để cập nhật trong database:</h5>
+                                    <h5>?? SQL d? c?p nh?t trong database:</h5>
                                     <pre>UPDATE nguoidung 
 SET matkhau = '{password}' 
 WHERE email = 'your-email@example.com';</pre>
@@ -126,7 +127,7 @@ WHERE email = 'your-email@example.com';</pre>
             return Content(result, "text/html", Encoding.UTF8);
         }
 
-        // Action để xem danh sách users
+        // Action d? xem danh sách users
         public async Task<IActionResult> ListUsers()
         {
             var users = await _context.Nguoidungs
@@ -149,12 +150,12 @@ WHERE email = 'your-email@example.com';</pre>
             html.AppendLine("<div class='container'>");
             html.AppendLine("<div class='card'>");
             html.AppendLine("<div class='card-header bg-info text-white'>");
-            html.AppendLine("<h2>👥 Users in Database</h2>");
+            html.AppendLine("<h2>?? Users in Database</h2>");
             html.AppendLine("</div>");
             html.AppendLine("<div class='card-body'>");
             html.AppendLine("<table class='table table-striped table-bordered'>");
             html.AppendLine("<thead class='table-dark'>");
-            html.AppendLine("<tr><th>ID</th><th>Email</th><th>Họ tên</th><th>Vai trò</th><th>Trạng thái</th><th>Password Hash</th><th>Actions</th></tr>");
+            html.AppendLine("<tr><th>ID</th><th>Email</th><th>H? tên</th><th>Vai trò</th><th>Tr?ng thái</th><th>Password Hash</th><th>Actions</th></tr>");
             html.AppendLine("</thead><tbody>");
 
             foreach (var user in users)
@@ -186,7 +187,7 @@ WHERE email = 'your-email@example.com';</pre>
             return Content(html.ToString(), "text/html", Encoding.UTF8);
         }
 
-        // Action để test đăng nhập
+        // Action d? test dang nh?p
         public async Task<IActionResult> TestLogin(string email, string password)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
@@ -197,8 +198,8 @@ WHERE email = 'your-email@example.com';</pre>
                     <body style='padding: 20px;'>
                         <div class='container'>
                             <div class='alert alert-warning'>
-                                <h2>⚠️ Test Login</h2>
-                                <p>Sử dụng: <code>/Debug/TestLogin?email=your@email.com&password=yourpassword</code></p>
+                                <h2>?? Test Login</h2>
+                                <p>S? d?ng: <code>/Debug/TestLogin?email=your@email.com&password=yourpassword</code></p>
                                 <a href='/Debug/ListUsers' class='btn btn-primary'>View All Users</a>
                             </div>
                         </div>
@@ -212,7 +213,7 @@ WHERE email = 'your-email@example.com';</pre>
             html.AppendLine("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>");
             html.AppendLine("</head><body style='padding: 20px;'><div class='container'>");
             html.AppendLine("<div class='card'><div class='card-header bg-warning'>");
-            html.AppendLine("<h2>🧪 Test Login Result</h2>");
+            html.AppendLine("<h2>?? Test Login Result</h2>");
             html.AppendLine("</div><div class='card-body'>");
 
             try
@@ -222,34 +223,34 @@ WHERE email = 'your-email@example.com';</pre>
                 
                 if (user == null)
                 {
-                    html.AppendLine($"<div class='alert alert-danger'>❌ Không tìm thấy user với email: <strong>{email}</strong></div>");
+                    html.AppendLine($"<div class='alert alert-danger'>? Không tìm th?y user v?i email: <strong>{email}</strong></div>");
                 }
                 else
                 {
-                    html.AppendLine($"<div class='alert alert-success'>✅ Tìm thấy user!</div>");
+                    html.AppendLine($"<div class='alert alert-success'>? Tìm th?y user!</div>");
                     html.AppendLine("<table class='table'>");
                     html.AppendLine($"<tr><th>ID:</th><td>{user.Id}</td></tr>");
                     html.AppendLine($"<tr><th>Email:</th><td>{user.Email}</td></tr>");
-                    html.AppendLine($"<tr><th>Họ tên:</th><td>{user.Hoten}</td></tr>");
+                    html.AppendLine($"<tr><th>H? tên:</th><td>{user.Hoten}</td></tr>");
                     html.AppendLine($"<tr><th>Vai trò:</th><td><span class='badge bg-primary'>{user.Vaitro}</span></td></tr>");
-                    html.AppendLine($"<tr><th>Trạng thái:</th><td>{(user.Trangthai ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>")}</td></tr>");
+                    html.AppendLine($"<tr><th>Tr?ng thái:</th><td>{(user.Trangthai ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>")}</td></tr>");
                     html.AppendLine("</table>");
 
                     // So sánh plain text password
-                    html.AppendLine("<div class='card mt-3'><div class='card-header bg-info text-white'><h5>🔓 Password Comparison (Plain Text)</h5></div><div class='card-body'>");
+                    html.AppendLine("<div class='card mt-3'><div class='card-header bg-info text-white'><h5>?? Password Comparison (Plain Text)</h5></div><div class='card-body'>");
                     html.AppendLine("<table class='table'>");
-                    html.AppendLine($"<tr><th>Password nhập vào:</th><td><code>{password}</code></td></tr>");
+                    html.AppendLine($"<tr><th>Password nh?p vào:</th><td><code>{password}</code></td></tr>");
                     html.AppendLine($"<tr><th>Password trong DB:</th><td><code>{user.Matkhau}</code></td></tr>");
                     
                     if (user.Matkhau == password)
                     {
-                        html.AppendLine("<tr><td colspan='2'><div class='alert alert-success mb-0'><strong>✅ Password KHỚP - Đăng nhập sẽ thành công!</strong></div></td></tr>");
+                        html.AppendLine("<tr><td colspan='2'><div class='alert alert-success mb-0'><strong>? Password KH?P - Ðang nh?p s? thành công!</strong></div></td></tr>");
                     }
                     else
                     {
-                        html.AppendLine("<tr><td colspan='2'><div class='alert alert-danger mb-0'><strong>❌ Password KHÔNG KHỚP - Đăng nhập sẽ thất bại!</strong>");
+                        html.AppendLine("<tr><td colspan='2'><div class='alert alert-danger mb-0'><strong>? Password KHÔNG KH?P - Ðang nh?p s? th?t b?i!</strong>");
                         html.AppendLine("<hr>");
-                        html.AppendLine("<p>Để cập nhật password trong DB, chạy SQL:</p>");
+                        html.AppendLine("<p>Ð? c?p nh?t password trong DB, ch?y SQL:</p>");
                         html.AppendLine($"<pre>UPDATE nguoidung SET matkhau = '{password}' WHERE email = '{email}';</pre>");
                         html.AppendLine("</div></td></tr>");
                     }
@@ -258,12 +259,12 @@ WHERE email = 'your-email@example.com';</pre>
             }
             catch (Exception ex)
             {
-                html.AppendLine($"<div class='alert alert-danger'>❌ Lỗi: {ex.Message}</div>");
+                html.AppendLine($"<div class='alert alert-danger'>? L?i: {ex.Message}</div>");
                 _logger.LogError(ex, "Error in TestLogin");
             }
 
             html.AppendLine("<hr>");
-            html.AppendLine("<a href='/Debug/ListUsers' class='btn btn-primary'>← View All Users</a> ");
+            html.AppendLine("<a href='/Debug/ListUsers' class='btn btn-primary'>? View All Users</a> ");
             html.AppendLine("<a href='/Auth/Login' class='btn btn-success'>Go to Login Page</a> ");
             html.AppendLine("<a href='/' class='btn btn-secondary'>Home</a>");
             html.AppendLine("</div></div></div></body></html>");

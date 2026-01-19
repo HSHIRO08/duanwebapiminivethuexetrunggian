@@ -45,8 +45,8 @@ namespace duanminiveprogresql.Controllers
         // Về chúng tôi
         public IActionResult About()
         {
-            ViewBag.CompanyName = "AutoRent - Cho Thuê Xe Ô Tô";
-            ViewBag.Founded = "2024";
+            ViewBag.CompanyName = "Cho Thuê Xe Ô Tô";
+            ViewBag.Founded = "2026";
             ViewBag.TotalCustomers = _context.Khachhangs.Count();
             ViewBag.TotalCars = _context.Xes.Count();
 
@@ -98,7 +98,7 @@ namespace duanminiveprogresql.Controllers
                     }
                 }
 
-                TempData["SuccessMessage"] = "C?m on b?n dã liên h?! Chúng tôi s? ph?n h?i s?m nh?t.";
+                TempData["SuccessMessage"] = "Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi cho bạn sớm nhất.";
                 _logger.LogInformation($"Contact form submitted: {name} - {email}");
 
                 return RedirectToAction("Contact");
@@ -106,7 +106,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error processing contact form");
-                TempData["ErrorMessage"] = "Có l?i x?y ra. Vui lòng th? l?i!";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra. Vui lòng thử lại!";
                 return View();
             }
         }

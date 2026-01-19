@@ -270,99 +270,141 @@ INSERT INTO Xe (
 
 END $$;
 
-UPDATE Xe 
-SET GiaThueTheoNgay = 550000,
-    MoTa = 'Xe sedan 5 chỗ tiết kiệm nhiên liệu, có camera lùi, cảm biến lùi, màn hình cảm ứng',
-    HinhAnh = 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '30A-12345';
+-- CHÈN DỮ LIỆU MẪU TIẾP THEO
+DO $$
+DECLARE 
+    v_khach_hang_id INT;
+    v_xe_id_1 INT;
+    v_xe_id_2 INT;
+    v_dat_xe_id INT;
+BEGIN
+    -- Lấy ID khách hàng và xe hiện có
+    SELECT Id INTO v_khach_hang_id FROM KhachHang LIMIT 1;
+    SELECT Id INTO v_xe_id_1 FROM Xe WHERE TenXe LIKE '%Toyota Vios%' LIMIT 1;
+    SELECT Id INTO v_xe_id_2 FROM Xe WHERE TenXe LIKE '%Mazda CX-5%' LIMIT 1;
 
--- Cập nhật Honda CR-V 2023 (BienSoXe: 30B-67890)
-UPDATE Xe 
-SET GiaThueTheoNgay = 950000,
-    MoTa = 'SUV 7 chỗ cao cấp, rộng rãi, có hệ thống an toàn Honda Sensing, camera 360 độ',
-    HinhAnh = 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '30B-67890';
+    -------------------------------------------------------
+    -- 1. TẠO ĐƠN ĐẶT XE (DatXe)
+    -------------------------------------------------------
+    -- Đơn 1: Đã hoàn thành
+    INSERT INTO DatXe (KhachHangId, XeId, NgayBatDau, NgayKetThuc, SoNgayThue, GiaTheoNgay, TongTien, TrangThai)
+    VALUES (v_khach_hang_id, v_xe_id_1, NOW() - INTERVAL '5 days', NOW() - INTERVAL '2 days', 3, 700000, 2100000, 'Completed')
+    RETURNING Id INTO v_dat_xe_id;
 
--- Cập nhật Toyota Vios 2022 (BienSoXe: 51A-12345)
-UPDATE Xe 
-SET GiaThueTheoNgay = 700000,
-    MoTa = 'Xe sedan tiết kiệm nhiên liệu, phù hợp đi thành phố, nội thất thoải mái',
-    HinhAnh = 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-12345';
+    -- Đơn 2: Đang chờ duyệt
+    INSERT INTO DatXe (KhachHangId, XeId, NgayBatDau, NgayKetThuc, SoNgayThue, GiaTheoNgay, TongTien, TrangThai)
+    VALUES (v_khach_hang_id, v_xe_id_2, NOW() + INTERVAL '1 days', NOW() + INTERVAL '3 days', 2, 1250000, 2500000, 'Pending');
 
--- Cập nhật Honda City 2021 (BienSoXe: 51A-23456)
-UPDATE Xe 
-SET GiaThueTheoNgay = 750000,
-    MoTa = 'Xe bền bỉ, nội thất rộng rãi, động cơ 1.5L tiết kiệm nhiên liệu',
-    HinhAnh = 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-23456';
+    -------------------------------------------------------
+    -- 2. TẠO THANH TOÁN (ThanhToan) cho đơn đã hoàn thành
+    -------------------------------------------------------
+    INSERT INTO ThanhToan (DatXeId, MaGiaoDich, SoTien, PhuongThucThanhToan, TrangThai, NgayXacNhan)
+    VALUES (v_dat_xe_id, 'PAY-123456789', 2100000, 'BankTransfer', 'Completed', NOW() - INTERVAL '5 days');
 
--- Cập nhật Mazda CX-5 2023 (BienSoXe: 51A-34567)
-UPDATE Xe 
-SET GiaThueTheoNgay = 1250000,
-    MoTa = 'SUV cao cấp, nhiều công nghệ an toàn, động cơ Skyactiv, màn hình HUD',
-    HinhAnh = 'https://images.unsplash.com/photo-1617654112368-307921291f42?w=800&h=600&fit=crop',
-    MauXe = 'Đỏ Soul Red',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-34567';
+    -------------------------------------------------------
+    -- 3. TẠO HÓA ĐƠN (HoaDon)
+    -------------------------------------------------------
+    INSERT INTO HoaDon (DatXeId, MaHoaDon, TongTienThue, PhiDichVu, GiamGia, TongThanhToan, TrangThai)
+    VALUES (v_dat_xe_id, 'INV-2024-001', 2100000, 50000, 0, 2150000, 'Paid');
 
--- Cập nhật Ford Everest 2022 (BienSoXe: 51A-45678)
-UPDATE Xe 
-SET GiaThueTheoNgay = 1500000,
-    MoTa = 'SUV 7 chỗ mạnh mẽ, phù hợp đi gia đình, địa hình phức tạp, có chế độ off-road',
-    HinhAnh = 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-45678';
+    -------------------------------------------------------
+    -- 4. TẠO LỊCH SỬ THUÊ (LichSuThue)
+    -------------------------------------------------------
+    INSERT INTO LichSuThue (XeId, KhachHangId, DatXeId, NgayNhanXe, NgayTraXe, KmBatDau, KmKetThuc, TrangThaiXe, DanhGia, NhanXet)
+    VALUES (v_xe_id_1, v_khach_hang_id, v_dat_xe_id, NOW() - INTERVAL '5 days', NOW() - INTERVAL '2 days', 15000, 15250, 'Good', 5, 'Xe sạch sẽ, chạy rất êm!');
 
--- Cập nhật Kia Morning 2020 (BienSoXe: 51A-56789)
-UPDATE Xe 
-SET GiaThueTheoNgay = 500000,
-    MoTa = 'Xe nhỏ gọn, dễ di chuyển trong đô thị, tiết kiệm nhiên liệu, giá thuê hợp lý',
-    HinhAnh = 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-56789';
+    -------------------------------------------------------
+    -- 5. TIN NHẮN HỖ TRỢ (ChatMessage & HoTroKhachHang)
+    -------------------------------------------------------
+    INSERT INTO ChatMessage (NguoiDungId, SessionId, NoiDung, LoaiTinNhan)
+    VALUES (v_khach_hang_id, 'SESSION-001', 'Chào bạn, tôi muốn hỏi về thủ tục thuê xe', 'User');
 
--- Cập nhật Hyundai Accent 2021 (BienSoXe: 51A-67890)
-UPDATE Xe 
-SET GiaThueTheoNgay = 650000,
-    MoTa = 'Xe phổ thông, giá thuê hợp lý, nội thất hiện đại, tiện nghi cơ bản đầy đủ',
-    HinhAnh = 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-67890';
+    INSERT INTO HoTroKhachHang (KhachHangId, TieuDe, NoiDung, LoaiYeuCau, TrangThai, MucDoUuTien)
+    VALUES (v_khach_hang_id, 'Hỏi về bảo hiểm', 'Xe có bảo hiểm thân vỏ không shop?', 'Inquiry', 'Open', 'Medium');
 
--- Cập nhật Toyota Fortuner 2023 (BienSoXe: 51A-78901)
-UPDATE Xe 
-SET GiaThueTheoNgay = 1600000,
-    MoTa = 'SUV 7 chỗ cao cấp, vận hành ổn định, mạnh mẽ, phù hợp đường dài và địa hình xấu',
-    HinhAnh = 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-78901';
+END $$;
 
--- Cập nhật VinFast Lux A2.0 2022 (BienSoXe: 51A-89012)
-UPDATE Xe 
-SET GiaThueTheoNgay = 1350000,
-    MoTa = 'Sedan cao cấp thương hiệu Việt, nội thất sang trọng, động cơ mạnh mẽ, công nghệ hiện đại',
-    HinhAnh = 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-89012';
+DO $$
+SELECT 
+    h.NgayNhanXe, 
+    x.TenXe, 
+    k.CMND, 
+    h.KmBatDau, 
+    h.KmKetThuc, 
+    h.DanhGia, 
+    h.NhanXet
+FROM LichSuThue h
+JOIN Xe x ON h.XeId = x.Id
+JOIN KhachHang k ON h.KhachHangId = k.Id;
 
--- Cập nhật Mitsubishi Xpander 2021 (BienSoXe: 51A-90123)
-UPDATE Xe 
-SET GiaThueTheoNgay = 900000,
-    MoTa = 'MPV gia đình 7 chỗ, tiết kiệm nhiên liệu, không gian rộng rãi, phù hợp đi du lịch',
-    HinhAnh = 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-90123';
 
--- Cập nhật Toyota Innova 2020 (BienSoXe: 51A-01234)
-UPDATE Xe 
-SET GiaThueTheoNgay = 850000,
-    MoTa = 'MPV 7 chỗ rộng rãi, phù hợp đi nhóm, đi du lịch, động cơ bền bỉ',
-    HinhAnh = 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop',
-    NgayCapNhat = CURRENT_TIMESTAMP
-WHERE BienSoXe = '51A-01234';
+-- 1. Tạo Function xử lý logic
+CREATE OR REPLACE FUNCTION fn_CapNhatTrangThaiXe()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Nếu đơn hàng được xác nhận (Confirmed), chuyển xe sang Rented
+    IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') AND NEW.TrangThai = 'Confirmed' THEN
+        UPDATE Xe SET TrangThai = 'Rented', NgayCapNhat = CURRENT_TIMESTAMP 
+        WHERE Id = NEW.XeId;
+    
+    -- Nếu đơn hàng hoàn thành hoặc bị hủy, trả xe về Available
+    ELSIF (TG_OP = 'UPDATE') AND (NEW.TrangThai = 'Completed' OR NEW.TrangThai = 'Cancelled') THEN
+        UPDATE Xe SET TrangThai = 'Available', NgayCapNhat = CURRENT_TIMESTAMP 
+        WHERE Id = NEW.XeId;
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
+-- 2. Tạo Trigger gắn vào bảng DatXe
+CREATE TRIGGER trg_CapNhatTrangThaiXe
+AFTER INSERT OR UPDATE ON DatXe
+FOR EACH ROW
+EXECUTE FUNCTION fn_CapNhatTrangThaiXe();
+
+-- -- Chèn một đơn đặt xe mới (Chưa cần tính TongTien vì Trigger sẽ tự làm)
+-- INSERT INTO DatXe (KhachHangId, XeId, NgayBatDau, NgayKetThuc, GiaTheoNgay, TrangThai)
+-- VALUES (1, 1, '2024-05-01 08:00:00', '2024-05-04 08:00:00', 700000, 'Pending');
+
+-- -- Kiểm tra xem TongTien có tự nhảy lên 2.100.000 không:
+-- SELECT Id, SoNgayThue, TongTien FROM DatXe WHERE Id = (SELECT MAX(Id) FROM DatXe);
+
+-- -- Cập nhật trạng thái đơn hàng sang Confirmed
+-- UPDATE DatXe SET TrangThai = 'Confirmed' WHERE Id = (SELECT MAX(Id) FROM DatXe);
+
+-- -- Kiểm tra xem Xe tương ứng đã chuyển sang 'Rented' chưa:
+-- SELECT Id, TenXe, TrangThai FROM Xe WHERE Id = 1;
+
+ALTER TABLE DatXe ALTER COLUMN SoNgayThue SET DEFAULT 0;
+ALTER TABLE DatXe ALTER COLUMN TongTien SET DEFAULT 0;
+
+CREATE OR REPLACE FUNCTION fn_TinhTongTienDatXe()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- 1. Kiểm tra nếu ngày bị trống thì báo lỗi nghiệp vụ thay vì lỗi database
+    IF NEW.NgayBatDau IS NULL OR NEW.NgayKetThuc IS NULL THEN
+        RAISE EXCEPTION 'NgayBatDau và NgayKetThuc không được để trống';
+    END IF;
+
+    -- 2. Tính số ngày (Sử dụng DATE để tính khoảng cách ngày chính xác)
+    NEW.SoNgayThue := (NEW.NgayKetThuc::date - NEW.NgayBatDau::date);
+    
+    -- Nếu thuê trong ngày hoặc lấy xe trả xe cùng ngày, tính là 1 ngày
+    IF NEW.SoNgayThue <= 0 THEN 
+        NEW.SoNgayThue := 1; 
+    END IF;
+
+    -- 3. Tính tổng tiền
+    NEW.TongTien := NEW.SoNgayThue * NEW.GiaTheoNgay;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+INSERT INTO DatXe (KhachHangId, XeId, NgayBatDau, NgayKetThuc, GiaTheoNgay, TrangThai)
+VALUES (1, 1, '2026-02-01 08:00:00', '2026-02-05 08:00:00', 700000, 'Pending');
+
+-- Xem kết quả (SoNgayThue sẽ tự là 4, TongTien là 2.800.000)
+SELECT Id, SoNgayThue, TongTien FROM DatXe ORDER BY Id DESC LIMIT 1;

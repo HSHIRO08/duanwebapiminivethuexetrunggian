@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace duanminiveprogresql.Models;
+﻿namespace duanminiveprogresql.Models;
 
 public partial class Lichsuthue
 {

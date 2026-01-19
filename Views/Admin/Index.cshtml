@@ -1,4 +1,4 @@
-﻿@model IEnumerable<duanminiveprogresql.Models.Datxe>
+﻿@model IEnumerable<Domain.Entities.Datxe>
 
 @{
     ViewData["Title"] = "Admin Dashboard";
@@ -45,7 +45,7 @@
                                 Doanh thu
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                @ViewBag.TotalRevenue.ToString("N0") đ
+                                @ViewBag.TotalRevenue.ToString("N0") d
                             </div>
                         </div>
                         <div class="col-auto">
@@ -166,7 +166,7 @@
                                                 @booking.Ngaybatdau.ToString("dd/MM") - @booking.Ngayketthuc.ToString("dd/MM/yyyy")<br>
                                                 <small class="text-muted">(@booking.Songaythue ngày)</small>
                                             </td>
-                                            <td class="fw-bold">@booking.Tongtien.ToString("N0") đ</td>
+                                            <td class="fw-bold">@booking.Tongtien.ToString("N0") d</td>
                                             <td>
                                                 @switch (booking.Trangthai)
                                                 {

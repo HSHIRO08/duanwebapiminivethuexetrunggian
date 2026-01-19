@@ -1,7 +1,7 @@
-﻿@model duanminiveprogresql.Models.Xe
+﻿@model Domain.Entities.Xe
 
 @{
-    ViewData["Title"] = "Chỉnh sửa xe";
+    ViewData["Title"] = "Ch?nh s?a xe";
 }
 
 <div class="container py-4">
@@ -9,7 +9,7 @@
         <div class="col-md-10">
             <div class="card shadow">
                 <div class="card-header bg-warning text-dark">
-                    <h4 class="mb-0"><i class="fas fa-edit"></i> Chỉnh sửa xe: @Model.Tenxe</h4>
+                    <h4 class="mb-0"><i class="fas fa-edit"></i> Ch?nh s?a xe: @Model.Tenxe</h4>
                 </div>
                 <div class="card-body">
                     <form method="post" asp-action="EditXe">
@@ -40,21 +40,21 @@
 
                         <div class="row">
                             <div class="col-md-4 mb-3">
-                                <label class="form-label"><i class="fas fa-layer-group"></i> Loại xe <span class="text-danger">*</span></label>
+                                <label class="form-label"><i class="fas fa-layer-group"></i> Lo?i xe <span class="text-danger">*</span></label>
                                 <select class="form-select" name="Loaixe" required>
-                                    <option value="Sedan" selected="@(Model.Loaixe == "Sedan")">Sedan (4-5 chỗ)</option>
-                                    <option value="SUV" selected="@(Model.Loaixe == "SUV")">SUV (7 chỗ)</option>
-                                    <option value="MPV" selected="@(Model.Loaixe == "MPV")">MPV (7 chỗ)</option>
-                                    <option value="Hatchback" selected="@(Model.Loaixe == "Hatchback")">Hatchback (4-5 chỗ)</option>
+                                    <option value="Sedan" selected="@(Model.Loaixe == "Sedan")">Sedan (4-5 ch?)</option>
+                                    <option value="SUV" selected="@(Model.Loaixe == "SUV")">SUV (7 ch?)</option>
+                                    <option value="MPV" selected="@(Model.Loaixe == "MPV")">MPV (7 ch?)</option>
+                                    <option value="Hatchback" selected="@(Model.Loaixe == "Hatchback")">Hatchback (4-5 ch?)</option>
                                     <option value="Pickup" selected="@(Model.Loaixe == "Pickup")">Pickup</option>
                                 </select>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label class="form-label"><i class="fas fa-users"></i> Số chỗ ngồi <span class="text-danger">*</span></label>
+                                <label class="form-label"><i class="fas fa-users"></i> S? ch? ng?i <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" name="Sochongoi" required min="2" max="16" value="@Model.Sochongoi">
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label class="form-label"><i class="fas fa-calendar"></i> Năm sản xuất <span class="text-danger">*</span></label>
+                                <label class="form-label"><i class="fas fa-calendar"></i> Nam s?n xu?t <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" name="Namsanxuat" required min="2000" max="2025" value="@Model.Namsanxuat">
                             </div>
                         </div>
@@ -65,28 +65,28 @@
                                 <input type="text" class="form-control" name="Mauxe" required value="@Model.Mauxe">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label"><i class="fas fa-id-card"></i> Biển số xe <span class="text-danger">*</span></label>
+                                <label class="form-label"><i class="fas fa-id-card"></i> Bi?n s? xe <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="Biensoxe" required value="@Model.Biensoxe">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label"><i class="fas fa-dollar-sign"></i> Giá thuê/ngày (VNĐ) <span class="text-danger">*</span></label>
+                                <label class="form-label"><i class="fas fa-dollar-sign"></i> Giá thuê/ngày (VNÐ) <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" name="Giathuetheongay" required min="100000" step="50000" value="@Model.Giathuetheongay">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label"><i class="fas fa-toggle-on"></i> Trạng thái <span class="text-danger">*</span></label>
+                                <label class="form-label"><i class="fas fa-toggle-on"></i> Tr?ng thái <span class="text-danger">*</span></label>
                                 <select class="form-select" name="Trangthai" required>
-                                    <option value="Available" selected="@(Model.Trangthai == "Available")">Khả dụng</option>
-                                    <option value="Rented" selected="@(Model.Trangthai == "Rented")">Đang cho thuê</option>
-                                    <option value="Maintenance" selected="@(Model.Trangthai == "Maintenance")">Bảo trì</option>
+                                    <option value="Available" selected="@(Model.Trangthai == "Available")">Kh? d?ng</option>
+                                    <option value="Rented" selected="@(Model.Trangthai == "Rented")">Ðang cho thuê</option>
+                                    <option value="Maintenance" selected="@(Model.Trangthai == "Maintenance")">B?o trì</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label"><i class="fas fa-image"></i> Hình ảnh URL</label>
+                            <label class="form-label"><i class="fas fa-image"></i> Hình ?nh URL</label>
                             <input type="url" class="form-control" name="Hinhanh" value="@Model.Hinhanh">
                             @if (!string.IsNullOrEmpty(Model.Hinhanh))
                             {
@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label"><i class="fas fa-align-left"></i> Mô tả</label>
+                            <label class="form-label"><i class="fas fa-align-left"></i> Mô t?</label>
                             <textarea class="form-control" name="Mota" rows="4">@Model.Mota</textarea>
                         </div>
 
@@ -103,10 +103,10 @@
 
                         <div class="d-flex justify-content-between">
                             <a href="@Url.Action("Xe")" class="btn btn-secondary">
-                                <i class="fas fa-times"></i> Hủy
+                                <i class="fas fa-times"></i> H?y
                             </a>
                             <button type="submit" class="btn btn-warning text-dark">
-                                <i class="fas fa-save"></i> Cập nhật
+                                <i class="fas fa-save"></i> C?p nh?t
                             </button>
                         </div>
                     </form>

@@ -1,5 +1,6 @@
-﻿using duanminiveprogresql.Models;
-using duanminiveprogresql.Repositories;
+﻿using DataAccess.Context;
+using DataAccess.Repositories;
+using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 

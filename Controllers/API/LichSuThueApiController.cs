@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers.API
 {
@@ -111,7 +112,7 @@ namespace duanminiveprogresql.Controllers.API
                 return BadRequest(new { message = "Đơn đặt xe không tồn tại" });
             }
 
-            lichsuthue.Ngaynhanxe = DateTime.Now; // ✅ SỬA: DateTime.Now
+            lichsuthue.Ngaynhanxe = DateTime.Now; // ✅ SỬa: DateTime.Now
 
             _context.Lichsuthues.Add(lichsuthue);
             await _context.SaveChangesAsync();

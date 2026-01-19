@@ -1,12 +1,12 @@
+﻿using Domain.Entities;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using duanminiveprogresql.Repositories;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers
 {
     /// <summary>
-    /// DEMO Controller s? d?ng Repository Pattern & Unit of Work
-    /// ?�y l� example ?? refactor c�c controllers kh�c
+    /// DEMO Controller sử dụng Repository Pattern & Unit of Work
+    /// Đây là example để refactor các controllers khác
     /// </summary>
     public class XeUoWController : Controller
     {
@@ -26,7 +26,7 @@ namespace duanminiveprogresql.Controllers
             {
                 IEnumerable<Xe> xes;
 
-                // S? d?ng specific repository methods
+                // Sử dụng specific repository methods
                 if (!string.IsNullOrEmpty(search))
                 {
                     xes = await _unitOfWork.Xes.SearchCarsAsync(search);
@@ -49,7 +49,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error loading cars");
-                TempData["ErrorMessage"] = "C� l?i x?y ra khi t?i danh s�ch xe";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra khi tải danh sách xe";
                 return View(new List<Xe>());
             }
         }
@@ -60,10 +60,10 @@ namespace duanminiveprogresql.Controllers
             try
             {
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
-                
+
                 if (xe == null)
                 {
-                    TempData["ErrorMessage"] = "Kh�ng t�m th?y xe";
+                    TempData["ErrorMessage"] = "Không tìm thấy xe";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -72,7 +72,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error loading car {id}");
-                TempData["ErrorMessage"] = "C� l?i x?y ra";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra";
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -95,24 +95,24 @@ namespace duanminiveprogresql.Controllers
                     return View(xe);
                 }
 
-                // S? d?ng transaction cho consistency
+                // Sử dụng transaction cho consistency
                 await _unitOfWork.BeginTransactionAsync();
 
-                // Th�m xe m?i
+                // Thêm xe mới
                 await _unitOfWork.Xes.AddAsync(xe);
-                
-                // Save changes v� commit transaction
+
+                // Save changes và commit transaction
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Created new car: {xe.Tenxe}");
-                TempData["SuccessMessage"] = "Th�m xe th�nh c�ng!";
+                TempData["SuccessMessage"] = "Thêm xe thành công!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 _logger.LogError(ex, "Error creating car");
-                ModelState.AddModelError("", "C� l?i x?y ra khi th�m xe");
+                ModelState.AddModelError("", "Có lỗi xảy ra khi thêm xe");
                 return View(xe);
             }
         }
@@ -123,10 +123,10 @@ namespace duanminiveprogresql.Controllers
             try
             {
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
-                
+
                 if (xe == null)
                 {
-                    TempData["ErrorMessage"] = "Kh�ng t�m th?y xe";
+                    TempData["ErrorMessage"] = "Không tìm thấy xe";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -135,7 +135,7 @@ namespace duanminiveprogresql.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error loading car {id} for edit");
-                TempData["ErrorMessage"] = "C� l?i x?y ra";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra";
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -163,14 +163,14 @@ namespace duanminiveprogresql.Controllers
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Updated car: {xe.Tenxe}");
-                TempData["SuccessMessage"] = "C?p nh?t xe th�nh c�ng!";
+                TempData["SuccessMessage"] = "Cập nhật xe thành công!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 _logger.LogError(ex, $"Error updating car {id}");
-                ModelState.AddModelError("", "C� l?i x?y ra khi c?p nh?t xe");
+                ModelState.AddModelError("", "Có lỗi xảy ra khi cập nhật xe");
                 return View(xe);
             }
         }
@@ -183,10 +183,10 @@ namespace duanminiveprogresql.Controllers
             try
             {
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
-                
+
                 if (xe == null)
                 {
-                    TempData["ErrorMessage"] = "Kh�ng t�m th?y xe";
+                    TempData["ErrorMessage"] = "Không tìm thấy xe";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -196,30 +196,30 @@ namespace duanminiveprogresql.Controllers
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Deleted car: {xe.Tenxe}");
-                TempData["SuccessMessage"] = "X�a xe th�nh c�ng!";
+                TempData["SuccessMessage"] = "Xóa xe thành công!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 await _unitOfWork.RollbackTransactionAsync();
                 _logger.LogError(ex, $"Error deleting car {id}");
-                TempData["ErrorMessage"] = "C� l?i x?y ra khi x�a xe";
+                TempData["ErrorMessage"] = "Có lỗi xảy ra khi xóa xe";
                 return RedirectToAction(nameof(Index));
             }
         }
 
-        // Ki?m tra xe c� available kh�ng
+        // Kiểm tra xe có available không
         public async Task<IActionResult> CheckAvailability(int xeId, DateTime startDate, DateTime endDate)
         {
             try
             {
                 var isAvailable = await _unitOfWork.Xes.IsCarAvailableAsync(xeId, startDate, endDate);
-                
+
                 return Json(new
                 {
                     success = true,
                     available = isAvailable,
-                    message = isAvailable ? "Xe kh? d?ng" : "Xe ?� ???c ??t trong th?i gian n�y"
+                    message = isAvailable ? "Xe khả dụng" : "Xe đã được đặt trong thời gian này"
                 });
             }
             catch (Exception ex)
@@ -228,12 +228,12 @@ namespace duanminiveprogresql.Controllers
                 return Json(new
                 {
                     success = false,
-                    message = "C� l?i x?y ra"
+                    message = "Có lỗi xảy ra"
                 });
             }
         }
 
-        // Example: Complex operation v?i multiple repositories
+        // Example: Complex operation với multiple repositories
         public async Task<IActionResult> BookingStats(int xeId)
         {
             try
@@ -244,10 +244,10 @@ namespace duanminiveprogresql.Controllers
                     return NotFound();
                 }
 
-                // L?y bookings c?a xe n�y
+                // Lấy bookings của xe này
                 var bookings = await _unitOfWork.DatXes.GetBookingsByCarAsync(xeId);
-                
-                // T�nh th?ng k�
+
+                // Tính thống kê
                 var stats = new
                 {
                     TenXe = xe.Tenxe,

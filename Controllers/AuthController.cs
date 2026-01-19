@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -22,7 +23,7 @@ namespace duanminiveprogresql.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -61,7 +62,7 @@ namespace duanminiveprogresql.Controllers
                 // So sánh password trực tiếp (plain text)
                 _logger.LogInformation($"Password check - Input: {password}");
                 _logger.LogInformation($"Password check - DB: {user.Matkhau}");
-                
+
                 if (user.Matkhau != password)
                 {
                     _logger.LogWarning($"Password mismatch for: {email}");
@@ -86,11 +87,11 @@ namespace duanminiveprogresql.Controllers
 
                 var sessionUserId = HttpContext.Session.GetInt32("UserId");
                 _logger.LogInformation($"Session saved: UserId={sessionUserId}");
-                
+
                 if (sessionUserId == null)
                 {
                     _logger.LogError("Failed to save session!");
-                    ModelState.AddModelError("", "Lỗi hệ thống: không thể lưu vào section, Thử lại");
+                    ModelState.AddModelError("", "Lỗi hệ thống: không thể lưu vào session, Thử lại");
                     return View();
                 }
 
@@ -159,12 +160,12 @@ namespace duanminiveprogresql.Controllers
 
                 _logger.LogInformation($"New user created: ID={newUser.Id}, Email={email}");
 
-                // Tạo khách hàng - SỬA: DateTime.Now thay vì DateTime.UtcNow
+                // Tạo khách hàng - SỬa: DateTime.Now thay vì DateTime.UtcNow
                 var newCustomer = new Khachhang
                 {
                     Nguoidungid = newUser.Id,
                     Daxacthuc = false,
-                    Ngaydangky = DateTime.Now  // ✅ SỬA: DateTime.Now cho timestamp without time zone
+                    Ngaydangky = DateTime.Now  // ✅ SỬa: DateTime.Now cho timestamp without time zone
                 };
 
                 _context.Khachhangs.Add(newCustomer);
@@ -186,7 +187,7 @@ namespace duanminiveprogresql.Controllers
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             _logger.LogInformation($"User logout: ID={userId}");
-            
+
             HttpContext.Session.Clear();
             TempData["SuccessMessage"] = "Đã đăng xuất thành công";
             return RedirectToAction("Index", "Home");
@@ -197,7 +198,7 @@ namespace duanminiveprogresql.Controllers
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             var userName = HttpContext.Session.GetString("UserName");
-            
+
             return Content($"UserId: {userId}, UserName: {userName}");
         }
     }

@@ -78,6 +78,10 @@ CREATE TABLE DatXe (
         REFERENCES Xe(Id)
 );
 
+
+select * from datxe
+
+
 CREATE INDEX IX_DatXe_KhachHangId ON DatXe(KhachHangId);
 CREATE INDEX IX_DatXe_XeId ON DatXe(XeId);
 CREATE INDEX IX_DatXe_TrangThai ON DatXe(TrangThai);

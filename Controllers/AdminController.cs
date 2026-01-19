@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 
 namespace duanminivepropgsql.Controllers
 {
@@ -27,7 +28,7 @@ namespace duanminivepropgsql.Controllers
         {
             if (!IsAdmin())
             {
-                TempData["ErrorMessage"] = "Bạn không có quyền truy cập trang này!";
+                TempData["ErrorMessage"] = "Bạn không có quyền truy cập vào trang này!";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -80,7 +81,7 @@ namespace duanminivepropgsql.Controllers
 
             try
             {
-                xe.Ngaytao = DateTime.Now;  // ✅ SỬA: DateTime.Now
+                xe.Ngaytao = DateTime.Now;
                 xe.Trangthai = "Available";
 
                 _context.Xes.Add(xe);
@@ -119,7 +120,7 @@ namespace duanminivepropgsql.Controllers
 
             try
             {
-                xe.Ngaycapnhat = DateTime.Now;  // ✅ SỬA: DateTime.Now
+                xe.Ngaycapnhat = DateTime.Now;  // ✅ SỬa: DateTime.Now
                 _context.Update(xe);
                 await _context.SaveChangesAsync();
 
@@ -192,7 +193,7 @@ namespace duanminivepropgsql.Controllers
                 if (booking != null)
                 {
                     booking.Trangthai = "Confirmed";
-                    booking.Ngayxacnhan = DateTime.Now;  // ✅ SỬA: DateTime.Now
+                    booking.Ngayxacnhan = DateTime.Now;  // ✅ SỬa: DateTime.Now
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Đã xác nhận đơn thuê!";
                 }
@@ -274,7 +275,7 @@ namespace duanminivepropgsql.Controllers
         {
             if (!IsAdmin()) return RedirectToAction("Index", "Home");
 
-            var today = DateTime.Now.Date;  // ✅ SỬA: DateTime.Now
+            var today = DateTime.Now.Date;  // ✅ SỬa: DateTime.Now
             var thisMonth = new DateTime(today.Year, today.Month, 1);
             var lastMonth = thisMonth.AddMonths(-1);
 
@@ -353,8 +354,8 @@ namespace duanminivepropgsql.Controllers
                     ticket.Traloi = reply;
                     ticket.Nhanvienxulyid = userId;
                     ticket.Trangthai = "Resolved";
-                    ticket.Ngaygiaiquyet = DateTime.Now;  // ✅ SỬA: DateTime.Now
-                    ticket.Ngaycapnhat = DateTime.Now;    // ✅ SỬA: DateTime.Now
+                    ticket.Ngaygiaiquyet = DateTime.Now;  // ✅ SỬa: DateTime.Now
+                    ticket.Ngaycapnhat = DateTime.Now;    // ✅ SỬa: DateTime.Now
 
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Đã trả lời hỗ trợ!";

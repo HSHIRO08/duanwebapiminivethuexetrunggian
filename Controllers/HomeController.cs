@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -48,7 +49,7 @@ namespace duanminiveprogresql.Controllers
             ViewBag.Founded = "2024";
             ViewBag.TotalCustomers = _context.Khachhangs.Count();
             ViewBag.TotalCars = _context.Xes.Count();
-            
+
             return View();
         }
 
@@ -73,7 +74,7 @@ namespace duanminiveprogresql.Controllers
             {
                 // Tạo ticket hỗ trợ
                 var userId = HttpContext.Session.GetInt32("UserId");
-                
+
                 if (userId != null)
                 {
                     var khachhang = await _context.Khachhangs
@@ -97,20 +98,20 @@ namespace duanminiveprogresql.Controllers
                     }
                 }
 
-                TempData["SuccessMessage"] = "Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất.";
+                TempData["SuccessMessage"] = "C?m on b?n dã liên h?! Chúng tôi s? ph?n h?i s?m nh?t.";
                 _logger.LogInformation($"Contact form submitted: {name} - {email}");
-                
+
                 return RedirectToAction("Contact");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error processing contact form");
-                TempData["ErrorMessage"] = "Có lỗi xảy ra. Vui lòng thử lại!";
+                TempData["ErrorMessage"] = "Có l?i x?y ra. Vui lòng th? l?i!";
                 return View();
             }
         }
 
-        // Tìm kiếm nhanh
+        // Tìm ki?m nhanh
         [HttpGet]
         public async Task<IActionResult> Search(string keyword)
         {
@@ -120,8 +121,8 @@ namespace duanminiveprogresql.Controllers
             }
 
             var cars = await _context.Xes
-                .Where(x => x.Tenxe.Contains(keyword) 
-                    || x.Hangxe.Contains(keyword) 
+                .Where(x => x.Tenxe.Contains(keyword)
+                    || x.Hangxe.Contains(keyword)
                     || x.Loaixe.Contains(keyword))
                 .ToListAsync();
 

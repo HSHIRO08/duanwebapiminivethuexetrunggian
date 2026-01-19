@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -21,7 +21,7 @@ namespace duanminiveprogresql.Controllers
             // Tìm kiếm
             if (!string.IsNullOrEmpty(search))
             {
-                query = query.Where(x => x.Tenxe.Contains(search) || 
+                query = query.Where(x => x.Tenxe.Contains(search) ||
                                         x.Hangxe.Contains(search) ||
                                         x.Biensoxe.Contains(search));
             }
@@ -58,7 +58,7 @@ namespace duanminiveprogresql.Controllers
             return View(cars);
         }
 
-        // Chi tiết xe
+        // Chi ti?t xe
         public async Task<IActionResult> Details(int id)
         {
             var xe = await _context.Xes
@@ -77,7 +77,7 @@ namespace duanminiveprogresql.Controllers
 
             ViewBag.AvgRating = avgRating;
 
-            // Lấy đánh giá gần nhất
+            // L?y dánh giá g?n nh?t
             var recentReviews = await _context.Lichsuthues
                 .Where(l => l.Xeid == id && !string.IsNullOrEmpty(l.Nhanxet))
                 .Include(l => l.Khachhang)

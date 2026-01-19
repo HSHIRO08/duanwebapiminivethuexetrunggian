@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -116,7 +117,7 @@ namespace duanminiveprogresql.Controllers.API
                 return BadRequest(new { message = "Email đã được sử dụng" });
             }
 
-            // SỬA: DateTime.Now thay vì DateTime.UtcNow
+            // SỬa: DateTime.Now thay vì DateTime.UtcNow
             var nguoidung = new Nguoidung
             {
                 Email = model.Email,
@@ -126,7 +127,7 @@ namespace duanminiveprogresql.Controllers.API
                 Diachi = model.Diachi,
                 Vaitro = model.Vaitro ?? "Customer",
                 Trangthai = true,
-                Ngaytao = DateTime.Now  // ✅ SỬA: DateTime.Now
+                Ngaytao = DateTime.Now  // ✅ SỬa: DateTime.Now
             };
 
             _context.Nguoidungs.Add(nguoidung);

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
-using System.Text.RegularExpressions;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -86,13 +86,13 @@ namespace duanminiveprogresql.Controllers
             // 1. CHÀO HỎI
             if (IsGreeting(message))
             {
-                return "Xin chào! 👋 Tôi là trợ lý ảo của Nhoang Cho Thuê Xe Ô Tô.\n\n" +
+                return "Xin chào! Tôi là trợ lý ảo của Nhoang Cho Thuê Xe Ô Tô.\n\n" +
                        "Tôi có thể giúp bạn:\n" +
-                       "• 🚗 Tìm xe phù hợp\n" +
-                       "• 💰 Xem bảng giá\n" +
-                       "• 📋 Hướng dẫn thuê xe\n" +
-                       "• 📞 Liên hệ hỗ trợ\n" +
-                       "• ❓ Trả lời câu hỏi\n\n" +
+                       "• Tìm xe phù hợp\n" +
+                       "• Xem bảng giá\n" +
+                       "• Hướng dẫn thuê xe\n" +
+                       "• Liên hệ hỗ trợ\n" +
+                       "• Trả lời câu hỏi\n\n" +
                        "Bạn cần tôi hỗ trợ điều gì?";
             }
 
@@ -125,15 +125,15 @@ namespace duanminiveprogresql.Controllers
                     if (!cars.Any())
                         return "Hiện tại chưa có xe khả dụng.";
 
-                    var response = "🚗 **Xe đang có sẵn:**\n\n";
+                    var response = "**Xe đang có sẵn:**\n\n";
                     foreach (var car in cars)
                     {
-                        response += $"✅ **{car.Tenxe}**\n" +
+                        response += $"? **{car.Tenxe}**\n" +
                                   $"   • Loại: {car.Loaixe} - {car.Sochongoi} chỗ\n" +
-                                  $"   • Giá: {car.Giathuetheongay:N0}đ/ngày\n" +
+                                  $"   • Giá: {car.Giathuetheongay:N0}d/ngày\n" +
                                   $"   • Xem chi tiết: [Nhấn vào đây](/Xe/Details/{car.Id})\n\n";
                     }
-                    response += "💡 Bạn muốn tìm xe theo loại nào? (SUV, Sedan, Toyota, Honda...)";
+                    response += "Bạn muốn tìm xe theo loại nào? (SUV, Sedan, Toyota, Honda...)";
                     return response;
                 }
             }
@@ -149,12 +149,12 @@ namespace duanminiveprogresql.Controllers
                         .Take(3)
                         .ToListAsync();
 
-                    var response = "💰 **Xe giá tốt nhất:**\n\n";
+                    var response = "**Xe giá tốt nhất:**\n\n";
                     foreach (var car in cheapCars)
                     {
-                        response += $"✅ {car.Tenxe} - **{car.Giathuetheongay:N0}đ/ngày**\n";
+                        response += $" {car.Tenxe} - **{car.Giathuetheongay:N0}d/ngày**\n";
                     }
-                    response += "\n📞 Liên hệ: 0981231205 để được tư vấn thêm!";
+                    response += "\n Liên hệ: 0981231205 để được tư vấn thêm!";
                     return response;
                 }
 
@@ -162,8 +162,8 @@ namespace duanminiveprogresql.Controllers
                        "• Sedan 4-5 chỗ: 500,000đ - 800,000đ/ngày\n" +
                        "• SUV 7 chỗ: 800,000đ - 1,500,000đ/ngày\n" +
                        "• MPV 7 chỗ: 700,000đ - 1,200,000đ/ngày\n\n" +
-                       "💡 Thuê 7 ngày trở lên: Giảm 10%\n" +
-                       "💡 Thuê 30 ngày: Giảm 20%\n\n" +
+                       "🎁 Thuê 7 ngày trở lên: Giảm 10%\n" +
+                       "🎁 Thuê 30 ngày: Giảm 20%\n\n" +
                        "Bạn muốn xem xe nào cụ thể?";
             }
 
@@ -176,11 +176,11 @@ namespace duanminiveprogresql.Controllers
                        "**Bước 3:** Chọn thời gian thuê\n" +
                        "**Bước 4:** Đặt cọc 30% giá trị xe\n" +
                        "**Bước 5:** Nhận xe và thanh toán phần còn lại\n\n" +
-                       "📝 **Giấy tờ cần thiết:**\n" +
+                       "📄 **Giấy tờ cần thiết:**\n" +
                        "• CMND/CCCD (Bản gốc)\n" +
                        "• Bằng lái xe hợp lệ\n" +
                        "• Hộ khẩu hoặc sổ tạm trú\n\n" +
-                       "💡 Bạn muốn [đăng ký ngay](/Auth/Register) hay [xem xe](/Xe)?";
+                       "👉 Bạn muốn [đăng ký ngay](/Auth/Register) hay [xem xe](/Xe)?";
             }
 
             // 5. LIÊN HỆ / HỖ TRỢ
@@ -190,7 +190,7 @@ namespace duanminiveprogresql.Controllers
                        "• **Hotline:** 0981231205 (24/7)\n" +
                        "• **Email:** mainhathoangevil@gmail.com\n" +
                        "• **Địa chỉ:** Hà Nội, Việt Nam\n\n" +
-                       "🕐 **Giờ làm việc:**\n" +
+                       "🕒 **Giờ làm việc:**\n" +
                        "• Thứ 2 - Thứ 7: 8:00 - 20:00\n" +
                        "• Chủ nhật: 9:00 - 18:00\n\n" +
                        "Bạn muốn [gửi yêu cầu hỗ trợ](/Account/Support)?";
@@ -199,12 +199,12 @@ namespace duanminiveprogresql.Controllers
             // 6. ĐIỀU KIỆN THUÊ
             if (message.Contains("điều kiện") || message.Contains("yêu cầu") || message.Contains("tuổi"))
             {
-                return "📋 **Điều kiện thuê xe:**\n\n" +
-                       "✅ Từ đủ 21 tuổi trở lên\n" +
-                       "✅ Có bằng lái xe hợp lệ (B1 trở lên)\n" +
-                       "✅ Có CMND/CCCD bản gốc\n" +
-                       "✅ Đặt cọc 30% giá trị hợp đồng\n\n" +
-                       "❌ **Không cho thuê nếu:**\n" +
+                return "📝 **Điều kiện thuê xe:**\n\n" +
+                       "✓ Từ độ 21 tuổi trở lên\n" +
+                       "✓ Có bằng lái xe hợp lệ (B1 trở lên)\n" +
+                       "✓ Có CMND/CCCD bản gốc\n" +
+                       "✓ Đặt cọc 30% giá trị hợp đồng\n\n" +
+                       "✗ **Không cho thuê nếu:**\n" +
                        "• Chưa đủ 21 tuổi\n" +
                        "• Không có giấy tờ hợp lệ\n" +
                        "• Vi phạm giao thông nghiêm trọng\n\n" +
@@ -215,11 +215,11 @@ namespace duanminiveprogresql.Controllers
             if (message.Contains("bảo hiểm") || message.Contains("tai nạn"))
             {
                 return "🛡️ **Chính sách bảo hiểm:**\n\n" +
-                       "✅ **Bảo hiểm xe bao gồm:**\n" +
+                       "✓ **Bảo hiểm xe bao gồm:**\n" +
                        "• Bảo hiểm trách nhiệm dân sự\n" +
                        "• Bảo hiểm vật chất xe\n" +
                        "• Bảo hiểm người ngồi trên xe\n\n" +
-                       "💡 **Lưu ý:**\n" +
+                       "⚠️ **Lưu ý:**\n" +
                        "• Khấu hao tự nhiên: Không đền bù\n" +
                        "• Tai nạn do rượu bia: Không bảo hiểm\n" +
                        "• Mất cắp: Báo công an ngay\n\n" +
@@ -230,25 +230,25 @@ namespace duanminiveprogresql.Controllers
             if (message.Contains("thanh toán") || message.Contains("trả tiền"))
             {
                 return "💳 **Phương thức thanh toán:**\n\n" +
-                       "✅ Tiền mặt\n" +
-                       "✅ Chuyển khoản ngân hàng\n" +
-                       "✅ Quét mã QR\n" +
-                       "✅ Ví điện tử (Momo, ZaloPay)\n\n" +
-                       "📝 **Lịch thanh toán:**\n" +
+                       "✓ Tiền mặt\n" +
+                       "✓ Chuyển khoản ngân hàng\n" +
+                       "✓ Quét mã QR\n" +
+                       "✓ Ví điện tử (Momo, ZaloPay)\n\n" +
+                       "📅 **Lịch thanh toán:**\n" +
                        "• Đặt cọc: 30% khi đặt xe\n" +
                        "• Thanh toán: 70% khi nhận xe\n\n" +
                        "🎁 Thanh toán full ngay: Giảm thêm 5%!";
             }
 
-            // 9. HỦY ĐƠN
-            if (message.Contains("hủy") || message.Contains("hoàn tiền"))
+            // 9. H?Y ÐON
+            if (message.Contains("h?y") || message.Contains("hoàn ti?n"))
             {
-                return "🔄 **Chính sách hủy đơn:**\n\n" +
+                return "🚫 **Chính sách hủy đơn:**\n\n" +
                        "• Hủy trước 7 ngày: Hoàn 100%\n" +
                        "• Hủy trước 3 ngày: Hoàn 70%\n" +
                        "• Hủy trước 1 ngày: Hoàn 50%\n" +
                        "• Hủy trong ngày: Không hoàn\n\n" +
-                       "💡 Chỉ áp dụng cho tiền đặt cọc.\n\n" +
+                       "📌 Chỉ áp dụng cho tiền đặt cọc.\n\n" +
                        "Bạn cần hỗ trợ hủy đơn? [Liên hệ ngay](/Account/Support)";
             }
 
@@ -257,7 +257,7 @@ namespace duanminiveprogresql.Controllers
             {
                 if (userId == null)
                 {
-                    return "⚠️ Bạn cần [đăng nhập](/Auth/Login) để xem lịch sử đơn đặt xe.";
+                    return "🔒 Bạn cần [đăng nhập](/Auth/Login) để xem lịch sử đơn đặt xe.";
                 }
 
                 var khachhang = await _context.Khachhangs
@@ -265,7 +265,7 @@ namespace duanminiveprogresql.Controllers
 
                 if (khachhang == null)
                 {
-                    return "⚠️ Không tìm thấy thông tin khách hàng.";
+                    return "❌ Không tìm thấy thông tin khách hàng.";
                 }
 
                 var bookings = await _context.Datxes
@@ -276,18 +276,18 @@ namespace duanminiveprogresql.Controllers
 
                 if (!bookings.Any())
                 {
-                    return "📭 Bạn chưa có đơn đặt xe nào.\n\n" +
-                           "💡 [Xem danh sách xe](/Xe) để thuê ngay!";
+                    return "📝 Bạn chưa có đơn đặt xe nào.\n\n" +
+                           "🚗 [Xem danh sách xe](/Xe) để thuê ngay!";
                 }
 
-                var response = "📋 **Đơn đặt xe của bạn:**\n\n";
+                var response = "📝 **Đơn đặt xe của bạn:**\n\n";
                 foreach (var booking in bookings)
                 {
                     var statusIcon = booking.Trangthai switch
                     {
                         "Pending" => "⏳",
                         "Confirmed" => "✅",
-                        "Completed" => "🎉",
+                        "Completed" => "✅✅",
                         "Cancelled" => "❌",
                         _ => "📝"
                     };
@@ -295,7 +295,7 @@ namespace duanminiveprogresql.Controllers
                               $"   • Ngày đặt: {booking.Ngaydat:dd/MM/yyyy}\n" +
                               $"   • Tổng tiền: {booking.Tongtien:N0}đ\n\n";
                 }
-                response += "💡 [Xem chi tiết](/Account/BookingHistory)";
+                response += "📝 [Xem chi tiết](/Account/BookingHistory)";
                 return response;
             }
 
@@ -331,7 +331,7 @@ namespace duanminiveprogresql.Controllers
             var response = $"🚗 **Xe {type} có sẵn:**\n\n";
             foreach (var car in cars)
             {
-                response += $"✅ **{car.Tenxe}**\n" +
+                response += $"🚘 **{car.Tenxe}**\n" +
                           $"   • {car.Sochongoi} chỗ - Màu {car.Mauxe}\n" +
                           $"   • Giá: **{car.Giathuetheongay:N0}đ/ngày**\n" +
                           $"   • [Xem chi tiết](/Xe/Details/{car.Id})\n\n";
@@ -352,7 +352,7 @@ namespace duanminiveprogresql.Controllers
             var response = $"🚗 **Xe {brand} có sẵn:**\n\n";
             foreach (var car in cars)
             {
-                response += $"✅ **{car.Tenxe}**\n" +
+                response += $"🚘 **{car.Tenxe}**\n" +
                           $"   • {car.Loaixe} - {car.Sochongoi} chỗ\n" +
                           $"   • Giá: **{car.Giathuetheongay:N0}đ/ngày**\n" +
                           $"   • [Xem chi tiết](/Xe/Details/{car.Id})\n\n";

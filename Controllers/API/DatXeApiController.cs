@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers.API
 {
@@ -60,7 +61,7 @@ namespace duanminiveprogresql.Controllers.API
 
             if (datxe == null)
             {
-                return NotFound(new { message = "Không tìm thấy đơn đặt xe" });
+                return NotFound(new { message = "Không tìm th?y don d?t xe" });
             }
 
             return datxe;
@@ -114,7 +115,7 @@ namespace duanminiveprogresql.Controllers.API
             datxe.Giatheongay = xe.Giathuetheongay;
             datxe.Tongtien = xe.Giathuetheongay * songay;
             datxe.Trangthai = "Pending";
-            datxe.Ngaydat = DateTime.Now;  // ✅ SỬA: DateTime.Now
+            datxe.Ngaydat = DateTime.Now;  // ✅ SỬa: DateTime.Now
 
             _context.Datxes.Add(datxe);
             await _context.SaveChangesAsync();
@@ -141,11 +142,11 @@ namespace duanminiveprogresql.Controllers.API
 
             if (trangthai == "Confirmed")
             {
-                datxe.Ngayxacnhan = DateTime.Now;  // ✅ SỬA: DateTime.Now
+                datxe.Ngayxacnhan = DateTime.Now;  // ✅ SỬa: DateTime.Now
             }
             else if (trangthai == "Completed")
             {
-                datxe.Ngayhoanthanh = DateTime.Now;  // ✅ SỬA: DateTime.Now
+                datxe.Ngayhoanthanh = DateTime.Now;  // ✅ SỬa: DateTime.Now
             }
 
             await _context.SaveChangesAsync();

@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -70,7 +71,7 @@ namespace duanminiveprogresql.Controllers
             // Tính tổng tiền
             var tongtien = xe.Giathuetheongay * songaythue;
 
-            // Tạo đơn đặt xe - SỬA: DateTime.Now thay vì DateTime.UtcNow
+            // Tạo đơn đặt xe - SỬa: DateTime.Now thay vì DateTime.UtcNow
             var datxe = new Datxe
             {
                 Khachhangid = khachhang.Id,
@@ -84,7 +85,7 @@ namespace duanminiveprogresql.Controllers
                 Diadiemtra = diadiemtra,
                 Ghichu = ghichu,
                 Trangthai = "Pending",
-                Ngaydat = DateTime.Now  // ✅ SỬA: DateTime.Now
+                Ngaydat = DateTime.Now  // ✅ SỬa: DateTime.Now
             };
 
             _context.Datxes.Add(datxe);
@@ -115,7 +116,7 @@ namespace duanminiveprogresql.Controllers
                 return NotFound();
             }
 
-            // Kiểm tra quyền xem
+            // Ki?m tra quy?n xem
             var khachhang = await _context.Khachhangs.FirstOrDefaultAsync(k => k.Nguoidungid == userId.Value);
             if (khachhang == null || datxe.Khachhangid != khachhang.Id)
             {
@@ -125,14 +126,14 @@ namespace duanminiveprogresql.Controllers
             return View(datxe);
         }
 
-        // Hủy đơn đặt xe
+        // H?y don d?t xe
         [HttpPost]
         public async Task<IActionResult> Cancel(int id)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
-                return Json(new { success = false, message = "Vui lòng đăng nhập" });
+                return Json(new { success = false, message = "Vui lòng dang nh?p" });
             }
 
             var khachhang = await _context.Khachhangs.FirstOrDefaultAsync(k => k.Nguoidungid == userId.Value);
@@ -140,18 +141,18 @@ namespace duanminiveprogresql.Controllers
 
             if (datxe == null || datxe.Khachhangid != khachhang.Id)
             {
-                return Json(new { success = false, message = "Không tìm thấy đơn đặt xe" });
+                return Json(new { success = false, message = "Không tìm th?y don d?t xe" });
             }
 
             if (datxe.Trangthai != "Pending" && datxe.Trangthai != "Confirmed")
             {
-                return Json(new { success = false, message = "Không thể hủy đơn ở trạng thái này" });
+                return Json(new { success = false, message = "Không th? h?y don ? tr?ng thái này" });
             }
 
             datxe.Trangthai = "Cancelled";
             await _context.SaveChangesAsync();
 
-            return Json(new { success = true, message = "Hủy đơn thành công" });
+            return Json(new { success = true, message = "H?y don thành công" });
         }
     }
 }

@@ -1,12 +1,12 @@
+﻿using Domain.Entities;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using duanminiveprogresql.Repositories;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers.API
 {
     /// <summary>
-    /// DEMO API Controller s? d?ng Repository Pattern & Unit of Work
-    /// ?�y l� example ?? refactor c�c API controllers kh�c
+    /// DEMO API Controller sử dụng Repository Pattern & Unit of Work
+    /// Đây là example để refactor các API controllers khác
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -40,7 +40,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// T�m ki?m xe
+        /// Tìm ki?m xe
         /// </summary>
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Xe>>> SearchCars([FromQuery] string searchTerm)
@@ -71,10 +71,10 @@ namespace duanminiveprogresql.Controllers.API
             try
             {
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
-                
+
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} kh�ng t?n t?i");
+                    return NotFound($"Xe ID {id} không t?n t?i");
                 }
 
                 return Ok(xe);
@@ -87,7 +87,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Th�m xe m?i
+        /// Thêm xe m?i
         /// </summary>
         [HttpPost]
         public async Task<ActionResult<Xe>> CreateCar([FromBody] Xe xe)
@@ -100,12 +100,12 @@ namespace duanminiveprogresql.Controllers.API
                 }
 
                 await _unitOfWork.BeginTransactionAsync();
-                
+
                 var createdXe = await _unitOfWork.Xes.AddAsync(xe);
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Created new car via API: {xe.Tenxe}");
-                
+
                 return CreatedAtAction(nameof(GetCar), new { id = createdXe.Id }, createdXe);
             }
             catch (Exception ex)
@@ -132,7 +132,7 @@ namespace duanminiveprogresql.Controllers.API
                 var existingXe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (existingXe == null)
                 {
-                    return NotFound($"Xe ID {id} kh�ng t?n t?i");
+                    return NotFound($"Xe ID {id} không t?n t?i");
                 }
 
                 if (!ModelState.IsValid)
@@ -141,12 +141,12 @@ namespace duanminiveprogresql.Controllers.API
                 }
 
                 await _unitOfWork.BeginTransactionAsync();
-                
+
                 _unitOfWork.Xes.Update(xe);
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Updated car via API: {xe.Tenxe}");
-                
+
                 return NoContent();
             }
             catch (Exception ex)
@@ -158,7 +158,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// X�a xe
+        /// Xóa xe
         /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCar(int id)
@@ -168,16 +168,16 @@ namespace duanminiveprogresql.Controllers.API
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} kh�ng t?n t?i");
+                    return NotFound($"Xe ID {id} không t?n t?i");
                 }
 
                 await _unitOfWork.BeginTransactionAsync();
-                
+
                 _unitOfWork.Xes.Remove(xe);
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Deleted car via API: {xe.Tenxe}");
-                
+
                 return NoContent();
             }
             catch (Exception ex)
@@ -197,14 +197,14 @@ namespace duanminiveprogresql.Controllers.API
             try
             {
                 var isAvailable = await _unitOfWork.Xes.IsCarAvailableAsync(id, startDate, endDate);
-                
+
                 return Ok(new
                 {
                     carId = id,
                     startDate,
                     endDate,
                     available = isAvailable,
-                    message = isAvailable ? "Xe kh? d?ng" : "Xe ?� ???c ??t trong th?i gian n�y"
+                    message = isAvailable ? "Xe kh? d?ng" : "Xe đã được đặt trong thời gian này"
                 });
             }
             catch (Exception ex)
@@ -215,7 +215,7 @@ namespace duanminiveprogresql.Controllers.API
         }
 
         /// <summary>
-        /// Th?ng k� xe
+        /// Th?ng kê xe
         /// </summary>
         [HttpGet("{id}/stats")]
         public async Task<ActionResult> GetCarStats(int id)
@@ -225,12 +225,12 @@ namespace duanminiveprogresql.Controllers.API
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} kh�ng t?n t?i");
+                    return NotFound($"Xe ID {id} không tồn tại");
                 }
 
                 // S? d?ng multiple repositories
                 var bookings = await _unitOfWork.DatXes.GetBookingsByCarAsync(id);
-                
+
                 var stats = new
                 {
                     CarInfo = new

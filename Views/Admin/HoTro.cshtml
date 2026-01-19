@@ -1,4 +1,4 @@
-﻿@model IEnumerable<duanminiveprogresql.Models.Hotrokhachhang>
+﻿@model IEnumerable<Domain.Entities.Hotrokhachhang>
 
 @{
     ViewData["Title"] = "Hỗ trợ khách hàng";
@@ -179,7 +179,7 @@
                     <i class="fas fa-info-circle"></i> Không có yêu cầu hỗ trợ nào
                     @if (ViewBag.CurrentStatus != "All")
                     {
-                        <text> với trạng thái <strong>@ViewBag.CurrentStatus</strong></text>
+                        <text> v?i tr?ng thái <strong>@ViewBag.CurrentStatus</strong></text>
                     }
                 </div>
             }
@@ -188,7 +188,7 @@
 
     <div class="mt-3">
         <a href="@Url.Action("Index")" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Quay lại Dashboard
+            <i class="fas fa-arrow-left"></i> Quay l?i Dashboard
         </a>
     </div>
 </div>

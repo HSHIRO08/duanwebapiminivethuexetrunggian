@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using duanminiveprogresql.Models;
 
 namespace duanminiveprogresql.Controllers.API
 {
@@ -83,9 +84,9 @@ namespace duanminiveprogresql.Controllers.API
                 return BadRequest(new { message = "Đơn đặt xe không tồn tại" });
             }
 
-            // Tạo mã giao dịch - SỬA: DateTime.Now thay vì DateTime.UtcNow
+            // Tạo mã giao dịch - SỬa: DateTime.Now thay vì DateTime.UtcNow
             thanhtoan.Magiaodich = $"TT{DateTime.Now:yyyyMMddHHmmss}{thanhtoan.Datxeid}";
-            thanhtoan.Ngaythanhtoan = DateTime.Now;  // ✅ SỬA: DateTime.Now
+            thanhtoan.Ngaythanhtoan = DateTime.Now;  // ✅ SỬa: DateTime.Now
             thanhtoan.Trangthai = "Pending";
 
             _context.Thanhtoans.Add(thanhtoan);
@@ -110,10 +111,10 @@ namespace duanminiveprogresql.Controllers.API
             }
 
             thanhtoan.Trangthai = trangthai;
-            
+
             if (trangthai == "Completed")
             {
-                thanhtoan.Ngayxacnhan = DateTime.Now;  // ✅ SỬA: DateTime.Now
+                thanhtoan.Ngayxacnhan = DateTime.Now;  // ✅ SỬa: DateTime.Now
             }
 
             await _context.SaveChangesAsync();
@@ -132,7 +133,7 @@ namespace duanminiveprogresql.Controllers.API
             var thanhtoan = await _context.Thanhtoans.FindAsync(id);
             if (thanhtoan == null)
             {
-                return NotFound(new { message = "Không tìm thấy thanh toán" });
+                return NotFound(new { message = "Không tìm th?y thanh toán" });
             }
 
             _context.Thanhtoans.Remove(thanhtoan);

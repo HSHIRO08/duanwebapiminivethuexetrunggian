@@ -1626,6 +1626,32 @@
             "rid": "win"
           }
         }
+      },
+      "DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "8.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.0",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccess.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
       }
     }
   },
@@ -4569,10 +4595,22 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "DataAccess/1.0.0": {
+      "type": "project",
+      "path": "DataAccess/DataAccess.csproj",
+      "msbuildProject": "DataAccess/DataAccess.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "Domain/Domain.csproj",
+      "msbuildProject": "Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DataAccess >= 1.0.0",
+      "Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 8.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.11",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.11",
@@ -4614,7 +4652,14 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\DataAccess\\DataAccess.csproj"
+            },
+            "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\mainh\\source\\repos\\duanwebapiminivethuexetrunggian\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

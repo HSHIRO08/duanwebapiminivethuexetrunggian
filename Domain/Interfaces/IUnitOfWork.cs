@@ -10,10 +10,10 @@
         IDatXeRepository DatXes { get; }
         INguoiDungRepository NguoiDungs { get; }
         IKhachHangRepository KhachHangs { get; }
-        
+
         // Generic Repository cho các entities khác
         IRepository<T> Repository<T>() where T : class;
-        
+
         // Transaction Management
         Task<int> SaveChangesAsync();
         Task BeginTransactionAsync();

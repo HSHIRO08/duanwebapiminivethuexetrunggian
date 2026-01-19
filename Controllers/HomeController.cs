@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DataAccess.Context;
+﻿using DataAccess.Context;
 using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -49,7 +49,7 @@ namespace duanminiveprogresql.Controllers
             ViewBag.Founded = "2024";
             ViewBag.TotalCustomers = _context.Khachhangs.Count();
             ViewBag.TotalCars = _context.Xes.Count();
-            
+
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace duanminiveprogresql.Controllers
             {
                 // Tạo ticket hỗ trợ
                 var userId = HttpContext.Session.GetInt32("UserId");
-                
+
                 if (userId != null)
                 {
                     var khachhang = await _context.Khachhangs
@@ -100,7 +100,7 @@ namespace duanminiveprogresql.Controllers
 
                 TempData["SuccessMessage"] = "C?m on b?n dã liên h?! Chúng tôi s? ph?n h?i s?m nh?t.";
                 _logger.LogInformation($"Contact form submitted: {name} - {email}");
-                
+
                 return RedirectToAction("Contact");
             }
             catch (Exception ex)
@@ -121,8 +121,8 @@ namespace duanminiveprogresql.Controllers
             }
 
             var cars = await _context.Xes
-                .Where(x => x.Tenxe.Contains(keyword) 
-                    || x.Hangxe.Contains(keyword) 
+                .Where(x => x.Tenxe.Contains(keyword)
+                    || x.Hangxe.Contains(keyword)
                     || x.Loaixe.Contains(keyword))
                 .ToListAsync();
 

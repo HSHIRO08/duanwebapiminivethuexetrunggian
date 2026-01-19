@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Domain.Entities;
 using Domain.Interfaces;
-using DataAccess.Repositories;
-using DataAccess.Context;
-using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace duanminiveprogresql.Controllers.API
 {
@@ -73,7 +71,7 @@ namespace duanminiveprogresql.Controllers.API
             try
             {
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
-                
+
                 if (xe == null)
                 {
                     return NotFound($"Xe ID {id} không t?n t?i");
@@ -102,12 +100,12 @@ namespace duanminiveprogresql.Controllers.API
                 }
 
                 await _unitOfWork.BeginTransactionAsync();
-                
+
                 var createdXe = await _unitOfWork.Xes.AddAsync(xe);
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Created new car via API: {xe.Tenxe}");
-                
+
                 return CreatedAtAction(nameof(GetCar), new { id = createdXe.Id }, createdXe);
             }
             catch (Exception ex)
@@ -143,12 +141,12 @@ namespace duanminiveprogresql.Controllers.API
                 }
 
                 await _unitOfWork.BeginTransactionAsync();
-                
+
                 _unitOfWork.Xes.Update(xe);
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Updated car via API: {xe.Tenxe}");
-                
+
                 return NoContent();
             }
             catch (Exception ex)
@@ -174,12 +172,12 @@ namespace duanminiveprogresql.Controllers.API
                 }
 
                 await _unitOfWork.BeginTransactionAsync();
-                
+
                 _unitOfWork.Xes.Remove(xe);
                 await _unitOfWork.CommitTransactionAsync();
 
                 _logger.LogInformation($"Deleted car via API: {xe.Tenxe}");
-                
+
                 return NoContent();
             }
             catch (Exception ex)
@@ -199,7 +197,7 @@ namespace duanminiveprogresql.Controllers.API
             try
             {
                 var isAvailable = await _unitOfWork.Xes.IsCarAvailableAsync(id, startDate, endDate);
-                
+
                 return Ok(new
                 {
                     carId = id,
@@ -232,7 +230,7 @@ namespace duanminiveprogresql.Controllers.API
 
                 // S? d?ng multiple repositories
                 var bookings = await _unitOfWork.DatXes.GetBookingsByCarAsync(id);
-                
+
                 var stats = new
                 {
                     CarInfo = new

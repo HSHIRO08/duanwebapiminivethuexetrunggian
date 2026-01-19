@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DataAccess.Context;
+﻿using DataAccess.Context;
 using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -23,7 +23,7 @@ namespace duanminiveprogresql.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -62,7 +62,7 @@ namespace duanminiveprogresql.Controllers
                 // So sánh password trực tiếp (plain text)
                 _logger.LogInformation($"Password check - Input: {password}");
                 _logger.LogInformation($"Password check - DB: {user.Matkhau}");
-                
+
                 if (user.Matkhau != password)
                 {
                     _logger.LogWarning($"Password mismatch for: {email}");
@@ -87,7 +87,7 @@ namespace duanminiveprogresql.Controllers
 
                 var sessionUserId = HttpContext.Session.GetInt32("UserId");
                 _logger.LogInformation($"Session saved: UserId={sessionUserId}");
-                
+
                 if (sessionUserId == null)
                 {
                     _logger.LogError("Failed to save session!");
@@ -187,7 +187,7 @@ namespace duanminiveprogresql.Controllers
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             _logger.LogInformation($"User logout: ID={userId}");
-            
+
             HttpContext.Session.Clear();
             TempData["SuccessMessage"] = "Đã đăng xuất thành công";
             return RedirectToAction("Index", "Home");
@@ -198,7 +198,7 @@ namespace duanminiveprogresql.Controllers
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             var userName = HttpContext.Session.GetString("UserName");
-            
+
             return Content($"UserId: {userId}, UserName: {userName}");
         }
     }

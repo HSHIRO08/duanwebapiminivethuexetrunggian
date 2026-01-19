@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DataAccess.Context;
+﻿using DataAccess.Context;
 using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace duanminivepropgsql.Controllers
 {
@@ -81,7 +81,7 @@ namespace duanminivepropgsql.Controllers
 
             try
             {
-                xe.Ngaytao = DateTime.Now;  
+                xe.Ngaytao = DateTime.Now;
                 xe.Trangthai = "Available";
 
                 _context.Xes.Add(xe);

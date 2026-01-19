@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DataAccess.Context;
-using Domain.Entities;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -22,7 +21,7 @@ namespace duanminiveprogresql.Controllers
             // Tìm kiếm
             if (!string.IsNullOrEmpty(search))
             {
-                query = query.Where(x => x.Tenxe.Contains(search) || 
+                query = query.Where(x => x.Tenxe.Contains(search) ||
                                         x.Hangxe.Contains(search) ||
                                         x.Biensoxe.Contains(search));
             }

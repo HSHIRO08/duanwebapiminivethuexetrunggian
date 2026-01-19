@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Context;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DataAccess.Context;
-using Domain.Entities;
 using System.Text;
 
 namespace duanminiveprogresql.Controllers
@@ -220,7 +219,7 @@ WHERE email = 'your-email@example.com';</pre>
             {
                 // Tìm user
                 var user = await _context.Nguoidungs.FirstOrDefaultAsync(u => u.Email == email);
-                
+
                 if (user == null)
                 {
                     html.AppendLine($"<div class='alert alert-danger'>? Không tìm th?y user v?i email: <strong>{email}</strong></div>");
@@ -241,7 +240,7 @@ WHERE email = 'your-email@example.com';</pre>
                     html.AppendLine("<table class='table'>");
                     html.AppendLine($"<tr><th>Password nh?p vào:</th><td><code>{password}</code></td></tr>");
                     html.AppendLine($"<tr><th>Password trong DB:</th><td><code>{user.Matkhau}</code></td></tr>");
-                    
+
                     if (user.Matkhau == password)
                     {
                         html.AppendLine("<tr><td colspan='2'><div class='alert alert-success mb-0'><strong>? Password KH?P - Ðang nh?p s? thành công!</strong></div></td></tr>");

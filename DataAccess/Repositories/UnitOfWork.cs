@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using DataAccess.Context;
+﻿using DataAccess.Context;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DataAccess.Repositories
 {
@@ -80,12 +80,12 @@ namespace DataAccess.Repositories
         public IRepository<T> Repository<T>() where T : class
         {
             var type = typeof(T);
-            
+
             if (!_repositories.ContainsKey(type))
             {
                 _repositories[type] = new Repository<T>(_context);
             }
-            
+
             return (IRepository<T>)_repositories[type];
         }
 
@@ -106,7 +106,7 @@ namespace DataAccess.Repositories
             try
             {
                 await _context.SaveChangesAsync();
-                
+
                 if (_transaction != null)
                 {
                     await _transaction.CommitAsync();

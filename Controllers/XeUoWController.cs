@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Domain.Entities;
 using Domain.Interfaces;
-using DataAccess.Repositories;
-using DataAccess.Context;
-using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace duanminiveprogresql.Controllers
 {
@@ -62,7 +60,7 @@ namespace duanminiveprogresql.Controllers
             try
             {
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
-                
+
                 if (xe == null)
                 {
                     TempData["ErrorMessage"] = "Không tìm thấy xe";
@@ -102,7 +100,7 @@ namespace duanminiveprogresql.Controllers
 
                 // Thêm xe mới
                 await _unitOfWork.Xes.AddAsync(xe);
-                
+
                 // Save changes và commit transaction
                 await _unitOfWork.CommitTransactionAsync();
 
@@ -125,7 +123,7 @@ namespace duanminiveprogresql.Controllers
             try
             {
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
-                
+
                 if (xe == null)
                 {
                     TempData["ErrorMessage"] = "Không tìm thấy xe";
@@ -185,7 +183,7 @@ namespace duanminiveprogresql.Controllers
             try
             {
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
-                
+
                 if (xe == null)
                 {
                     TempData["ErrorMessage"] = "Không tìm thấy xe";
@@ -216,7 +214,7 @@ namespace duanminiveprogresql.Controllers
             try
             {
                 var isAvailable = await _unitOfWork.Xes.IsCarAvailableAsync(xeId, startDate, endDate);
-                
+
                 return Json(new
                 {
                     success = true,
@@ -248,7 +246,7 @@ namespace duanminiveprogresql.Controllers
 
                 // Lấy bookings của xe này
                 var bookings = await _unitOfWork.DatXes.GetBookingsByCarAsync(xeId);
-                
+
                 // Tính thống kê
                 var stats = new
                 {

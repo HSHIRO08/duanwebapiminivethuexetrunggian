@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using DataAccess.Context;
+﻿using DataAccess.Context;
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories
 {
@@ -42,7 +42,7 @@ namespace DataAccess.Repositories
         public async Task<IEnumerable<Xe>> SearchCarsAsync(string searchTerm)
         {
             return await _dbSet
-                .Where(x => x.Tenxe.Contains(searchTerm) || 
+                .Where(x => x.Tenxe.Contains(searchTerm) ||
                            x.Hangxe.Contains(searchTerm) ||
                            x.Biensoxe.Contains(searchTerm))
                 .OrderBy(x => x.Tenxe)

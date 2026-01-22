@@ -82,7 +82,7 @@ namespace duanminiveprogresql.Controllers
         {
             if (string.IsNullOrEmpty(password))
             {
-                return Content("Vui lòng nh?p password. Ví d?: /Debug/ViewPassword?password=123456");
+                return Content("Vui lòng nhập password. Ví dụ: /Debug/ViewPassword?password=123456");
             }
 
             var result = $@"
@@ -198,7 +198,7 @@ WHERE email = 'your-email@example.com';</pre>
                         <div class='container'>
                             <div class='alert alert-warning'>
                                 <h2>?? Test Login</h2>
-                                <p>S? d?ng: <code>/Debug/TestLogin?email=your@email.com&password=yourpassword</code></p>
+                                <p>Số dòng: <code>/Debug/TestLogin?email=your@email.com&password=yourpassword</code></p>
                                 <a href='/Debug/ListUsers' class='btn btn-primary'>View All Users</a>
                             </div>
                         </div>
@@ -226,19 +226,19 @@ WHERE email = 'your-email@example.com';</pre>
                 }
                 else
                 {
-                    html.AppendLine($"<div class='alert alert-success'>? Tìm th?y user!</div>");
+                    html.AppendLine($"<div class='alert alert-success'>? Tìm thấy user!</div>");
                     html.AppendLine("<table class='table'>");
                     html.AppendLine($"<tr><th>ID:</th><td>{user.Id}</td></tr>");
                     html.AppendLine($"<tr><th>Email:</th><td>{user.Email}</td></tr>");
-                    html.AppendLine($"<tr><th>H? tên:</th><td>{user.Hoten}</td></tr>");
+                    html.AppendLine($"<tr><th>Họ tên:</th><td>{user.Hoten}</td></tr>");
                     html.AppendLine($"<tr><th>Vai trò:</th><td><span class='badge bg-primary'>{user.Vaitro}</span></td></tr>");
-                    html.AppendLine($"<tr><th>Tr?ng thái:</th><td>{(user.Trangthai ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>")}</td></tr>");
+                    html.AppendLine($"<tr><th>Trạng thái:</th><td>{(user.Trangthai ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>")}</td></tr>");
                     html.AppendLine("</table>");
 
                     // So sánh plain text password
                     html.AppendLine("<div class='card mt-3'><div class='card-header bg-info text-white'><h5>?? Password Comparison (Plain Text)</h5></div><div class='card-body'>");
                     html.AppendLine("<table class='table'>");
-                    html.AppendLine($"<tr><th>Password nh?p vào:</th><td><code>{password}</code></td></tr>");
+                    html.AppendLine($"<tr><th>Password nhập vào:</th><td><code>{password}</code></td></tr>");
                     html.AppendLine($"<tr><th>Password trong DB:</th><td><code>{user.Matkhau}</code></td></tr>");
 
                     if (user.Matkhau == password)
@@ -249,7 +249,7 @@ WHERE email = 'your-email@example.com';</pre>
                     {
                         html.AppendLine("<tr><td colspan='2'><div class='alert alert-danger mb-0'><strong>? Password KHÔNG KH?P - Ðang nh?p s? th?t b?i!</strong>");
                         html.AppendLine("<hr>");
-                        html.AppendLine("<p>Ð? c?p nh?t password trong DB, ch?y SQL:</p>");
+                        html.AppendLine("<p>Đã cập nhật password trong DB, chạy SQL:</p>");
                         html.AppendLine($"<pre>UPDATE nguoidung SET matkhau = '{password}' WHERE email = '{email}';</pre>");
                         html.AppendLine("</div></td></tr>");
                     }
@@ -258,12 +258,12 @@ WHERE email = 'your-email@example.com';</pre>
             }
             catch (Exception ex)
             {
-                html.AppendLine($"<div class='alert alert-danger'>? L?i: {ex.Message}</div>");
+                html.AppendLine($"<div class='alert alert-danger'>? Lỗi: {ex.Message}</div>");
                 _logger.LogError(ex, "Error in TestLogin");
             }
 
             html.AppendLine("<hr>");
-            html.AppendLine("<a href='/Debug/ListUsers' class='btn btn-primary'>? View All Users</a> ");
+            html.AppendLine("<a href='/Debug/ListUsers' class='btn btn-primary'>View All Users</a> ");
             html.AppendLine("<a href='/Auth/Login' class='btn btn-success'>Go to Login Page</a> ");
             html.AppendLine("<a href='/' class='btn btn-secondary'>Home</a>");
             html.AppendLine("</div></div></div></body></html>");

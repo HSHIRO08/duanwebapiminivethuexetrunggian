@@ -1,1 +1,4 @@
-# Dự án web api mini về thuê xe trung gian 
+# HTH-Rent Auto Car
+
+Dự án web application cho thuê xe ô tô với API RESTful
+

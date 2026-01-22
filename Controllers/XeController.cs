@@ -77,7 +77,7 @@ namespace duanminiveprogresql.Controllers
 
             ViewBag.AvgRating = avgRating;
 
-            // L?y dánh giá g?n nh?t
+            // Lấy đánh giá gần nhất
             var recentReviews = await _context.Lichsuthues
                 .Where(l => l.Xeid == id && !string.IsNullOrEmpty(l.Nhanxet))
                 .Include(l => l.Khachhang)

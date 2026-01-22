@@ -74,7 +74,7 @@ namespace duanminiveprogresql.Controllers.API
 
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} không t?n t?i");
+                    return NotFound($"Xe ID {id} không tồn tại");
                 }
 
                 return Ok(xe);
@@ -132,7 +132,7 @@ namespace duanminiveprogresql.Controllers.API
                 var existingXe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (existingXe == null)
                 {
-                    return NotFound($"Xe ID {id} không t?n t?i");
+                    return NotFound($"Xe ID {id} không tồn tại");
                 }
 
                 if (!ModelState.IsValid)
@@ -168,7 +168,7 @@ namespace duanminiveprogresql.Controllers.API
                 var xe = await _unitOfWork.Xes.GetByIdAsync(id);
                 if (xe == null)
                 {
-                    return NotFound($"Xe ID {id} không t?n t?i");
+                    return NotFound($"Xe ID {id} không tồn tại");
                 }
 
                 await _unitOfWork.BeginTransactionAsync();
